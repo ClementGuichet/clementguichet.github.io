@@ -1,0 +1,8 @@
+---
+title: "**Diffusion Tensor Imaging (DTI)**"
+format: html
+editor: visual
+description: A step-by-step guide to DTI preprocessing & SC generation based on MRtrix3
+---
+
+## Getting started
