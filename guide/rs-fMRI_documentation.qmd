@@ -1,6 +1,0 @@
----
-title: "**Resting state fMRI (rs-fMRI)**"
-format: html
-editor: visual
-description: A step-by-step guide to rs-fMRI preprocessing & FC generation based on SPM12, CONN, and GraphVar
----
