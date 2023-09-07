@@ -1,3 +1,5 @@
 ---
-title: "about"
+title: "About"
 ---
+
+I'm 2nd-year PhD Student in Cognitive and Computational Neuroscience. My research project is about modeling how our brain reorganizes across the lifespan to preserve optimal cognitive (language) performances.
