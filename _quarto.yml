@@ -47,15 +47,16 @@ website:
   
   sidebar: 
     - id: guide
-      style: floating
-      collapse-level: 1
+      style: docked
+      collapse-level: 2
+      alignment: left
       contents:
         - section: "Guide"
           href: guide.qmd
           contents:
-            - text: DTI
+            - text: "DTI"
               href: DTI.qmd
-            - text: rs-fMRI
+            - text: "rs-fMRI"
               href: rs-fMRI.qmd
       
 format:

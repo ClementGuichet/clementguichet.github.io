@@ -2,7 +2,7 @@
 title: "**Diffusion Tensor Imaging (DTI)**"
 format: html
 editor: visual
-description: A step-by-step guide to DTI preprocessing & SC generation based on MRtrix3
+subtitle: A step-by-step guide to DTI preprocessing & SC generation based on MRtrix3
 ---
 
 ## Software installation
@@ -23,14 +23,10 @@ The pipeline revolves around MRtrix3 which works hand in hand with Freesurfer, F
 
 ## Recon-all
 
-This step can be speed up by using gnu parallel :
-brew install gcc
-brew install parallel
+This step can be speed up by using gnu parallel : brew install gcc brew install parallel
 
 ## Generate Structural connectomes (SC)
 
 ## Automation
 
-Download the script below to run the entire pipeline
-You may have to adapt it to your system specs (# of logical processors available) and to the size of your cohort
-
+Download the script below to run the entire pipeline You may have to adapt it to your system specs (# of logical processors available) and to the size of your cohort

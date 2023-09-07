@@ -2,7 +2,7 @@
 title: "**Resting-state functional magnetic resonance (rs-fMRI)**"
 format: html
 editor: visual
-description: A step-by-step guide to rs-fMRI preprocessing & FC generation based on SPM & CONN
+subtitle: A step-by-step guide to rs-fMRI preprocessing & FC generation based on SPM & CONN
 ---
 
 ## Software installation
