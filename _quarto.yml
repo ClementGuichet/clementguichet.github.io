@@ -3,39 +3,45 @@ project:
   output-dir: docs
 
 website:
-  title: "Clément Guichet, CNRS LPNC, UGA"
-  
+  title: "Clément Guichet"
+  image: "lpnc.jpeg"
+  favicon: "lpnc.jpeg"
+  open-graph: true
+  twitter-card: true
   page-navigation: true
-  back-to-top-navigation: true
-  
-  repo-url: https://github.com/ClementGuichet
+  repo-url: https://github.com/ClementGuichet/quarto_web_clem
   repo-actions: [edit, issue]
+  search: 
+    type: overlay
   
   page-footer: 
     background: light
     border: false
     center: "Copyright 2023, Clement Guichet"
-        
-  sidebar:
-    style: "docked"
-    search: true
-    contents:
-      - section: "Pipelines"
-        contents:
-          - rs-fMRI_documentation.qmd
-          - DTI_documentation.qmd
-      - file: Publications.qmd
-      - file: about.qmd
     
+  
+  navbar: 
+    background: light
+    title: false
+    collapse-below: lg
+    left: 
+      - text: "Guide"
+        href: files/guide/index.qmd
+      - text: "Publications"
+        href: files/publications/index.qmd
+      - text: "About"
+        href: files/about.qmd
+        
     tools:
       - icon: twitter
         href: https://twitter.com/ClementGuichet
+        text: Twitter
       - icon: github
-        text: "LPNC-LANG"
         href: https://github.com/LPNC-LANG
+        text: LPNC-LANG GitHub
       - icon: github
-        text: "Personal"
         href: https://github.com/ClementGuichet
+        text: Personal GitHub
             
 format:
   html:

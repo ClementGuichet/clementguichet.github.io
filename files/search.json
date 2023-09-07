@@ -7,15 +7,15 @@
     "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
   },
   {
-    "objectID": "files/guide/index.html",
-    "href": "files/guide/index.html",
+    "objectID": "docs/guide/index.html",
+    "href": "docs/guide/index.html",
     "title": "Diffusion Tensor Imaging (DTI)",
     "section": "",
     "text": "Diffusion Tensor Imaging is a neuroimaging technique to analyze structural data"
   },
   {
-    "objectID": "files/guide/index.html#getting-started",
-    "href": "files/guide/index.html#getting-started",
+    "objectID": "docs/guide/index.html#getting-started",
+    "href": "docs/guide/index.html#getting-started",
     "title": "Diffusion Tensor Imaging (DTI)",
     "section": "",
     "text": "Diffusion Tensor Imaging is a neuroimaging technique to analyze structural data"

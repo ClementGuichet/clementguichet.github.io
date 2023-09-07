@@ -6,3 +6,5 @@ description: A step-by-step guide to DTI preprocessing & SC generation based on 
 ---
 
 ## Getting started
+
+Diffusion Tensor Imaging is a neuroimaging technique to analyze structural data
