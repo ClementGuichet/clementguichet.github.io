@@ -1,0 +1,7 @@
+---
+title: "**Guide**"
+format: html
+editor: visual
+---
+
+The site hosts a documentation for structural and functional connectome generation (SC & FC).

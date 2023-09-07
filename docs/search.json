@@ -35,13 +35,6 @@
     "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "I’m 2nd-year PhD Student in Cognitive and Computational Neuroscience. My research project is about modeling how our brain reorganizes across the lifespan to preserve optimal cognitive (language) performances."
-  },
-  {
     "objectID": "DTI.html",
     "href": "DTI.html",
     "title": "Diffusion Tensor Imaging (DTI)",
@@ -89,5 +82,19 @@
     "title": "Diffusion Tensor Imaging (DTI)",
     "section": "Automation",
     "text": "Automation\nDownload the script below to run the entire pipeline You may have to adapt it to your system specs (# of logical processors available) and to the size of your cohort"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "I’m 2nd-year PhD Student in Cognitive and Computational Neuroscience. My research project is about modeling how our brain reorganizes across the lifespan to preserve optimal cognitive (language) performances."
+  },
+  {
+    "objectID": "guide.html",
+    "href": "guide.html",
+    "title": "Guide",
+    "section": "",
+    "text": "The site hosts a documentation for structural and functional connectome generation (SC & FC)."
   }
 ]

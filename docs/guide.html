@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="A step-by-step guide to DTI preprocessing &amp; SC generation based on MRtrix3">
 
-<title>Clément Guichet - Diffusion Tensor Imaging (DTI)</title>
+<title>Clément Guichet - Guide</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,8 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./rs-fMRI.html" rel="next">
-<link href="./guide.html" rel="prev">
+<link href="./DTI.html" rel="next">
 <link href="./lpnc.jpeg" rel="icon" type="image/jpeg">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -66,11 +64,11 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="Clément Guichet - Diffusion Tensor Imaging (DTI)">
-<meta property="og:description" content="A step-by-step guide to DTI preprocessing &amp; SC generation based on MRtrix3">
+<meta property="og:title" content="Clément Guichet - Guide">
+<meta property="og:description" content="">
 <meta property="og:site-name" content="Clément Guichet">
-<meta name="twitter:title" content="Clément Guichet - Diffusion Tensor Imaging (DTI)">
-<meta name="twitter:description" content="A step-by-step guide to DTI preprocessing &amp; SC generation based on MRtrix3">
+<meta name="twitter:title" content="Clément Guichet - Guide">
+<meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -112,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./guide.html">Guide</a></li><li class="breadcrumb-item"><a href="./DTI.html">DTI</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./guide.html">Guide</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -126,7 +124,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./guide.html" class="sidebar-item-text sidebar-link">
+            <a href="./guide.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Guide</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -135,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./DTI.html" class="sidebar-item-text sidebar-link active">
+  <a href="./DTI.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">DTI</span></a>
   </div>
 </li>
@@ -153,32 +151,16 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#software-installation" id="toc-software-installation" class="nav-link active" data-scroll-target="#software-installation">Software installation</a></li>
-  <li><a href="#preprocessing" id="toc-preprocessing" class="nav-link" data-scroll-target="#preprocessing">Preprocessing</a></li>
-  <li><a href="#streamline-generation" id="toc-streamline-generation" class="nav-link" data-scroll-target="#streamline-generation">Streamline generation</a></li>
-  <li><a href="#recon-all" id="toc-recon-all" class="nav-link" data-scroll-target="#recon-all">Recon-all</a></li>
-  <li><a href="#generate-structural-connectomes-sc" id="toc-generate-structural-connectomes-sc" class="nav-link" data-scroll-target="#generate-structural-connectomes-sc">Generate Structural connectomes (SC)</a></li>
-  <li><a href="#automation" id="toc-automation" class="nav-link" data-scroll-target="#automation">Automation</a></li>
-  </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClementGuichet/quarto_web_clem/edit/main/DTI.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/ClementGuichet/quarto_web_clem/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><strong>Diffusion Tensor Imaging (DTI)</strong></h1>
+<h1 class="title"><strong>Guide</strong></h1>
 </div>
 
-<div>
-  <div class="description">
-    A step-by-step guide to DTI preprocessing &amp; SC generation based on MRtrix3
-  </div>
-</div>
 
 
 <div class="quarto-title-meta">
@@ -191,35 +173,9 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="software-installation" class="level2">
-<h2 class="anchored" data-anchor-id="software-installation">Software installation</h2>
-<p>The pipeline revolves around MRtrix3 which works hand in hand with Freesurfer, FSL, and ANTs</p>
-<ol type="1">
-<li><p>Download MRtrix3 by copy pasting this command in a bash terminal</p></li>
-<li><p>Download Freesurfer by copy pasting this command in a bash terminal</p>
-<p>Make sure to install it into /usr/local</p></li>
-<li><p>Download FSL</p></li>
-</ol>
-</section>
-<section id="preprocessing" class="level2">
-<h2 class="anchored" data-anchor-id="preprocessing">Preprocessing</h2>
-</section>
-<section id="streamline-generation" class="level2">
-<h2 class="anchored" data-anchor-id="streamline-generation">Streamline generation</h2>
-</section>
-<section id="recon-all" class="level2">
-<h2 class="anchored" data-anchor-id="recon-all">Recon-all</h2>
-<p>This step can be speed up by using gnu parallel : brew install gcc brew install parallel</p>
-</section>
-<section id="generate-structural-connectomes-sc" class="level2">
-<h2 class="anchored" data-anchor-id="generate-structural-connectomes-sc">Generate Structural connectomes (SC)</h2>
-</section>
-<section id="automation" class="level2">
-<h2 class="anchored" data-anchor-id="automation">Automation</h2>
-<p>Download the script below to run the entire pipeline You may have to adapt it to your system specs (# of logical processors available) and to the size of your cohort</p>
+<p>The site hosts a documentation for structural and functional connectome generation (SC &amp; FC).</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -457,13 +413,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./guide.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Guide</span>
-      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./rs-fMRI.html" class="pagination-link">
-        <span class="nav-page-text">rs-fMRI</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./DTI.html" class="pagination-link">
+        <span class="nav-page-text">DTI</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -473,7 +426,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">Copyright 2023, Clement Guichet</div>
+    <div class="nav-footer-center">Copyright 2023, Clement Guichet<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClementGuichet/quarto_web_clem/edit/main/guide.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/ClementGuichet/quarto_web_clem/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
