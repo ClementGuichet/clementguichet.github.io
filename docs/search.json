@@ -4,14 +4,14 @@
     "href": "guide.html",
     "title": "Diffusion Tensor Imaging (DTI)",
     "section": "",
-    "text": "Diffusion Tensor Imaging is a neuroimaging technique to analyze structural data"
+    "text": "The pipeline revolves around MRtrix3 which works hand in hand with Freesurfer, FSL, and ANTs\n\nDownload MRtrix3 by copy pasting this command in a bash terminal\nDownload Freesurfer by copy pasting this command in a bash terminal\nMake sure to install it into /usr/local\nDownload FSL"
   },
   {
-    "objectID": "guide.html#getting-started",
-    "href": "guide.html#getting-started",
+    "objectID": "guide.html#software-installation",
+    "href": "guide.html#software-installation",
     "title": "Diffusion Tensor Imaging (DTI)",
     "section": "",
-    "text": "Diffusion Tensor Imaging is a neuroimaging technique to analyze structural data"
+    "text": "The pipeline revolves around MRtrix3 which works hand in hand with Freesurfer, FSL, and ANTs\n\nDownload MRtrix3 by copy pasting this command in a bash terminal\nDownload Freesurfer by copy pasting this command in a bash terminal\nMake sure to install it into /usr/local\nDownload FSL"
   },
   {
     "objectID": "about.html",

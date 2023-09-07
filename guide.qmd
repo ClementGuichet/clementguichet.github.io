@@ -5,6 +5,14 @@ editor: visual
 description: A step-by-step guide to DTI preprocessing & SC generation based on MRtrix3
 ---
 
-## Getting started
+## Software installation
 
-Diffusion Tensor Imaging is a neuroimaging technique to analyze structural data
+The pipeline revolves around MRtrix3 which works hand in hand with Freesurfer, FSL, and ANTs
+
+1.  Download MRtrix3 by copy pasting this command in a bash terminal
+
+2.  Download Freesurfer by copy pasting this command in a bash terminal
+
+    Make sure to install it into /usr/local
+
+3.  Download FSL
