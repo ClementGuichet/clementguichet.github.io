@@ -14,6 +14,41 @@
     "text": "The pipeline revolves around MRtrix3 which works hand in hand with Freesurfer, FSL, and ANTs\n\nDownload MRtrix3 by copy pasting this command in a bash terminal\nDownload Freesurfer by copy pasting this command in a bash terminal\nMake sure to install it into /usr/local\nDownload FSL"
   },
   {
+    "objectID": "guide.html#preprocessing",
+    "href": "guide.html#preprocessing",
+    "title": "Diffusion Tensor Imaging (DTI)",
+    "section": "Preprocessing",
+    "text": "Preprocessing"
+  },
+  {
+    "objectID": "guide.html#streamline-generation",
+    "href": "guide.html#streamline-generation",
+    "title": "Diffusion Tensor Imaging (DTI)",
+    "section": "Streamline generation",
+    "text": "Streamline generation"
+  },
+  {
+    "objectID": "guide.html#recon-all",
+    "href": "guide.html#recon-all",
+    "title": "Diffusion Tensor Imaging (DTI)",
+    "section": "Recon-all",
+    "text": "Recon-all\nThis step can be speed up by using gnu parallel : brew install gcc brew install parallel"
+  },
+  {
+    "objectID": "guide.html#generate-structural-connectomes-sc",
+    "href": "guide.html#generate-structural-connectomes-sc",
+    "title": "Diffusion Tensor Imaging (DTI)",
+    "section": "Generate Structural connectomes (SC)",
+    "text": "Generate Structural connectomes (SC)"
+  },
+  {
+    "objectID": "guide.html#automation",
+    "href": "guide.html#automation",
+    "title": "Diffusion Tensor Imaging (DTI)",
+    "section": "Automation",
+    "text": "Automation\nDownload the script below to run the entire pipeline You may have to adapt it to your system specs (# of logical processors available) and to the size of your cohort"
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",

@@ -16,3 +16,21 @@ The pipeline revolves around MRtrix3 which works hand in hand with Freesurfer, F
     Make sure to install it into /usr/local
 
 3.  Download FSL
+
+## Preprocessing
+
+## Streamline generation
+
+## Recon-all
+
+This step can be speed up by using gnu parallel :
+brew install gcc
+brew install parallel
+
+## Generate Structural connectomes (SC)
+
+## Automation
+
+Download the script below to run the entire pipeline
+You may have to adapt it to your system specs (# of logical processors available) and to the size of your cohort
+
