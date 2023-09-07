@@ -1,14 +1,14 @@
 [
   {
-    "objectID": "guide/index.html",
-    "href": "guide/index.html",
+    "objectID": "guide/guide.html",
+    "href": "guide/guide.html",
     "title": "Diffusion Tensor Imaging (DTI)",
     "section": "",
     "text": "Diffusion Tensor Imaging is a neuroimaging technique to analyze structural data"
   },
   {
-    "objectID": "guide/index.html#getting-started",
-    "href": "guide/index.html#getting-started",
+    "objectID": "guide/guide.html#getting-started",
+    "href": "guide/guide.html#getting-started",
     "title": "Diffusion Tensor Imaging (DTI)",
     "section": "",
     "text": "Diffusion Tensor Imaging is a neuroimaging technique to analyze structural data"
@@ -19,5 +19,12 @@
     "title": "About",
     "section": "",
     "text": "I’m 2nd-year PhD Student in Cognitive and Computational Neuroscience. My research project is about modeling how our brain reorganizes across the lifespan to preserve optimal cognitive (language) performances."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "website_clem",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
   }
 ]
