@@ -1,0 +1,20 @@
+---
+title: "**Resting-state functional magnetic resonance (rs-fMRI)**"
+format: html
+editor: visual
+description: A step-by-step guide to rs-fMRI preprocessing & FC generation based on SPM & CONN
+---
+
+## Software installation
+
+The pipeline is run primarily with Matlab
+
+1.  Download SPM by copy pasting this command in a bash terminal
+
+2.  Download CONN by copy pasting this command in a bash terminal
+
+3.  Download GraphVar
+
+## Preprocessing automation
+
+## Automating CONN ROI-to-ROI analysis

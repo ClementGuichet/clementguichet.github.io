@@ -1,52 +1,38 @@
 [
   {
-    "objectID": "guide.html",
-    "href": "guide.html",
-    "title": "Diffusion Tensor Imaging (DTI)",
+    "objectID": "rs-fMRI.html",
+    "href": "rs-fMRI.html",
+    "title": "Resting-state functional magnetic resonance (rs-fMRI)",
     "section": "",
-    "text": "The pipeline revolves around MRtrix3 which works hand in hand with Freesurfer, FSL, and ANTs\n\nDownload MRtrix3 by copy pasting this command in a bash terminal\nDownload Freesurfer by copy pasting this command in a bash terminal\nMake sure to install it into /usr/local\nDownload FSL"
+    "text": "The pipeline is run primarily with Matlab\n\nDownload SPM by copy pasting this command in a bash terminal\nDownload CONN by copy pasting this command in a bash terminal\nDownload GraphVar"
   },
   {
-    "objectID": "guide.html#software-installation",
-    "href": "guide.html#software-installation",
-    "title": "Diffusion Tensor Imaging (DTI)",
+    "objectID": "rs-fMRI.html#software-installation",
+    "href": "rs-fMRI.html#software-installation",
+    "title": "Resting-state functional magnetic resonance (rs-fMRI)",
     "section": "",
-    "text": "The pipeline revolves around MRtrix3 which works hand in hand with Freesurfer, FSL, and ANTs\n\nDownload MRtrix3 by copy pasting this command in a bash terminal\nDownload Freesurfer by copy pasting this command in a bash terminal\nMake sure to install it into /usr/local\nDownload FSL"
+    "text": "The pipeline is run primarily with Matlab\n\nDownload SPM by copy pasting this command in a bash terminal\nDownload CONN by copy pasting this command in a bash terminal\nDownload GraphVar"
   },
   {
-    "objectID": "guide.html#preprocessing",
-    "href": "guide.html#preprocessing",
-    "title": "Diffusion Tensor Imaging (DTI)",
-    "section": "Preprocessing",
-    "text": "Preprocessing"
+    "objectID": "rs-fMRI.html#preprocessing-automation",
+    "href": "rs-fMRI.html#preprocessing-automation",
+    "title": "Resting-state functional magnetic resonance (rs-fMRI)",
+    "section": "Preprocessing automation",
+    "text": "Preprocessing automation"
   },
   {
-    "objectID": "guide.html#streamline-generation",
-    "href": "guide.html#streamline-generation",
-    "title": "Diffusion Tensor Imaging (DTI)",
-    "section": "Streamline generation",
-    "text": "Streamline generation"
+    "objectID": "rs-fMRI.html#automating-conn-roi-to-roi-analysis",
+    "href": "rs-fMRI.html#automating-conn-roi-to-roi-analysis",
+    "title": "Resting-state functional magnetic resonance (rs-fMRI)",
+    "section": "Automating CONN ROI-to-ROI analysis",
+    "text": "Automating CONN ROI-to-ROI analysis"
   },
   {
-    "objectID": "guide.html#recon-all",
-    "href": "guide.html#recon-all",
-    "title": "Diffusion Tensor Imaging (DTI)",
-    "section": "Recon-all",
-    "text": "Recon-all\nThis step can be speed up by using gnu parallel : brew install gcc brew install parallel"
-  },
-  {
-    "objectID": "guide.html#generate-structural-connectomes-sc",
-    "href": "guide.html#generate-structural-connectomes-sc",
-    "title": "Diffusion Tensor Imaging (DTI)",
-    "section": "Generate Structural connectomes (SC)",
-    "text": "Generate Structural connectomes (SC)"
-  },
-  {
-    "objectID": "guide.html#automation",
-    "href": "guide.html#automation",
-    "title": "Diffusion Tensor Imaging (DTI)",
-    "section": "Automation",
-    "text": "Automation\nDownload the script below to run the entire pipeline You may have to adapt it to your system specs (# of logical processors available) and to the size of your cohort"
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "website_clem",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
   },
   {
     "objectID": "about.html",
@@ -56,10 +42,52 @@
     "text": "I’m 2nd-year PhD Student in Cognitive and Computational Neuroscience. My research project is about modeling how our brain reorganizes across the lifespan to preserve optimal cognitive (language) performances."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "website_clem",
+    "objectID": "DTI.html",
+    "href": "DTI.html",
+    "title": "Diffusion Tensor Imaging (DTI)",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
+    "text": "The pipeline revolves around MRtrix3 which works hand in hand with Freesurfer, FSL, and ANTs\n\nDownload MRtrix3 by copy pasting this command in a bash terminal\nDownload Freesurfer by copy pasting this command in a bash terminal\nMake sure to install it into /usr/local\nDownload FSL"
+  },
+  {
+    "objectID": "DTI.html#software-installation",
+    "href": "DTI.html#software-installation",
+    "title": "Diffusion Tensor Imaging (DTI)",
+    "section": "",
+    "text": "The pipeline revolves around MRtrix3 which works hand in hand with Freesurfer, FSL, and ANTs\n\nDownload MRtrix3 by copy pasting this command in a bash terminal\nDownload Freesurfer by copy pasting this command in a bash terminal\nMake sure to install it into /usr/local\nDownload FSL"
+  },
+  {
+    "objectID": "DTI.html#preprocessing",
+    "href": "DTI.html#preprocessing",
+    "title": "Diffusion Tensor Imaging (DTI)",
+    "section": "Preprocessing",
+    "text": "Preprocessing"
+  },
+  {
+    "objectID": "DTI.html#streamline-generation",
+    "href": "DTI.html#streamline-generation",
+    "title": "Diffusion Tensor Imaging (DTI)",
+    "section": "Streamline generation",
+    "text": "Streamline generation"
+  },
+  {
+    "objectID": "DTI.html#recon-all",
+    "href": "DTI.html#recon-all",
+    "title": "Diffusion Tensor Imaging (DTI)",
+    "section": "Recon-all",
+    "text": "Recon-all\nThis step can be speed up by using gnu parallel : brew install gcc brew install parallel"
+  },
+  {
+    "objectID": "DTI.html#generate-structural-connectomes-sc",
+    "href": "DTI.html#generate-structural-connectomes-sc",
+    "title": "Diffusion Tensor Imaging (DTI)",
+    "section": "Generate Structural connectomes (SC)",
+    "text": "Generate Structural connectomes (SC)"
+  },
+  {
+    "objectID": "DTI.html#automation",
+    "href": "DTI.html#automation",
+    "title": "Diffusion Tensor Imaging (DTI)",
+    "section": "Automation",
+    "text": "Automation\nDownload the script below to run the entire pipeline You may have to adapt it to your system specs (# of logical processors available) and to the size of your cohort"
   }
 ]

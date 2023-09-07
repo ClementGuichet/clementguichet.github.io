@@ -43,11 +43,32 @@ website:
         href: https://github.com/ClementGuichet
         text: Personal GitHub
             
+  
+  
+  sidebar: 
+    - id: guide
+      style: floating
+      collapse-level: 1
+      contents:
+        - section: "Guide"
+          href: guide.qmd
+          contents:
+            contents:
+              - DTI.qmd
+              - rs-fMRI.qmd
+      
 format:
   html:
     theme: cosmo
     css: styles.css
     toc: true
+    code-copy: true
+    code-line-numbers: true
+    code-overflow: wrap
+    grid: 
+      sidebar-width: 250px
+      body-width: 900px
+      margin-width: 300px
 
 editor: visual
 
