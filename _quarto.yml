@@ -26,11 +26,11 @@ website:
     collapse-below: lg
     left: 
       - text: "Guide"
-        href: files/guide/index.qmd
+        href: docs/guide/index.qmd
       - text: "Publications"
-        href: files/publications/index.qmd
+        href: docs/publications/index.qmd
       - text: "About"
-        href: files/about.qmd
+        href: docs/about.qmd
         
     tools:
       - icon: twitter
