@@ -26,9 +26,9 @@ website:
     collapse-below: lg
     left: 
       - text: "Guide"
-        href: guide/guide.qmd
+        href: guide.qmd
       - text: "Publications"
-        href: publications/publications.qmd
+        href: publications.qmd
       - text: "About"
         href: about.qmd
         
