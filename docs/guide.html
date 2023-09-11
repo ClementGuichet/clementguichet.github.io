@@ -42,10 +42,10 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
+  "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "end",
+  "panel-placement": "start",
   "type": "overlay",
   "limit": 20,
   "language": {
@@ -72,40 +72,10 @@ ul.task-list li input[type="checkbox"] {
 <meta name="twitter:card" content="summary">
 </head>
 
-<body class="nav-sidebar docked nav-fixed">
+<body class="nav-sidebar docked">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
-      <div class="navbar-container container-fluid">
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link active" href="./guide.html" rel="" target="" aria-current="page"><i class="bi bi-book" role="img">
-</i> 
- <span class="menu-text">Guide</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./publications.html" rel="" target="">
- <span class="menu-text">Publications</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./about.html" rel="" target="">
- <span class="menu-text">About</span></a>
-  </li>  
-</ul>
-            <div class="quarto-navbar-tools ms-auto tools-wide">
-    <a href="https://twitter.com/ClementGuichet" rel="" title="Twitter" class="quarto-navigation-tool px-1" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
-    <a href="https://github.com/LPNC-LANG" rel="" title="LPNC-LANG GitHub" class="quarto-navigation-tool px-1" aria-label="LPNC-LANG GitHub"><i class="bi bi-github"></i></a>
-    <a href="https://github.com/ClementGuichet" rel="" title="Personal GitHub" class="quarto-navigation-tool px-1" aria-label="Personal GitHub"><i class="bi bi-github"></i></a>
-</div>
-          </div> <!-- /navcollapse -->
-      </div> <!-- /container-fluid -->
-    </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -114,13 +84,24 @@ ul.task-list li input[type="checkbox"] {
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./guide.html">Guide</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
     </div>
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Clément Guichet</a> 
+        <div class="sidebar-tools-main">
+    <div id="quarto-search" class="quarto-navigation-tool px-1" title="Search"></div>
+</div>
+    </div>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
@@ -174,7 +155,7 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Below we provide a step-by-step documentation for generating structural and functional connectome (SC &amp; FC). A connectome helps map the interactions between brain regions at a macroscale by encoding inter-regional information flow within an adjacency matrix, also known as a graph.</p>
+<p>Below we provide step-by-step guides for generating structural and functional connectome (SC &amp; FC). A connectome helps map the interactions between brain regions at a macroscale by encoding inter-regional information flow within an adjacency matrix, also known as a graph.</p>
 <p>The pipelines assume you have either Linux or <a href="https://learn.microsoft.com/fr-fr/windows/wsl/install">WSL2</a> for Windows already installed on your system.</p>
 
 

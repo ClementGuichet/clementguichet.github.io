@@ -95,7 +95,7 @@
     "href": "guide.html",
     "title": "Guide",
     "section": "",
-    "text": "Below we provide a step-by-step documentation for generating structural and functional connectome (SC & FC). A connectome helps map the interactions between brain regions at a macroscale by encoding inter-regional information flow within an adjacency matrix, also known as a graph.\nThe pipelines assume you have either Linux or WSL2 for Windows already installed on your system."
+    "text": "Below we provide step-by-step guides for generating structural and functional connectome (SC & FC). A connectome helps map the interactions between brain regions at a macroscale by encoding inter-regional information flow within an adjacency matrix, also known as a graph.\nThe pipelines assume you have either Linux or WSL2 for Windows already installed on your system."
   },
   {
     "objectID": "publications.html",

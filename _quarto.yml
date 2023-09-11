@@ -45,16 +45,16 @@ website:
               href: DTI.qmd
             - text: "rs-fMRI pipeline (FC)"
               href: rs-fMRI.qmd
-    tools:
-      - icon: twitter
-        href: https://twitter.com/ClementGuichet
-        text: Twitter
-      - icon: github
-        href: https://github.com/LPNC-LANG
-        text: LPNC-LANG GitHub
-      - icon: github
-        href: https://github.com/ClementGuichet
-        text: Personal GitHub
+    # tools:
+    #   - icon: twitter
+    #     href: https://twitter.com/ClementGuichet
+    #     text: Twitter
+    #   - icon: github
+    #     href: https://github.com/LPNC-LANG
+    #     text: LPNC-LANG GitHub
+    #   - icon: github
+    #     href: https://github.com/ClementGuichet
+    #     text: Personal GitHub
       
 format:
   html:
