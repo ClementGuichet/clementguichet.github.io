@@ -19,31 +19,18 @@ website:
     border: false
     center: "Copyright © 2023, Clement Guichet"
     
-  navbar: 
-    background: light
-    title: false
-    collapse-below: lg
-    left: 
-      - text: "Guide"
-        href: guide.qmd
-        icon: book
-      - text: "Publications"
-        href: publications.qmd
-      - text: "About"
-        href: about.qmd
-        
-    tools:
-      - icon: twitter
-        href: https://twitter.com/ClementGuichet
-        text: Twitter
-      - icon: github
-        href: https://github.com/LPNC-LANG
-        text: LPNC-LANG GitHub
-      - icon: github
-        href: https://github.com/ClementGuichet
-        text: Personal GitHub
-            
-  
+  # navbar: 
+  #   background: light
+  #   title: false
+  #   collapse-below: lg
+  #   left: 
+  #     - text: "Guide"
+  #       href: guide.qmd
+  #       icon: book
+  #     - text: "Publications"
+  #       href: publications.qmd
+  #     - text: "About"
+  #       href: about.qmd
   
   sidebar: 
     - id: guide
@@ -58,6 +45,16 @@ website:
               href: DTI.qmd
             - text: "rs-fMRI pipeline (FC)"
               href: rs-fMRI.qmd
+    tools:
+      - icon: twitter
+        href: https://twitter.com/ClementGuichet
+        text: Twitter
+      - icon: github
+        href: https://github.com/LPNC-LANG
+        text: LPNC-LANG GitHub
+      - icon: github
+        href: https://github.com/ClementGuichet
+        text: Personal GitHub
       
 format:
   html:
