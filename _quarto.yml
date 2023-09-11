@@ -20,7 +20,7 @@ website:
     
   navbar: 
     background: light
-    logo: "logo.png"
+    logo: "logo300.png"
     title: false
     collapse-below: lg
     left: 
