@@ -136,6 +136,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">DTI pipeline (SC)</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="./parallel.html" rel="" target="">
+ <span class="dropdown-text">Parallel computing</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./rs-fMRI.html" rel="" target="">
  <span class="dropdown-text">rs-fMRI pipeline (FC)</span></a>
   </li>  
@@ -174,10 +178,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#freesurfer" id="toc-freesurfer" class="nav-link" data-scroll-target="#freesurfer">Freesurfer</a></li>
   <li><a href="#fsl" id="toc-fsl" class="nav-link" data-scroll-target="#fsl">FSL</a></li>
   </ul></li>
+  <li><a href="#batch-processing" id="toc-batch-processing" class="nav-link" data-scroll-target="#batch-processing">Batch processing</a>
+  <ul class="collapse">
   <li><a href="#preprocessing" id="toc-preprocessing" class="nav-link" data-scroll-target="#preprocessing">Preprocessing</a></li>
   <li><a href="#streamline-generation" id="toc-streamline-generation" class="nav-link" data-scroll-target="#streamline-generation">Streamline generation</a></li>
   <li><a href="#recon-all" id="toc-recon-all" class="nav-link" data-scroll-target="#recon-all">Recon-all</a></li>
   <li><a href="#generate-structural-connectomes-sc" id="toc-generate-structural-connectomes-sc" class="nav-link" data-scroll-target="#generate-structural-connectomes-sc">Generate Structural connectomes (SC)</a></li>
+  </ul></li>
   <li><a href="#automation" id="toc-automation" class="nav-link" data-scroll-target="#automation">Automation</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClementGuichet/quarto_web_clem/edit/main/DTI.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/ClementGuichet/quarto_web_clem/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -260,20 +267,126 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>``` python
  python "/mnt/c/Users/&lt;WindowsUserName&gt;/Downloads/fslinstaller.py"
 ```</code></pre>
+<section id="ants" class="level4">
+<h4 class="anchored" data-anchor-id="ants">ANTs</h4>
+<ol type="1">
+<li><p>Download the <a href="https://github.com/cookpa/antsInstallExample/blob/master/installANTs.sh">ANTs installer script</a></p></li>
+<li><p>In the terminal, enter:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> installANTs.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Add it to your PATH</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"ANTSPATH=</span><span class="va">$HOME</span><span class="st">/install/bin/"</span> <span class="op">&gt;&gt;</span> <span class="va">$HOME</span>/.bashrc</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"export PATH=</span><span class="va">${ANTSPATH}</span><span class="st">:</span><span class="va">$PATH</span><span class="st">"</span> <span class="op">&gt;&gt;</span> <span class="va">$HOME</span>/.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
 </section>
 </section>
-<section id="preprocessing" class="level2">
-<h2 class="anchored" data-anchor-id="preprocessing">Preprocessing</h2>
 </section>
-<section id="streamline-generation" class="level2">
-<h2 class="anchored" data-anchor-id="streamline-generation">Streamline generation</h2>
+<section id="batch-processing" class="level2">
+<h2 class="anchored" data-anchor-id="batch-processing">Batch processing</h2>
+<p>I recommend you check <a href="https://andysbrainbook.readthedocs.io/en/latest/MRtrix/MRtrix_Introduction.html">Andrew Jahn’s book</a> for a thorough walk-through DTI analysis with MRtrix3. Below, I provide a synthesis of the preprocessing steps using the for_each command available on MRtrix3.</p>
+<section id="logical-processors" class="level4">
+<h4 class="anchored" data-anchor-id="logical-processors">Logical processors</h4>
+<p>To determine the number of available logical processors on your system, enter <em>nproc --all</em> in the terminal. The output number is the argument we’ll pass to the <em>-nthreads</em> flag below. I recommend you spare some of it if you wish to perform other tasks while the pipeline is running. For example, I only use 32 out of the 48 available on my system.</p>
 </section>
-<section id="recon-all" class="level2">
-<h2 class="anchored" data-anchor-id="recon-all">Recon-all</h2>
+<section id="for_each-command" class="level4">
+<h4 class="anchored" data-anchor-id="for_each-command">For_each command</h4>
+<p>For_each is useful when you want to run multiple subjects, with multi-threading if possible. You have to provide the path to your dwi directory where your raw data is stored (bvals, bvecs, etc…) as a template :</p>
+<p><em>assuming you are in the raw_data directory: */dwi</em></p>
+<p>In a BIDS-compliant dataset, for_each will then iterate over the directories paths that match this template, substituting the * with each subject in your dataset.</p>
+<p><em>IN</em> is used in the MRtrix command to echo the path to the dwi directory of each subject.</p>
+</section>
+<section id="preprocessing" class="level3">
+<h3 class="anchored" data-anchor-id="preprocessing">Preprocessing</h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">############################### STEP 1 ###############################</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#             Convert data to .mif format and denoise                #</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">######################################################################</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Also consider doing Gibbs denoising (using mrdegibbs). Check your diffusion data for ringing artifacts before deciding whether to use it</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">-all</span><span class="op">&gt;</span> -info <span class="pp">*</span>/dwi : mrconvert IN/<span class="pp">*</span>dwi.nii.gz IN/dwi.mif </span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">-all</span><span class="op">&gt;</span> -info <span class="pp">*</span>/dwi : mrconvert IN/dwi.mif <span class="at">-fslgrad</span> IN/<span class="pp">*</span>.bvec IN/<span class="pp">*</span>.bval IN/dwi_header.mif </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">-all</span><span class="op">&gt;</span> -info <span class="pp">*</span>/dwi : dwidenoise IN/dwi_header.mif IN/dwi_den.mif <span class="at">-noise</span> IN/noise.mif </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">-all</span><span class="op">&gt;</span> -info <span class="pp">*</span>/dwi : mrdegibbs IN/dwi_den.mif IN/dwi_den_unr.mif </span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the b0 images from the diffusion data acquired in the AP direction</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">-all</span><span class="op">&gt;</span> -info <span class="pp">*</span>/dwi : dwiextract IN/dwi_den.mif <span class="at">-</span> <span class="at">-bzero</span> <span class="dt">\|</span> mrmath <span class="at">-</span> mean IN/mean_b0_AP.mif <span class="at">-axis</span> 3 </span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">######################################################################</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Runs the dwipreproc command, which is a wrapper for eddy and topup.</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">#### !!! Here the CAMCAN dataset does not provide reverse encoding, hence -rpe_none !!! ####</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co">#### !!! &lt;nproc --all&gt;/8 means you should divide by 8 as each subject's preprocessing will be performed by 8 threads already (see at the end of the line) #### !!!</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co">######################################################################</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="op">&lt;</span>nproc <span class="at">--all</span><span class="op">&gt;</span>/8 <span class="at">-info</span> <span class="pp">*</span>/dwi : dwifslpreproc IN/dwi_den.mif IN/dwi_den_preproc.mif <span class="at">-pe_dir</span> AP <span class="at">-rpe_none</span> <span class="at">-readout_time</span> 0.0342002 <span class="at">-eddy_options</span> <span class="st">" --slm=linear --data_is_shelled"</span>  <span class="at">-nthreads</span> 8</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Performs bias field correction. Needs ANTs to be installed in order to use the "ants" option (use "fsl" otherwise)</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">-all</span><span class="op">&gt;</span> -info <span class="pp">*</span>/dwi : dwibiascorrect ants IN/dwi_den_preproc.mif IN/dwi_den_preproc_unbiased.mif <span class="at">-bias</span> IN/bias.mif </span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a mask for future processing steps</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">-all</span><span class="op">&gt;</span> -info <span class="pp">*</span>/dwi : dwi2mask IN/dwi_den_preproc_unbiased.mif IN/mask.mif </span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="co">########################### STEP 2 ###################################</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="co">#             Basis function for each tissue type                    #</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="co">######################################################################</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a basis function from the subject's DWI data. The "dhollander" function is best used for multi-shell acquisitions; it will estimate different basis functions for each tissue type. For single-shell acquisition, use the "tournier" function instead</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">-all</span><span class="op">&gt;</span> -info <span class="pp">*</span>/dwi : dwi2response dhollander IN/dwi_den_preproc_unbiased.mif IN/wm.txt IN/gm.txt IN/csf.txt <span class="at">-voxels</span> IN/voxels.mif </span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Performs multishell-multitissue constrained spherical deconvolution, using the basis functions estimated above</span></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">-all</span><span class="op">&gt;</span> -info <span class="pp">*</span>/dwi : dwi2fod msmt_csd IN/dwi_den_preproc_unbiased.mif <span class="at">-mask</span> IN/mask.mif IN/wm.txt IN/wmfod.mif IN/gm.txt IN/gmfod.mif IN/csf.txt IN/csffod.mif </span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Creates an image of the fiber orientation densities overlaid onto the estimated tissues (Blue=WM; Green=GM; Red=CSF)</span></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="co"># You should see FOD's mostly within the white matter. These can be viewed later with the command "mrview vf.mif -odf.load_sh wmfod.mif"</span></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">-all</span><span class="op">&gt;</span> -info <span class="pp">*</span>/dwi : mrconvert <span class="at">-coord</span> 3 0 IN/wmfod.mif <span class="at">-</span> <span class="dt">\|</span> mrcat IN/csffod.mif IN/gmfod.mif <span class="at">-</span> IN/vf.mif </span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Now normalize the FODs to enable comparison between subjects</span></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">-all</span><span class="op">&gt;</span> -info <span class="pp">*</span>/dwi : mtnormalise IN/wmfod.mif IN/wmfod_norm.mif IN/gmfod.mif IN/gmfod_norm.mif IN/csffod.mif IN/csffod_norm.mif <span class="at">-mask</span> IN/mask.mif </span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a><span class="co">########################### STEP 3 ###################################</span></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a><span class="co">#            Create a GM/WM boundary for seed analysis               #</span></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a><span class="co">######################################################################</span></span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the anatomical image to .mif format, and then extract all five tissue catagories (1=GM; 2=Subcortical GM; 3=WM; 4=CSF; 5=Pathological tissue)</span></span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">-all</span><span class="op">&gt;</span> -info <span class="pp">*</span>/dwi : mrconvert IN/../anat/<span class="pp">*</span>T1w.nii.gz IN/T1.mif </span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="op">&lt;</span>nproc <span class="at">--all</span><span class="op">&gt;</span>/8 <span class="at">-info</span> <span class="pp">*</span>/dwi : 5ttgen fsl IN/T1.mif IN/5tt_nocoreg.mif <span class="at">-nthreads</span> 8 </span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a><span class="co"># The following series of commands will take the average of the b0 images (which have the best contrast), convert them and the 5tt image to NIFTI format, and use it for coregistration.</span></span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">-all</span><span class="op">&gt;</span> -info <span class="pp">*</span>/dwi : dwiextract IN/dwi_den_preproc_unbiased.mif <span class="at">-</span> <span class="at">-bzero</span> <span class="dt">\|</span> mrmath <span class="at">-</span> mean IN/mean_b0_processed.mif <span class="at">-axis</span> 3 </span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">-all</span><span class="op">&gt;</span> -info <span class="pp">*</span>/dwi : mrconvert IN/mean_b0_processed.mif IN/mean_b0_processed.nii.gz </span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">-all</span><span class="op">&gt;</span> -info <span class="pp">*</span>/dwi : mrconvert IN/5tt_nocoreg.mif IN/5tt_nocoreg.nii.gz </span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a><span class="co"># Uses FSL commands fslroi and flirt to create a transformation matrix for regisitration between the tissue map and the b0 images</span></span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">-all</span><span class="op">&gt;</span> -info <span class="pp">*</span>/dwi : fslroi IN/5tt_nocoreg.nii.gz IN/5tt_vol0.nii.gz 0 1 <span class="co">#Extract the first volume of the 5tt dataset (since flirt can only use 3D images, not 4D images)</span></span>
+<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">-all</span><span class="op">&gt;</span> -info <span class="pp">*</span>/dwi : flirt <span class="at">-in</span> IN/mean_b0_processed.nii.gz <span class="at">-ref</span> IN/5tt_vol0.nii.gz <span class="at">-interp</span> nearestneighbour <span class="at">-dof</span> 6 <span class="at">-omat</span> IN/diff2struct_fsl.mat</span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">-all</span><span class="op">&gt;</span> -info <span class="pp">*</span>/dwi : transformconvert IN/diff2struct_fsl.mat IN/mean_b0_processed.nii.gz IN/5tt_nocoreg.nii.gz flirt_import IN/diff2struct_mrtrix.txt </span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">-all</span><span class="op">&gt;</span> -info <span class="pp">*</span>/dwi : mrtransform IN/5tt_nocoreg.mif <span class="at">-linear</span> IN/diff2struct_mrtrix.txt <span class="at">-inverse</span> IN/5tt_coreg.mif </span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a seed region along the GM/WM boundary</span></span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">-all</span><span class="op">&gt;</span> -info <span class="pp">*</span>/dwi : 5tt2gmwmi IN/5tt_coreg.mif IN/gmwmSeed_coreg.mif </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="streamline-generation" class="level3">
+<h3 class="anchored" data-anchor-id="streamline-generation">Streamline generation</h3>
+<p>Make sure to allocate at least 5Go of space for each subject on your local disk as streamline generation can get quite heavy. Here we generate 10 millions streamlines and then reduce that number using the <em>tckgen</em> and <em>tcksift2</em> command.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">########################## STEP 4 ###################################</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#                 Run the streamline analysis                        #</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">######################################################################</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create streamlines</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Note that the "right" number of streamlines is still up for debate. Last I read from the MRtrix documentation,</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># They recommend about 100 million tracks. Here I use 10 million, if only to save time. Read their papers and then make a decision</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">--all</span><span class="op">&gt;</span>/8 <span class="at">-info</span> <span class="pp">*</span>/dwi : tckgen <span class="at">-act</span> IN/5tt_coreg.mif <span class="at">-backtrack</span> <span class="at">-seed_gmwmi</span> IN/gmwmSeed_coreg.mif <span class="at">-nthreads</span> 8 <span class="at">-maxlength</span> 250 <span class="at">-cutoff</span> 0.06 <span class="at">-select</span> 10000k IN/wmfod_norm.mif IN/tracks_10M.tck </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract a subset of tracks (here, 200 thousand) for ease of visualization</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co"># tckedit tracks_10M.tck -number 200k smallerTracks_200k.tck</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Reduce the number of streamlines with tcksift</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">--all</span><span class="op">&gt;</span>/8 <span class="at">-info</span> <span class="pp">*</span>/dwi : tcksift2 <span class="at">-act</span> IN/5tt_coreg.mif <span class="at">-out_mu</span> IN/sift_mu.txt <span class="at">-out_coeffs</span> IN/sift_coeffs.txt <span class="at">-nthreads</span> 8 IN/tracks_10M.tck IN/wmfod_norm.mif IN/sift_1M.txt </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="recon-all" class="level3">
+<h3 class="anchored" data-anchor-id="recon-all">Recon-all</h3>
 <p>This step can be speed up by using gnu parallel : brew install gcc brew install parallel</p>
 </section>
-<section id="generate-structural-connectomes-sc" class="level2">
-<h2 class="anchored" data-anchor-id="generate-structural-connectomes-sc">Generate Structural connectomes (SC)</h2>
+<section id="generate-structural-connectomes-sc" class="level3">
+<h3 class="anchored" data-anchor-id="generate-structural-connectomes-sc">Generate Structural connectomes (SC)</h3>
+</section>
 </section>
 <section id="automation" class="level2">
 <h2 class="anchored" data-anchor-id="automation">Automation</h2>

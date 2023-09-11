@@ -1,0 +1,6 @@
+---
+title: "**Parallel processing**"
+format: html
+editor: visual
+subtitle: Speeding up Recon-all computation
+---

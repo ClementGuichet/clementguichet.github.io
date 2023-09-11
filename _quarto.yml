@@ -30,6 +30,8 @@ website:
             href: basic_setup.qmd
           - text: "DTI pipeline (SC)"
             href: DTI.qmd
+          - text: "Parallel computing"
+            href: parallel.qmd
           - text: "rs-fMRI pipeline (FC)"
             href: rs-fMRI.qmd
       - text: "Publications"
