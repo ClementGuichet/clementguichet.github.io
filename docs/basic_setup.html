@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Clément Guichet - Guide</title>
+<title>Clément Guichet - Basic setup</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -97,10 +97,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="Clément Guichet - Guide">
+<meta property="og:title" content="Clément Guichet - Basic setup">
 <meta property="og:description" content="">
 <meta property="og:site-name" content="Clément Guichet">
-<meta name="twitter:title" content="Clément Guichet - Guide">
+<meta name="twitter:title" content="Clément Guichet - Basic setup">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -128,7 +128,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-guide">    
         <li>
-    <a class="dropdown-item" href="./guide.html" rel="" target="">
+    <a class="dropdown-item" href="./basic_setup.html" rel="" target="">
  <span class="dropdown-text">Basic Setup</span></a>
   </li>  
         <li>
@@ -164,20 +164,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#basic-setup" id="toc-basic-setup" class="nav-link active" data-scroll-target="#basic-setup">Basic setup</a></li>
-  </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClementGuichet/quarto_web_clem/edit/main/guide.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/ClementGuichet/quarto_web_clem/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><strong>Guide</strong></h1>
+<h1 class="title"><strong>Basic setup</strong></h1>
 </div>
 
 
@@ -192,9 +186,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>Below we provide step-by-step guides for generating structural and functional connectome (SC &amp; FC). A connectome helps map the interactions between brain regions at a macroscale by encoding inter-regional information flow within an adjacency matrix, also known as a graph.</p>
-<section id="basic-setup" class="level2">
-<h2 class="anchored" data-anchor-id="basic-setup">Basic setup</h2>
 <p>The pipelines assume you have either Linux or <a href="https://learn.microsoft.com/fr-fr/windows/wsl/install">WSL2</a> for Windows already installed on your system.</p>
 <p>Check that WSL2 is running by typing this command in PowerShell:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  wsl <span class="op">-</span>l <span class="op">-</span>v </span>
@@ -205,7 +196,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># If you have WSL1, you can update to WSL2 by typing </span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  wsl <span class="op">--</span>set<span class="op">-</span>default<span class="op">-</span>version 2 wsl <span class="op">--</span>set<span class="op">-</span>version Ubuntu<span class="op">-</span>20<span class="op">.</span><span class="fu">04</span> 2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Otherwise, you can install Ubuntu</p>
+<p>Otherwise, you can install Ubuntu by pasting the following commands:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>1<span class="op">.</span> Enable WSL by opening PowerShell as administrator</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    wsl <span class="op">--</span>install <span class="op">-</span>d Ubuntu<span class="op">-</span>20<span class="op">.</span><span class="fu">04</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>2<span class="op">.</span> Restart your computer</span>
@@ -215,13 +206,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li><p>Display setting: select multiple windows option</p></li>
 <li><p>Client startup: check the Start no client option</p></li>
-<li><p>Extra setting: make sure “Disable access control” is enabled and “Native openGL” is disabled</p></li>
+<li><p>Extra setting: make sure “Disable access control” is enabled and “native opengl” is disabled</p></li>
 <li><p>Add this to your .bashrc file:</p>
-<pre class="{bash}"><code> echo "export DISPLAY=\$(grep nameserver /etc/resolv.conf  | awk '{print \$2; exit}'):0" &gt;&gt; ~/.bashrc
- echo "export LIBGL_ALWAYS_INDIRECT=0" &gt;&gt; ~/.bashrc
-
- # For Windows 11 users, add this as well
-  echo "export LIBGL_ALWAYS_SOFTWARE=1" &gt;&gt; ~/.bashrc</code></pre></li>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a> <span class="bu">echo</span> <span class="st">"export DISPLAY=</span><span class="dt">\$</span><span class="st">(grep nameserver /etc/resolv.conf  | awk '{print </span><span class="dt">\$</span><span class="st">2; exit}'):0"</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a> <span class="bu">echo</span> <span class="st">"export LIBGL_ALWAYS_INDIRECT=0"</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a> <span class="co"># For Windows 11 users, add this as well</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">"export LIBGL_ALWAYS_SOFTWARE=1"</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Try running&nbsp;glxgears. A window with three spinning gears should open.</p>
 <p>Troubleshooting:</p>
 <ul>
@@ -231,7 +221,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -473,7 +462,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">Copyright © 2023, Clement Guichet</div>
+    <div class="nav-footer-center">Copyright © 2023, Clement Guichet<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClementGuichet/quarto_web_clem/edit/main/basic_setup.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/ClementGuichet/quarto_web_clem/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

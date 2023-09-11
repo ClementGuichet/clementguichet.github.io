@@ -27,7 +27,7 @@ website:
       - text: "Guide"
         menu: 
           - text: "Basic Setup"
-            href: guide.qmd
+            href: basic_setup.qmd
           - text: "DTI pipeline (SC)"
             href: DTI.qmd
           - text: "rs-fMRI pipeline (FC)"

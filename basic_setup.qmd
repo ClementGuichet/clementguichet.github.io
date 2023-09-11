@@ -1,12 +1,8 @@
 ---
-title: "**Guide**"
+title: "**Basic setup**"
 format: html
 editor: visual
 ---
-
-Below we provide step-by-step guides for generating structural and functional connectome (SC & FC). A connectome helps map the interactions between brain regions at a macroscale by encoding inter-regional information flow within an adjacency matrix, also known as a graph.
-
-## Basic setup
 
 The pipelines assume you have either Linux or [WSL2](https://learn.microsoft.com/fr-fr/windows/wsl/install) for Windows already installed on your system.
 
@@ -23,7 +19,7 @@ Check that WSL2 is running by typing this command in PowerShell:
   wsl --set-default-version 2 wsl --set-version Ubuntu-20.04 2
 ```
 
-Otherwise, you can install Ubuntu
+Otherwise, you can install Ubuntu by pasting the following commands:
 
 ``` PowerShell
 1. Enable WSL by opening PowerShell as administrator
@@ -39,14 +35,13 @@ You'll also need to GUI for WSL. I recommend you install VcXsrv on your system, 
 
 2.  Client startup: check the Start no client option
 
-3.  Extra setting: make sure "Disable access control" is enabled and "Native openGL" is disabled
+3.  Extra setting: make sure "Disable access control" is enabled and "native opengl" is disabled
 
 4.  Add this to your .bashrc file:
 
-    ```{bash}
+    ``` bash
      echo "export DISPLAY=\$(grep nameserver /etc/resolv.conf  | awk '{print \$2; exit}'):0" >> ~/.bashrc
      echo "export LIBGL_ALWAYS_INDIRECT=0" >> ~/.bashrc
-     
      # For Windows 11 users, add this as well
       echo "export LIBGL_ALWAYS_SOFTWARE=1" >> ~/.bashrc
     ```
