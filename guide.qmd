@@ -6,4 +6,54 @@ editor: visual
 
 Below we provide step-by-step guides for generating structural and functional connectome (SC & FC). A connectome helps map the interactions between brain regions at a macroscale by encoding inter-regional information flow within an adjacency matrix, also known as a graph.
 
+## Basic setup
+
 The pipelines assume you have either Linux or [WSL2](https://learn.microsoft.com/fr-fr/windows/wsl/install) for Windows already installed on your system.
+
+Check that WSL2 is running by typing this command in PowerShell:
+
+``` PowerShell
+  wsl -l -v 
+  
+# You should see something like this
+  NAME                   STATE           VERSION
+  Ubuntu-20.04           Running         2
+  
+# If you have WSL1, you can update to WSL2 by typing 
+  wsl --set-default-version 2 wsl --set-version Ubuntu-20.04 2
+```
+
+Otherwise, you can install Ubuntu
+
+``` PowerShell
+1. Enable WSL by opening PowerShell as administrator
+    wsl --install -d Ubuntu-20.04
+2. Restart your computer
+3. Start the Ubuntu app to open a Ubuntu shell
+4. Set up a username and password
+```
+
+You'll also need to GUI for WSL. I recommend you install VcXsrv on your system, which is a free X-sever on Windows. After downloading and installing [VcXsrv](https://sourceforge.net/projects/vcxsrv/) with default options, run Xlauch (which gets installed automatically) and perform the following configuration:
+
+1.  Display setting: select multiple windows option
+
+2.  Client startup: check the Start no client option
+
+3.  Extra setting: make sure "Disable access control" is enabled and "Native openGL" is disabled
+
+4.  Add this to your .bashrc file:
+
+    ```{bash}
+     echo "export DISPLAY=\$(grep nameserver /etc/resolv.conf  | awk '{print \$2; exit}'):0" >> ~/.bashrc
+     echo "export LIBGL_ALWAYS_INDIRECT=0" >> ~/.bashrc
+     
+     # For Windows 11 users, add this as well
+      echo "export LIBGL_ALWAYS_SOFTWARE=1" >> ~/.bashrc
+    ```
+
+5.  Try running glxgears. A window with three spinning gears should open.
+
+    Troubleshooting:
+
+    -   Make sure you are not using a VPN.
+    -   Go to **Control panel** \> **System and security** \> **Windows defender firewall** \> **Advanced settings** \> **Inbound rules** and make sure that the VcXsrv rules are **not** set to *block* - if they are you will need to edit the VcXsrv rule and change it from *block* to *allow*.

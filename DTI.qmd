@@ -11,11 +11,23 @@ The pipeline revolves around MRtrix3 which works hand in hand with Freesurfer, F
 
 1.  Download MRtrix3 by copy pasting this command in a bash terminal
 
-2.  Download Freesurfer by copy pasting this command in a bash terminal
+```{bash}
+# Clone the MRtrix3 repo
+git clone https://github.com/MRtrix3/mrtrix3.git
+# Configure the install
+cd mrtrix3
+./configure
+# Build the binaries
+./build
+# Add it to your path
+./set_path
+```
+
+1.  Download Freesurfer by copy pasting this command in a bash terminal
 
     Make sure to install it into /usr/local
 
-3.  Download FSL
+2.  Download FSL
 
 ## Preprocessing
 
