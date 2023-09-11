@@ -1,0 +1,114 @@
+[
+  {
+    "objectID": "rs-fMRI.html",
+    "href": "rs-fMRI.html",
+    "title": "Resting-state functional magnetic resonance (rs-fMRI)",
+    "section": "",
+    "text": "The pipeline is run primarily with Matlab\n\nDownload SPM by copy pasting this command in a bash terminal\nDownload CONN by copy pasting this command in a bash terminal\nDownload GraphVar"
+  },
+  {
+    "objectID": "rs-fMRI.html#software-installation",
+    "href": "rs-fMRI.html#software-installation",
+    "title": "Resting-state functional magnetic resonance (rs-fMRI)",
+    "section": "",
+    "text": "The pipeline is run primarily with Matlab\n\nDownload SPM by copy pasting this command in a bash terminal\nDownload CONN by copy pasting this command in a bash terminal\nDownload GraphVar"
+  },
+  {
+    "objectID": "rs-fMRI.html#preprocessing-automation",
+    "href": "rs-fMRI.html#preprocessing-automation",
+    "title": "Resting-state functional magnetic resonance (rs-fMRI)",
+    "section": "Preprocessing automation",
+    "text": "Preprocessing automation"
+  },
+  {
+    "objectID": "rs-fMRI.html#automating-conn-roi-to-roi-analysis",
+    "href": "rs-fMRI.html#automating-conn-roi-to-roi-analysis",
+    "title": "Resting-state functional magnetic resonance (rs-fMRI)",
+    "section": "Automating CONN ROI-to-ROI analysis",
+    "text": "Automating CONN ROI-to-ROI analysis"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "website_clem",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "DTI.html",
+    "href": "DTI.html",
+    "title": "Diffusion Tensor Imaging (DTI)",
+    "section": "",
+    "text": "The pipeline revolves around MRtrix3 which works hand in hand with Freesurfer, FSL, and ANTs\n\nDownload MRtrix3 by copy pasting this command in a bash terminal\n\n# Clone the MRtrix3 repo\ngit clone https://github.com/MRtrix3/mrtrix3.git\n# Configure the install\ncd mrtrix3\n./configure\n# Build the binaries\n./build\n# Add it to your path\n./set_path\n\nDownload Freesurfer by copy pasting this command in a bash terminal\nMake sure to install it into /usr/local\nDownload FSL"
+  },
+  {
+    "objectID": "DTI.html#software-installation",
+    "href": "DTI.html#software-installation",
+    "title": "Diffusion Tensor Imaging (DTI)",
+    "section": "",
+    "text": "The pipeline revolves around MRtrix3 which works hand in hand with Freesurfer, FSL, and ANTs\n\nDownload MRtrix3 by copy pasting this command in a bash terminal\n\n# Clone the MRtrix3 repo\ngit clone https://github.com/MRtrix3/mrtrix3.git\n# Configure the install\ncd mrtrix3\n./configure\n# Build the binaries\n./build\n# Add it to your path\n./set_path\n\nDownload Freesurfer by copy pasting this command in a bash terminal\nMake sure to install it into /usr/local\nDownload FSL"
+  },
+  {
+    "objectID": "DTI.html#preprocessing",
+    "href": "DTI.html#preprocessing",
+    "title": "Diffusion Tensor Imaging (DTI)",
+    "section": "Preprocessing",
+    "text": "Preprocessing"
+  },
+  {
+    "objectID": "DTI.html#streamline-generation",
+    "href": "DTI.html#streamline-generation",
+    "title": "Diffusion Tensor Imaging (DTI)",
+    "section": "Streamline generation",
+    "text": "Streamline generation"
+  },
+  {
+    "objectID": "DTI.html#recon-all",
+    "href": "DTI.html#recon-all",
+    "title": "Diffusion Tensor Imaging (DTI)",
+    "section": "Recon-all",
+    "text": "Recon-all\nThis step can be speed up by using gnu parallel : brew install gcc brew install parallel"
+  },
+  {
+    "objectID": "DTI.html#generate-structural-connectomes-sc",
+    "href": "DTI.html#generate-structural-connectomes-sc",
+    "title": "Diffusion Tensor Imaging (DTI)",
+    "section": "Generate Structural connectomes (SC)",
+    "text": "Generate Structural connectomes (SC)"
+  },
+  {
+    "objectID": "DTI.html#automation",
+    "href": "DTI.html#automation",
+    "title": "Diffusion Tensor Imaging (DTI)",
+    "section": "Automation",
+    "text": "Automation\nDownload the script below to run the entire pipeline You may have to adapt it to your system specs (# of logical processors available) and to the size of your cohort"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "I’m 2nd-year PhD Student in Cognitive and Computational Neuroscience at LPNC, CNRS UMR 5105, UGA, Grenoble, France. My research project is about modeling how our brain reorganizes across the lifespan to preserve optimal cognitive (language) performances.\nSummary:\nCognitive neuroscience is undergoing a paradigm shift. The abundance of multimodal empirical data, coupled with the unprecendented computational capabilities, is helping to redefine the links between the brain and human behavior. The brain is now understood as a vast network of interactions between cerebral regions from which cognitive operations and processes emerge. Specifically, language functions (L) are not isolated but constantly interact with declarative memory (M) and executive functions (EF). However, the neural mechanisms underlying this L-M-EF dynamic remain unclear. This cognitomic perspective (structure-function-cognition) is closely linked to the identification of multimodal L-M-EF phenotypes, which will enable significant advances in both fundamental and clinical research (e.g. pre-habilitation & cognitive rehabilitation).\nThis project has a theoretical dimension, through the enrichment of a neurocognitive L-M-EF model, and a methodological dimension, through the fusion of multimodal data required to evaluate this model (i.e. structural, functional, cognitive-behavioral: cognitomic)."
+  },
+  {
+    "objectID": "guide.html",
+    "href": "guide.html",
+    "title": "Guide",
+    "section": "",
+    "text": "Below we provide step-by-step guides for generating structural and functional connectome (SC & FC). A connectome helps map the interactions between brain regions at a macroscale by encoding inter-regional information flow within an adjacency matrix, also known as a graph."
+  },
+  {
+    "objectID": "guide.html#basic-setup",
+    "href": "guide.html#basic-setup",
+    "title": "Guide",
+    "section": "Basic setup",
+    "text": "Basic setup\nThe pipelines assume you have either Linux or WSL2 for Windows already installed on your system.\nCheck that WSL2 is running by typing this command in PowerShell:\n  wsl -l -v \n  \n# You should see something like this\n  NAME                   STATE           VERSION\n  Ubuntu-20.04           Running         2\n  \n# If you have WSL1, you can update to WSL2 by typing \n  wsl --set-default-version 2 wsl --set-version Ubuntu-20.04 2\nOtherwise, you can install Ubuntu\n1. Enable WSL by opening PowerShell as administrator\n    wsl --install -d Ubuntu-20.04\n2. Restart your computer\n3. Start the Ubuntu app to open a Ubuntu shell\n4. Set up a username and password\nYou’ll also need to GUI for WSL. I recommend you install VcXsrv on your system, which is a free X-sever on Windows. After downloading and installing VcXsrv with default options, run Xlauch (which gets installed automatically) and perform the following configuration:\n\nDisplay setting: select multiple windows option\nClient startup: check the Start no client option\nExtra setting: make sure “Disable access control” is enabled and “Native openGL” is disabled\nAdd this to your .bashrc file:\n echo \"export DISPLAY=\\$(grep nameserver /etc/resolv.conf  | awk '{print \\$2; exit}'):0\" &gt;&gt; ~/.bashrc\n echo \"export LIBGL_ALWAYS_INDIRECT=0\" &gt;&gt; ~/.bashrc\n\n # For Windows 11 users, add this as well\n  echo \"export LIBGL_ALWAYS_SOFTWARE=1\" &gt;&gt; ~/.bashrc\nTry running glxgears. A window with three spinning gears should open.\nTroubleshooting:\n\nMake sure you are not using a VPN.\nGo to Control panel &gt; System and security &gt; Windows defender firewall &gt; Advanced settings &gt; Inbound rules and make sure that the VcXsrv rules are not set to block - if they are you will need to edit the VcXsrv rule and change it from block to allow."
+  },
+  {
+    "objectID": "publications.html",
+    "href": "publications.html",
+    "title": "Publications",
+    "section": "",
+    "text": "(Guichet et al. 2023)\n\n\n\n\nReferences\n\nGuichet, Clément, Sonja Banjac, Martial Mermillod, Sophie Achard, and Monica Baciu. 2023. “Modeling the Neurocognitive Dynamics of Language Across the Lifespan.” Preprint. Neuroscience. https://doi.org/10.1101/2023.07.04.547510."
+  }
+]
