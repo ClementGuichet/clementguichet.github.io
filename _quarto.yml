@@ -27,6 +27,11 @@ website:
       - text: "Guide"
         href: guide.qmd
         icon: book
+        menu: 
+          - text: "DTI pipeline (SC)"
+            href: DTI.qmd
+          - text: "rs-fMRI pipeline (FC)"
+            href: rs-fMRI.qmd
       - text: "Publications"
         href: publications.qmd
       - text: "About"
@@ -42,21 +47,6 @@ website:
       - icon: github
         href: https://github.com/ClementGuichet
         text: Personal GitHub
-            
-  
-  sidebar: 
-    - id: guide
-      style: docked
-      collapse-level: 2
-      alignment: left
-      contents:
-        - section: "Guide"
-          href: guide.qmd
-          contents:
-            - text: "DTI pipeline (SC)"
-              href: DTI.qmd
-            - text: "rs-fMRI pipeline (FC)"
-              href: rs-fMRI.qmd
       
 format:
   html:
