@@ -64,7 +64,7 @@ format:
     css: styles.css
     toc: true
     code-copy: true
-    code-line-numbers: true
+    code-line-numbers: false
     code-overflow: wrap
     grid: 
       sidebar-width: 250px
