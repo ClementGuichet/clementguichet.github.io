@@ -111,16 +111,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./lpnc.jpeg" alt="" class="navbar-logo">
+    </a>
+  </div>
             <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="./guide.html" rel="" target="">
- <span class="menu-text">Guide</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-guide" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Guide</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-guide">    
+        <li>
+    <a class="dropdown-item" href="./guide.html" rel="" target="">
+ <span class="dropdown-text">Basic Setup</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./DTI.html" rel="" target="">
+ <span class="dropdown-text">DTI pipeline (SC)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./rs-fMRI.html" rel="" target="">
+ <span class="dropdown-text">rs-fMRI pipeline (FC)</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="./publications.html" rel="" target="">
  <span class="menu-text">Publications</span></a>

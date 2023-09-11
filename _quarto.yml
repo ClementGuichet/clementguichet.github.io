@@ -4,7 +4,6 @@ project:
 
 website:
   title: "Clément Guichet"
-  image: "lpnc.jpeg"
   favicon: "lpnc.jpeg"
   open-graph: true
   twitter-card: true
@@ -21,12 +20,14 @@ website:
     
   navbar: 
     background: light
+    logo: "lpnc.jpeg"
     title: false
     collapse-below: lg
     left: 
       - text: "Guide"
-        href: guide.qmd
         menu: 
+          - text: "Basic Setup"
+            href: guide.qmd
           - text: "DTI pipeline (SC)"
             href: DTI.qmd
           - text: "rs-fMRI pipeline (FC)"
