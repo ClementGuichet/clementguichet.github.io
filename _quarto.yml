@@ -26,7 +26,6 @@ website:
     left: 
       - text: "Guide"
         href: guide.qmd
-        icon: book
         menu: 
           - text: "DTI pipeline (SC)"
             href: DTI.qmd
