@@ -9,9 +9,11 @@ subtitle: A step-by-step guide to DTI preprocessing & SC generation based on MRt
 
 The pipeline revolves around MRtrix3 which works hand in hand with Freesurfer, FSL, and ANTs
 
-1.  Download MRtrix3 by copy pasting this command in a bash terminal
+### MRtrix3
 
-```{bash}
+Download MRtrix3 by copy pasting this command in a bash terminal:
+
+``` bash
 # Clone the MRtrix3 repo
 git clone https://github.com/MRtrix3/mrtrix3.git
 # Configure the install
@@ -23,11 +25,66 @@ cd mrtrix3
 ./set_path
 ```
 
-1.  Download Freesurfer by copy pasting this command in a bash terminal
+If everything went fine, you should now see a window pop up when typing *mrview* on the command line.
 
-    Make sure to install it into /usr/local
+### Freesurfer
 
-2.  Download FSL
+#### Linux
+
+Follow the instructions [here](https://surfer.nmr.mgh.harvard.edu/fswiki//FS7_linux).
+
+#### Windows (WSL)
+
+1.  In your "HOME" directory (cd \$HOME), download the Freesurfer installer package:
+
+    **wget <https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/7.4.1/freesurfer_ubuntu22-7.4.1_amd64.deb>**
+
+2.  Make sure to install the Freesurfer distribution under the path /usr/local/freesurfer/7.4.1
+
+    ``` bash
+    cd /usr/local
+    sudo apt-get -y install ./freesurfer_ubuntu22-7.4.1_amd64.deb
+    ```
+
+3.  Add it to your PATH
+
+    ``` bash
+    echo "export FREESURFER_HOME=/usr/local/freesurfer/7.4.1" >> $HOME/.bashrc
+    ```
+
+4.  Get the [free license online](https://surfer.nmr.mgh.harvard.edu/registration.html), download it in your home directory and add this command in your .bashrc:
+
+    ``` bash
+    export FS_LICENSE=$HOME/license.txt
+    ```
+
+5.  Set the Freesurfer env to be setup when you open the shell:
+
+    ``` bash
+    echo "source $FREESURFER_HOME/SetUpFreeSurfer.sh" >> $HOME/.bashrc
+    ```
+
+Open a new Ubuntu linux terminal window and verify you see the following output showing the Freesurfer environment has been set. If everything went fine, you should see this output:
+
+``` bash
+ - - - - - - - -freesurfer-linux-ubuntu22_x86_64-7.4.1-20230614-7eb8460- - - - - - - -
+Setting up environment for FreeSurfer/FS-FAST (and FSL)
+FREESURFER_HOME   /usr/local/freesurfer/7.4.1
+FSFAST_HOME       /usr/local/freesurfer/7.4.1/fsfast
+FSF_OUTPUT_FORMAT nii.gz
+SUBJECTS_DIR      /usr/local/freesurfer/7.4.1/subjects
+MNI_DIR           /usr/local/freesurfer/7.4.1/mni
+```
+
+### FSL
+
+1.  Download the [FSL installer script online](https://fsl.fmrib.ox.ac.uk/fsldownloads_registration). When selecting the OS to install on the download page, [make sure to select Ubuntu and not Windows]{.underline}.
+
+2.   Run the installer script by replacing \<UserName\> with your windows user name. Make sure to install it under the path /usr/local/fsl/.
+
+    ``` python
+     python "/mnt/c/Users/<WindowsUserName>/Downloads/fslinstaller.py"
+    ```
 
 ## Preprocessing
 

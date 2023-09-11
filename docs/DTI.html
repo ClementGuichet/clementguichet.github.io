@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -134,7 +168,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#software-installation" id="toc-software-installation" class="nav-link active" data-scroll-target="#software-installation">Software installation</a></li>
+  <li><a href="#software-installation" id="toc-software-installation" class="nav-link active" data-scroll-target="#software-installation">Software installation</a>
+  <ul class="collapse">
+  <li><a href="#mrtrix3" id="toc-mrtrix3" class="nav-link" data-scroll-target="#mrtrix3">MRtrix3</a></li>
+  <li><a href="#freesurfer" id="toc-freesurfer" class="nav-link" data-scroll-target="#freesurfer">Freesurfer</a></li>
+  <li><a href="#fsl" id="toc-fsl" class="nav-link" data-scroll-target="#fsl">FSL</a></li>
+  </ul></li>
   <li><a href="#preprocessing" id="toc-preprocessing" class="nav-link" data-scroll-target="#preprocessing">Preprocessing</a></li>
   <li><a href="#streamline-generation" id="toc-streamline-generation" class="nav-link" data-scroll-target="#streamline-generation">Streamline generation</a></li>
   <li><a href="#recon-all" id="toc-recon-all" class="nav-link" data-scroll-target="#recon-all">Recon-all</a></li>
@@ -167,23 +206,61 @@ ul.task-list li input[type="checkbox"] {
 <section id="software-installation" class="level2">
 <h2 class="anchored" data-anchor-id="software-installation">Software installation</h2>
 <p>The pipeline revolves around MRtrix3 which works hand in hand with Freesurfer, FSL, and ANTs</p>
+<section id="mrtrix3" class="level3">
+<h3 class="anchored" data-anchor-id="mrtrix3">MRtrix3</h3>
+<p>Download MRtrix3 by copy pasting this command in a bash terminal:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Clone the MRtrix3 repo</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/MRtrix3/mrtrix3.git</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Configure the install</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> mrtrix3</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">./configure</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Build the binaries</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">./build</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Add it to your path</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">./set_path</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If everything went fine, you should now see a window pop up when typing <em>mrview</em> on the command line.</p>
+</section>
+<section id="freesurfer" class="level3">
+<h3 class="anchored" data-anchor-id="freesurfer">Freesurfer</h3>
+<section id="linux" class="level4">
+<h4 class="anchored" data-anchor-id="linux">Linux</h4>
+<p>Follow the instructions <a href="https://surfer.nmr.mgh.harvard.edu/fswiki//FS7_linux">here</a>.</p>
+</section>
+<section id="windows-wsl" class="level4">
+<h4 class="anchored" data-anchor-id="windows-wsl">Windows (WSL)</h4>
 <ol type="1">
-<li>Download MRtrix3 by copy pasting this command in a bash terminal</li>
+<li><p>In your “HOME” directory (cd $HOME), download the Freesurfer installer package:</p>
+<p><strong>wget&nbsp;<a href="https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/7.4.1/freesurfer_ubuntu22-7.4.1_amd64.deb" class="uri">https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/7.4.1/freesurfer_ubuntu22-7.4.1_amd64.deb</a></strong></p></li>
+<li><p>Make sure to install the Freesurfer distribution under the path /usr/local/freesurfer/7.4.1</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /usr/local</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get <span class="at">-y</span> install ./freesurfer_ubuntu22-7.4.1_amd64.deb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Add it to your PATH</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"export FREESURFER_HOME=/usr/local/freesurfer/7.4.1"</span> <span class="op">&gt;&gt;</span> <span class="va">$HOME</span>/.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Get the <a href="https://surfer.nmr.mgh.harvard.edu/registration.html">free license online</a>, download it in your home directory and add this command in your .bashrc:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">FS_LICENSE</span><span class="op">=</span><span class="va">$HOME</span>/license.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Set the Freesurfer env to be setup when you open the shell:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"source </span><span class="va">$FREESURFER_HOME</span><span class="st">/SetUpFreeSurfer.sh"</span> <span class="op">&gt;&gt;</span> <span class="va">$HOME</span>/.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
-<pre class="{bash}"><code># Clone the MRtrix3 repo
-git clone https://github.com/MRtrix3/mrtrix3.git
-# Configure the install
-cd mrtrix3
-./configure
-# Build the binaries
-./build
-# Add it to your path
-./set_path</code></pre>
+<p>Open a new Ubuntu linux terminal window and verify you see the following output showing the Freesurfer environment has been set. If everything went fine, you should see this output:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">-</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-freesurfer-linux-ubuntu22_x86_64-7.4.1-20230614-7eb8460-</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Setting</span> up environment for FreeSurfer/FS-FAST <span class="er">(</span><span class="ex">and</span> FSL<span class="kw">)</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">FREESURFER_HOME</span>   /usr/local/freesurfer/7.4.1</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">FSFAST_HOME</span>       /usr/local/freesurfer/7.4.1/fsfast</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">FSF_OUTPUT_FORMAT</span> nii.gz</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ex">SUBJECTS_DIR</span>      /usr/local/freesurfer/7.4.1/subjects</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">MNI_DIR</span>           /usr/local/freesurfer/7.4.1/mni</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="fsl" class="level3">
+<h3 class="anchored" data-anchor-id="fsl">FSL</h3>
 <ol type="1">
-<li><p>Download Freesurfer by copy pasting this command in a bash terminal</p>
-<p>Make sure to install it into /usr/local</p></li>
-<li><p>Download FSL</p></li>
+<li><p>Download the <a href="https://fsl.fmrib.ox.ac.uk/fsldownloads_registration">FSL installer script online</a>. When selecting the OS to install on the download page, <u>make sure to select Ubuntu and not Windows</u>.</p></li>
+<li><p>Run the installer script by replacing &lt;UserName&gt; with your windows user name. Make sure to install it under the path /usr/local/fsl/.</p></li>
 </ol>
+<pre><code>``` python
+ python "/mnt/c/Users/&lt;WindowsUserName&gt;/Downloads/fslinstaller.py"
+```</code></pre>
+</section>
 </section>
 <section id="preprocessing" class="level2">
 <h2 class="anchored" data-anchor-id="preprocessing">Preprocessing</h2>

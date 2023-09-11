@@ -13,17 +13,17 @@ Check that WSL2 is running by typing this command in PowerShell:
   
 # You should see something like this
   NAME                   STATE           VERSION
-  Ubuntu-20.04           Running         2
+  Ubuntu-22.04           Running         2
   
 # If you have WSL1, you can update to WSL2 by typing 
-  wsl --set-default-version 2 wsl --set-version Ubuntu-20.04 2
+  wsl --set-default-version 2 wsl --set-version Ubuntu-22.04 2
 ```
 
 Otherwise, you can install Ubuntu by pasting the following commands:
 
 ``` PowerShell
 1. Enable WSL by opening PowerShell as administrator
-    wsl --install -d Ubuntu-20.04
+    wsl --install -d Ubuntu-22.04
 2. Restart your computer
 3. Start the Ubuntu app to open a Ubuntu shell
 4. Set up a username and password
