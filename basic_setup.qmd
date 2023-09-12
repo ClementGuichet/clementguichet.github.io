@@ -4,7 +4,7 @@ format: html
 editor: visual
 ---
 
-The pipelines assume you have either Linux or [WSL2](https://learn.microsoft.com/fr-fr/windows/wsl/install) for Windows already installed on your system.
+The pipelines works with Linux or [WSL2](https://learn.microsoft.com/fr-fr/windows/wsl/install) for Windows already installed on your system. It also assumes that you are familiar with the UNIX command line. Otherwise you can check this [tutorial](https://andysbrainbook.readthedocs.io/en/latest/unix/Unix_Intro.html).
 
 Check that WSL2 is running by typing this command in PowerShell:
 
