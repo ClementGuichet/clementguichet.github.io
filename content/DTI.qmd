@@ -3,7 +3,6 @@ title: "**Diffusion Tensor Imaging (DTI)**"
 format: html
 editor: visual
 subtitle: A step-by-step guide to DTI preprocessing & SC generation based on MRtrix3
-bibliography: references.yaml
 ---
 
 ## Software installation
@@ -243,7 +242,7 @@ $SUBJECTS_DIR/<sub>_recon/label/lh.hcpmmp1.annot
 mri_surf2surf --srcsubject fsaverage --trgsubject <sub>_recon --hemi rh --sval-annot $SUBJECTS_DIR/fsaverage/label/rh.hcpmmp1.annot --tval $SUBJECTS_DIR/<sub>_recon/label/rh.hcpmmp1.annot
 ```
 
-**This step can be sped up with parallel computing. Click [here](parallel.qmd)**
+**This step can be sped up with parallel computing. Click [here](/content/guide/DTI/parallel.qmd)**
 
 ### Generate the Structural Connectome (SC)
 
