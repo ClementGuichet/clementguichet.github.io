@@ -188,7 +188,14 @@ div.csl-indent {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\logo.jpeg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Logo image</figcaption>
+</figure>
+</div>
+</div></div>
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
@@ -408,7 +415,7 @@ div.csl-indent {
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># If the recon folder specific to your subject haq not been placed into $SUBJECTS_DIR, you may have to move it manually</span></span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy into freesurfer's subjects directory</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="op">&lt;</span>password<span class="op">&gt;</span> <span class="kw">|</span> <span class="fu">sudo</span> <span class="at">-S</span> cp <span class="at">-r</span> <span class="pp">*</span>T1w_recon <span class="va">$SUBJECTS_DIR</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="op">&lt;</span>password<span class="op">&gt;</span> <span class="kw">|</span> <span class="fu">sudo</span> <span class="at">-S</span> cp <span class="at">-r</span> <span class="pp">*</span>recon <span class="va">$SUBJECTS_DIR</span></span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Grant permission to write the file</span></span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="op">&lt;</span>password<span class="op">&gt;</span> <span class="kw">|</span> <span class="fu">sudo</span> <span class="at">-S</span> chmod <span class="at">-R</span> a+w /usr/local/freesurfer</span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
@@ -417,7 +424,7 @@ div.csl-indent {
 <span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="va">$SUBJECTS_DIR</span><span class="ex">/</span><span class="op">&lt;</span>sub<span class="op">&gt;</span>_recon/label/lh.hcpmmp1.annot</span>
 <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="ex">mri_surf2surf</span> <span class="at">--srcsubject</span> fsaverage <span class="at">--trgsubject</span> <span class="op">&lt;</span>sub<span class="op">&gt;</span>_recon <span class="at">--hemi</span> rh <span class="at">--sval-annot</span> <span class="va">$SUBJECTS_DIR</span>/fsaverage/label/rh.hcpmmp1.annot <span class="at">--tval</span> <span class="va">$SUBJECTS_DIR</span>/<span class="op">&lt;</span>sub<span class="op">&gt;</span>_recon/label/rh.hcpmmp1.annot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>This step can be sped up with parallel computing. See the next section.</strong></p>
+<p><strong>This step can be sped up with parallel computing. Click <a href="./parallel.html">here</a></strong></p>
 </section>
 <section id="generate-the-structural-connectome-sc" class="level3">
 <h3 class="anchored" data-anchor-id="generate-the-structural-connectome-sc">Generate the Structural Connectome (SC)</h3>
@@ -430,16 +437,15 @@ div.csl-indent {
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Register the ordered atlas-based volumetric parcellation to diffusion space.</span></span>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">--all</span><span class="op">&gt;</span> -info <span class="pp">*</span>/dwi : mrtransform  IN/hcpmmp1_parcels_nocoreg.mif –linear  IN/diff2struct_mrtrix.txt –inverse –datatype uint32  IN/hcpmmp1_parcels_coreg.mif <span class="at">-force</span></span>
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a whole-brain connectome, representing the streamlines between each parcellation pair in the atlas (in this case, 84x84). The "symmetric" option will make the lower diagonal the same as the upper diagonal, </span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co"># and the "scale_invnodevol" option will scale the connectome by the inverse of the size of the node</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">--all</span><span class="op">&gt;</span> -info <span class="pp">*</span> : tck2connectome <span class="at">-symmetric</span> <span class="at">-zero_diagonal</span> <span class="at">-scale_invnodevol</span> <span class="at">-tck_weights_in</span> IN/dwi/sift_1M.txt IN/dwi/tracks_10M.tck IN/dwi/hcpmmp1_parcels_coreg.mif IN/dwi/IN_hcpmmp1_parcels_coreg.csv <span class="at">-out_assignment</span> IN/dwi/assignments_IN_hcpmmp1_parcels_coreg.csv <span class="at">-force</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This is what you should end up with.<br>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a whole-brain connectome, representing the streamlines between each parcellation pair in the atlas (in this case, 379x379). The "symmetric" option will make the lower diagonal the same as the upper diagonal, and the "scale_invnodevol" option will scale the connectome by the inverse of the size of the node</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">--all</span><span class="op">&gt;</span> -info <span class="pp">*</span> : tck2connectome <span class="at">-symmetric</span> <span class="at">-zero_diagonal</span> <span class="at">-scale_invnodevol</span> <span class="at">-tck_weights_in</span> IN/dwi/sift_1M.txt IN/dwi/tracks_10M.tck IN/dwi/hcpmmp1_parcels_coreg.mif IN/dwi/IN_hcpmmp1_parcels_coreg.csv <span class="at">-out_assignment</span> IN/dwi/assignments_IN_hcpmmp1_parcels_coreg.csv <span class="at">-force</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is what you should end up with. The upper left and lower right quadrant represent the left and right intra-hemispheric connections respectively.<br>
 </p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="SC.png" class="img-fluid figure-img" width="784"></p>
-<figcaption class="figure-caption">W = importdata(‘sub-XXXXX_hcpmmp1_parcels_coreg.csv’); figure, imagesc(W, [0 1]), xlabel([’ 379 Glasser regions ‘]), ylabel(’379 Glasser regions’), title([’ Structural connectome (streamline density) ‘]); colormap(jet), colorbar, set(gcf,’color’,‘w’), set(gca,‘fontsize’,14)</figcaption>
+<figcaption class="figure-caption">In Matlab: W = importdata(‘sub-XXXXX_hcpmmp1_parcels_coreg.csv’); figure, imagesc(W, [0 1]), xlabel([’ 379 Glasser regions ‘]), ylabel(’379 Glasser regions’), title([’ Structural connectome (streamline density) ‘]); colormap(jet), colorbar, set(gcf,’color’,‘w’), set(gca,‘fontsize’,14)</figcaption>
 </figure>
 </div>
 <p>You can then copy and save the structural connectomes wherever you like:</p>
