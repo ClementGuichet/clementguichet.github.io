@@ -38,7 +38,9 @@ Follow the instructions [here](https://surfer.nmr.mgh.harvard.edu/fswiki//FS7_li
 
 1.  In your "HOME" directory (cd \$HOME), download the Freesurfer installer package:
 
-    **wget <https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/7.4.1/freesurfer_ubuntu22-7.4.1_amd64.deb>**
+    ``` bash
+    wget https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/7.4.1/freesurfer_ubuntu22-7.4.1_amd64.deb
+    ```
 
 2.  Make sure to install the Freesurfer distribution under the path /usr/local/freesurfer/7.4.1
 
@@ -81,11 +83,13 @@ MNI_DIR           /usr/local/freesurfer/7.4.1/mni
 
 1.  Download the [FSL installer script online](https://fsl.fmrib.ox.ac.uk/fsldownloads_registration). When selecting the OS to install on the download page, [make sure to select Ubuntu and not Windows]{.underline}.
 
-2.   Run the installer script by replacing \<UserName\> with your windows user name. Make sure to install it under the path /usr/local/fsl/.
+2.  Run the installer script by replacing \<UserName\> with your windows user name. Make sure to install it under the path /usr/local/fsl/.
 
-    ``` python
-     python "/mnt/c/Users/<WindowsUserName>/Downloads/fslinstaller.py"
-    ```
+````         
+``` python
+ python "/mnt/c/Users/<WindowsUserName>/Downloads/fslinstaller.py"
+```
+````
 
 ### ANTs
 
@@ -218,7 +222,6 @@ for_each -nthreads <nproc --all>/8 -info */dwi : tcksift2 -act IN/5tt_coreg.mif 
 Download the lh and rh.hcpmmp1 annot files in the supplementary files [here](https://osf.io/fkyht/#!) and put them into \$SUBJECTS_DIR/fsaverage/label. This allows to prepare the T1 image for the HCP MMP 1.0 atlas @glasser2016.
 
 ``` bash
-
 # 1. Since the HCPMMP1-atlas is a FreeSurfer-based atlas, you have to preprocess the T1 image in FreeSurfer. 
 # This will take several hours to complete.
 recon-all –s <sub>_recon –i T1_raw.nii.gz –all

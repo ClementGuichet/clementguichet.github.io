@@ -8,7 +8,7 @@ The pipelines assume you have either Linux or [WSL2](https://learn.microsoft.com
 
 Check that WSL2 is running by typing this command in PowerShell:
 
-``` PowerShell
+``` powershell
   wsl -l -v 
   
 # You should see something like this
@@ -21,7 +21,7 @@ Check that WSL2 is running by typing this command in PowerShell:
 
 Otherwise, you can install Ubuntu by pasting the following commands:
 
-``` PowerShell
+``` powershell
 1. Enable WSL by opening PowerShell as administrator
     wsl --install -d Ubuntu-22.04
 2. Restart your computer

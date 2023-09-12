@@ -5,4 +5,58 @@ editor: visual
 subtitle: Speeding up Recon-all computation
 ---
 
-This step can be speed up by using gnu parallel : brew install gcc brew install parallel
+## Software installation
+
+### Homebrew & Parallel GNU
+
+Install Homebrew with the following command:
+
+``` bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Then install parallel:
+
+``` bash
+brew install parallel
+```
+
+## Using the parallel command
+
+Parallel is run by piping the *ls* command into the *parallel* command:
+
+``` bash
+ls *.nii | parallel --jobs <nproc --all> recon-all -s {.}_recon -i {} -all
+```
+
+\--jobs N indicates that N cores will be used to analyze the data and that each instance of recon-all will be assigned to a different core.
+
+The full bash script consists in copying the T1.nii.gz images in the new directory (FS), unzip them, run and store the output of recon-all in this directory
+
+``` bash
+#!/bin/bash
+
+# Assuming you are in the raw_data directory which lists all the subjects folders
+mkdir FS
+cd FS
+
+# grab the list of subject name
+ls ../raw_data | grep ^sub- > subjList.txt
+
+# Path to the anatomical T1 image
+for sub in `cat subjList.txt`; do
+	cp ../raw_data/${sub}/anat/${sub}_T1w.nii.gz .
+done
+
+# Unzip
+gunzip *.gz
+
+# Story output in the current directory
+# This avoids permission error
+SUBJECTS_DIR=`pwd`
+
+ls *.nii | parallel --jobs <nproc --all> recon-all -s {.}_recon -i {} -all
+
+# Remove the copied T1.nii.gz files
+rm *.nii
+```
