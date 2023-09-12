@@ -1,5 +1,3 @@
 ---
 title: "Publications"
 ---
-
-[@guichet2023]

@@ -3,6 +3,7 @@ title: "**Diffusion Tensor Imaging (DTI)**"
 format: html
 editor: visual
 subtitle: A step-by-step guide to DTI preprocessing & SC generation based on MRtrix3
+bibliography: references.yaml
 ---
 
 ## Software installation
