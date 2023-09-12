@@ -9,7 +9,6 @@ website:
   twitter-card: true
   page-navigation: true
   repo-url: https://github.com/ClementGuichet/quarto_web_clem
-  repo-actions: [edit, issue]
   search: 
     type: overlay
   

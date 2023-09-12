@@ -85,11 +85,9 @@ MNI_DIR           /usr/local/freesurfer/7.4.1/mni
 
 2.  Run the installer script by replacing \<UserName\> with your windows user name. Make sure to install it under the path /usr/local/fsl/.
 
-````         
-``` python
- python "/mnt/c/Users/<WindowsUserName>/Downloads/fslinstaller.py"
-```
-````
+    ``` bash
+    python "/mnt/c/Users/<WindowsUserName>/Downloads/fslinstaller.py"
+    ```
 
 ### ANTs
 
@@ -219,7 +217,7 @@ for_each -nthreads <nproc --all>/8 -info */dwi : tcksift2 -act IN/5tt_coreg.mif 
 
 ### Recon-all
 
-Download the lh and rh.hcpmmp1 annot files in the supplementary files [here](https://osf.io/fkyht/#!) and put them into \$SUBJECTS_DIR/fsaverage/label. This allows to prepare the T1 image for the HCP MMP 1.0 atlas [@glasser2016.]
+Download the lh and rh.hcpmmp1 annot files in the supplementary files [here](https://osf.io/fkyht/#!) and put them into \$SUBJECTS_DIR/fsaverage/label. This allows to prepare the T1 image for the HCP MMP 1.0 atlas [@glasser2016 ].
 
 ``` bash
 # 1. Since the HCPMMP1-atlas is a FreeSurfer-based atlas, you have to preprocess the T1 image in FreeSurfer. 
@@ -264,3 +262,5 @@ You can then copy and save the structural connectomes wherever you like:
 ``` bash
 find . -name \sub-*.csv -exec cp {} /path/to/where you want to save the SC \;
 ```
+
+![In Matlab, do: W = importdata('<sub>\_hcpmmp1_parcels_coreg.csv'); figure, imagesc(W, \[0 1\]), xlabel(\[' 379 Glasser regions '\]), ylabel('379 Glasser regions'), title(\[' Structural connectome (streamline density) '\]) colormap(jet), colorbar, set(gcf,'color','w'), set(gca,'fontsize',14); ](SC.fig)

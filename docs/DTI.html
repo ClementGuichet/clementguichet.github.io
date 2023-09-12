@@ -206,7 +206,7 @@ div.csl-indent {
   <li><a href="#generate-the-structural-connectome-sc" id="toc-generate-the-structural-connectome-sc" class="nav-link" data-scroll-target="#generate-the-structural-connectome-sc">Generate the Structural Connectome (SC)</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClementGuichet/quarto_web_clem/edit/main/DTI.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/ClementGuichet/quarto_web_clem/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -281,11 +281,9 @@ div.csl-indent {
 <h3 class="anchored" data-anchor-id="fsl">FSL</h3>
 <ol type="1">
 <li><p>Download the <a href="https://fsl.fmrib.ox.ac.uk/fsldownloads_registration">FSL installer script online</a>. When selecting the OS to install on the download page, <u>make sure to select Ubuntu and not Windows</u>.</p></li>
-<li><p>Run the installer script by replacing &lt;UserName&gt; with your windows user name. Make sure to install it under the path /usr/local/fsl/.</p></li>
+<li><p>Run the installer script by replacing &lt;UserName&gt; with your windows user name. Make sure to install it under the path /usr/local/fsl/.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="st">"/mnt/c/Users/&lt;WindowsUserName&gt;/Downloads/fslinstaller.py"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
-<pre><code>``` python
- python "/mnt/c/Users/&lt;WindowsUserName&gt;/Downloads/fslinstaller.py"
-```</code></pre>
 </section>
 <section id="ants" class="level3">
 <h3 class="anchored" data-anchor-id="ants">ANTs</h3>
@@ -401,7 +399,7 @@ div.csl-indent {
 </section>
 <section id="recon-all" class="level3">
 <h3 class="anchored" data-anchor-id="recon-all">Recon-all</h3>
-<p>Download the lh and rh.hcpmmp1 annot files in the supplementary files <a href="https://osf.io/fkyht/#!">here</a> and put them into $SUBJECTS_DIR/fsaverage/label. This allows to prepare the T1 image for the HCP MMP 1.0 atlas <span class="citation" data-cites="glasser2016">(<a href="#ref-glasser2016" role="doc-biblioref">Glasser et al. 2016</a>.)</span></p>
+<p>Download the lh and rh.hcpmmp1 annot files in the supplementary files <a href="https://osf.io/fkyht/#!">here</a> and put them into $SUBJECTS_DIR/fsaverage/label. This allows to prepare the T1 image for the HCP MMP 1.0 atlas <span class="citation" data-cites="glasser2016">(<a href="#ref-glasser2016" role="doc-biblioref">Glasser et al. 2016</a> )</span>.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Since the HCPMMP1-atlas is a FreeSurfer-based atlas, you have to preprocess the T1 image in FreeSurfer. </span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This will take several hours to complete.</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ex">recon-all</span> –s <span class="op">&lt;</span>sub<span class="op">&gt;</span>_recon –i T1_raw.nii.gz –all</span>
@@ -436,6 +434,12 @@ div.csl-indent {
 <span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">--all</span><span class="op">&gt;</span> -info <span class="pp">*</span> : tck2connectome <span class="at">-symmetric</span> <span class="at">-zero_diagonal</span> <span class="at">-scale_invnodevol</span> <span class="at">-tck_weights_in</span> IN/dwi/sift_1M.txt IN/dwi/tracks_10M.tck IN/dwi/hcpmmp1_parcels_coreg.mif IN/dwi/IN_hcpmmp1_parcels_coreg.csv <span class="at">-out_assignment</span> IN/dwi/assignments_IN_hcpmmp1_parcels_coreg.csv <span class="at">-force</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You can then copy and save the structural connectomes wherever you like:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> . <span class="at">-name</span> <span class="dt">\s</span>ub-<span class="pp">*</span>.csv <span class="at">-exec</span> cp {} /path/to/where you want to save the SC <span class="dt">\;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><embed src="SC.fig" class="img-fluid"></p>
+<figcaption class="figure-caption">In Matlab, do: W = importdata(‘<sub>_hcpmmp1_parcels_coreg.csv’); figure, imagesc(W, [0 1]), xlabel([’ 379 Glasser regions ‘]), ylabel(’379 Glasser regions’), title([’ Structural connectome (streamline density) ‘]) colormap(jet), colorbar, set(gcf,’color’,‘w’), set(gca,‘fontsize’,14);</sub></figcaption>
+</figure>
+</div>
 
 
 

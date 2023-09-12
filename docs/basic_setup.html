@@ -190,23 +190,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>The pipelines works with Linux or <a href="https://learn.microsoft.com/fr-fr/windows/wsl/install">WSL2</a> for Windows already installed on your system. It also assumes that you are familiar with the UNIX command line. Otherwise you can check this <a href="https://andysbrainbook.readthedocs.io/en/latest/unix/Unix_Intro.html">tutorial</a>.</p>
+<p>The pipelines work with Linux or <a href="https://learn.microsoft.com/fr-fr/windows/wsl/install">WSL2</a> for Windows already installed on your system. I also assume you are familiar with the basic UNIX commands. Otherwise you can check this <a href="https://andysbrainbook.readthedocs.io/en/latest/unix/Unix_Intro.html">tutorial</a>.</p>
 <p>Check that WSL2 is running by typing this command in PowerShell:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  wsl <span class="op">-</span>l <span class="op">-</span>v </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># You should see something like this</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  NAME                   STATE           VERSION</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  Ubuntu<span class="op">-</span>22<span class="op">.</span><span class="fu">04</span>           Running         2</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># If you have WSL1, you can update to WSL2 by typing </span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  wsl <span class="op">--</span>set<span class="op">-</span>default<span class="op">-</span>version 2 wsl <span class="op">--</span>set<span class="op">-</span>version Ubuntu<span class="op">-</span>22<span class="op">.</span><span class="fu">04</span> 2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># You should see something like this</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  NAME                   STATE           VERSION</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  Ubuntu<span class="op">-</span>22<span class="op">.</span><span class="fu">04</span>           Running         2</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># If you have WSL1, you can update to WSL2 by typing </span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  wsl <span class="op">--</span>set<span class="op">-</span>default<span class="op">-</span>version 2 wsl <span class="op">--</span>set<span class="op">-</span>version Ubuntu<span class="op">-</span>22<span class="op">.</span><span class="fu">04</span> 2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Otherwise, you can install Ubuntu by pasting the following commands:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>1<span class="op">.</span> Enable WSL by opening PowerShell as administrator</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    wsl <span class="op">--</span>install <span class="op">-</span>d Ubuntu<span class="op">-</span>22<span class="op">.</span><span class="fu">04</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>2<span class="op">.</span> Restart your computer</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>3<span class="op">.</span> <span class="fu">Start</span> the Ubuntu app to open a Ubuntu shell</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>4<span class="op">.</span> <span class="fu">Set</span> up a username and password</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You’ll also need to GUI for WSL. I recommend you install VcXsrv on your system, which is a free X-sever on Windows. After downloading and installing <a href="https://sourceforge.net/projects/vcxsrv/">VcXsrv</a> with default options, run Xlauch (which gets installed automatically) and perform the following configuration:</p>
+<p>You’ll also need to GUI for WSL. I recommend you install VcXsrv on your system, which is a free X-sever on Windows. After downloading and installing <a href="https://sourceforge.net/projects/vcxsrv/">VcXsrv</a> with default options, run Xlaunch (which gets installed automatically) and perform the following configuration:</p>
 <ol type="1">
 <li><p>Display setting: select multiple windows option</p></li>
 <li><p>Client startup: check the Start no client option</p></li>
@@ -466,7 +465,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">Copyright © 2023, Clement Guichet<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClementGuichet/quarto_web_clem/edit/main/basic_setup.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/ClementGuichet/quarto_web_clem/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
+    <div class="nav-footer-center">Copyright © 2023, Clement Guichet</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
