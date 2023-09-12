@@ -53,6 +53,8 @@ website:
       
   sidebar: 
     - id: guide
+      alignment: left
+      style: docked
       collapse-level: 1
       contents: 
         - section: "Guide"
