@@ -26,17 +26,17 @@ website:
       - text: "Guide"
         menu: 
           - text: "Basic Setup"
-            href: content/basic_setup.qmd
+            file: content/basic_setup.qmd
           - text: "DTI pipeline (SC)"
-            href: content/DTI.qmd
+            file: content/DTI.qmd
           - text: "Parallel computing"
-            href: content/parallel.qmd
+            file: content/parallel.qmd
           - text: "rs-fMRI pipeline (FC)"
-            href: content/rs-fMRI.qmd
+            file: content/rs-fMRI.qmd
       - text: "Publications"
-        href: content/publications.qmd
+        file: content/publications.qmd
       - text: "About"
-        href: about.qmd
+        file: about.qmd
         
     tools:
       - icon: twitter
