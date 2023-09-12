@@ -219,7 +219,7 @@ for_each -nthreads <nproc --all>/8 -info */dwi : tcksift2 -act IN/5tt_coreg.mif 
 
 ### Recon-all
 
-Download the lh and rh.hcpmmp1 annot files in the supplementary files [here](https://osf.io/fkyht/#!) and put them into \$SUBJECTS_DIR/fsaverage/label. This allows to prepare the T1 image for the HCP MMP 1.0 atlas @glasser2016.
+Download the lh and rh.hcpmmp1 annot files in the supplementary files [here](https://osf.io/fkyht/#!) and put them into \$SUBJECTS_DIR/fsaverage/label. This allows to prepare the T1 image for the HCP MMP 1.0 atlas [@glasser2016.]
 
 ``` bash
 # 1. Since the HCPMMP1-atlas is a FreeSurfer-based atlas, you have to preprocess the T1 image in FreeSurfer. 
