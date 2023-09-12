@@ -54,26 +54,47 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../images/lpnc.jpeg" rel="icon" type="image/jpeg">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../content/guide/DTI/parallel.html" rel="next">
+<link href="../../../content/guide/DTI/basic_setup.html" rel="prev">
+<link href="../../../images/lpnc.jpeg" rel="icon" type="image/jpeg">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -96,14 +117,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../../../styles.css">
 <meta property="og:title" content="Clément Guichet - Diffusion Tensor Imaging (DTI)">
 <meta property="og:description" content="A step-by-step guide to DTI preprocessing &amp; SC generation based on MRtrix3">
-<meta property="og:image" content="..\images/SC.png">
+<meta property="og:image" content="../../..\images/SC.png">
 <meta property="og:site-name" content="Clément Guichet">
 <meta name="twitter:title" content="Clément Guichet - Diffusion Tensor Imaging (DTI)">
 <meta name="twitter:description" content="A step-by-step guide to DTI preprocessing &amp; SC generation based on MRtrix3">
-<meta name="twitter:image" content="..\images/SC.png">
+<meta name="twitter:image" content="../../..\images/SC.png">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -114,8 +135,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../images/logo.png" alt="" class="navbar-logo">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../images/logo.png" alt="" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -125,15 +146,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../content/guide/DTI/index.html" rel="" target="" aria-current="page">
+    <a class="nav-link active" href="../../../content/guide/DTI/index.html" rel="" target="" aria-current="page">
  <span class="menu-text">Guide</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../content/publications.html" rel="" target="">
+    <a class="nav-link" href="../../../content/publications.html" rel="" target="">
  <span class="menu-text">Publications</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html" rel="" target="">
+    <a class="nav-link" href="../../../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -150,7 +171,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><strong>Diffusion Tensor Imaging (DTI)</strong></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../content/guide/DTI/index.html">Guide</a></li><li class="breadcrumb-item"><a href="../../../content/guide/DTI/basic_setup.html">DTI pipeline (SC)</a></li><li class="breadcrumb-item"><a href="../../../content/guide/DTI/DTI.html"><strong>Diffusion Tensor Imaging (DTI)</strong></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -164,37 +185,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../content/guide/DTI/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../content/guide/DTI/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Guide</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
  <span class="menu-text">DTI pipeline (SC)</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/guide/DTI/basic_setup.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../content/guide/DTI/basic_setup.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><strong>Basic setup</strong></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/guide/DTI/DTI.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../content/guide/DTI/DTI.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><strong>Diffusion Tensor Imaging (DTI)</strong></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/guide/DTI/parallel.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../content/guide/DTI/parallel.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><strong>Parallel processing</strong></span></a>
   </div>
 </li>
@@ -211,13 +232,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/guide/rs-fMRI/spm.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../content/guide/rs-fMRI/spm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">spm</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/guide/rs-fMRI/conn.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../content/guide/rs-fMRI/conn.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">conn</span></a>
   </div>
 </li>
@@ -447,7 +468,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="recon-all" class="level3">
 <h3 class="anchored" data-anchor-id="recon-all">Recon-all</h3>
-<p>Download the lh and rh.hcpmmp1 annot files in the supplementary files <a href="https://osf.io/fkyht/#!">here</a> and put them into $SUBJECTS_DIR/fsaverage/label. This allows to prepare the T1 image for the HCP MMP 1.0 atlas <span class="citation" data-cites="glasser2016">[@glasser2016]</span>.</p>
+<p>Download the lh and rh.hcpmmp1 annot files in the supplementary files <a href="https://osf.io/fkyht/#!">here</a> and put them into $SUBJECTS_DIR/fsaverage/label. This allows to prepare the T1 image for the HCP MMP 1.0 atlas <span class="citation" data-cites="glasser2016">(<a href="#ref-glasser2016" role="doc-biblioref">Glasser et al. 2016</a>)</span>.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Since the HCPMMP1-atlas is a FreeSurfer-based atlas, you have to preprocess the T1 image in FreeSurfer. </span></span>
@@ -465,7 +486,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="va">$SUBJECTS_DIR</span><span class="ex">/</span><span class="op">&lt;</span>sub<span class="op">&gt;</span>_recon/label/lh.hcpmmp1.annot</span>
 <span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="ex">mri_surf2surf</span> <span class="at">--srcsubject</span> fsaverage <span class="at">--trgsubject</span> <span class="op">&lt;</span>sub<span class="op">&gt;</span>_recon <span class="at">--hemi</span> rh <span class="at">--sval-annot</span> <span class="va">$SUBJECTS_DIR</span>/fsaverage/label/rh.hcpmmp1.annot <span class="at">--tval</span> <span class="va">$SUBJECTS_DIR</span>/<span class="op">&lt;</span>sub<span class="op">&gt;</span>_recon/label/rh.hcpmmp1.annot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>This step can be sped up with parallel computing. Click <a href="../content/guide/DTI/parallel.html">here</a></strong></p>
+<p><strong>This step can be sped up with parallel computing. Click <a href="../../../content/guide/DTI/parallel.html">here</a></strong></p>
 </section>
 <section id="generate-the-structural-connectome-sc" class="level3">
 <h3 class="anchored" data-anchor-id="generate-the-structural-connectome-sc">Generate the Structural Connectome (SC)</h3>
@@ -487,7 +508,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="..\images/SC.png" class="img-fluid figure-img"></p>
+<p><img src="../../..\images/SC.png" class="img-fluid figure-img"></p>
 <figcaption class="figure-caption">In Matlab: W = importdata(‘sub-XXXXX_hcpmmp1_parcels_coreg.csv’); figure, imagesc(W, [0 1]), xlabel([’ 379 Glasser regions ‘]), ylabel(’379 Glasser regions’), title([’ Structural connectome (streamline density) ‘]); colormap(jet), colorbar, set(gcf,’color’,‘w’), set(gca,‘fontsize’,14)</figcaption>
 </figure>
 </div>
@@ -495,10 +516,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> . <span class="at">-name</span> <span class="dt">\s</span>ub-<span class="pp">*</span>.csv <span class="at">-exec</span> cp {} /path/to/where you want to save the SC <span class="dt">\;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
+
 </section>
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-glasser2016" class="csl-entry" role="listitem">
+Glasser, Matthew F., Timothy S. Coalson, Emma C. Robinson, Carl D. Hacker, John Harwell, Essa Yacoub, Kamil Ugurbil, et al. 2016. <span>“A Multi-Modal Parcellation of Human Cerebral Cortex.”</span> <em>Nature</em> 536 (7615): 171–78. <a href="https://doi.org/10.1038/nature18933">https://doi.org/10.1038/nature18933</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -732,6 +758,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../content/guide/DTI/basic_setup.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><strong>Basic setup</strong></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../content/guide/DTI/parallel.html" class="pagination-link">
+        <span class="nav-page-text"><strong>Parallel processing</strong></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
