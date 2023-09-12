@@ -118,10 +118,12 @@ div.csl-indent {
 <link rel="stylesheet" href="styles.css">
 <meta property="og:title" content="Clément Guichet - Diffusion Tensor Imaging (DTI)">
 <meta property="og:description" content="A step-by-step guide to DTI preprocessing &amp; SC generation based on MRtrix3">
+<meta property="og:image" content="SC.png">
 <meta property="og:site-name" content="Clément Guichet">
 <meta name="twitter:title" content="Clément Guichet - Diffusion Tensor Imaging (DTI)">
 <meta name="twitter:description" content="A step-by-step guide to DTI preprocessing &amp; SC generation based on MRtrix3">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="SC.png">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-fixed">
@@ -436,8 +438,8 @@ div.csl-indent {
 <div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> . <span class="at">-name</span> <span class="dt">\s</span>ub-<span class="pp">*</span>.csv <span class="at">-exec</span> cp {} /path/to/where you want to save the SC <span class="dt">\;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><embed src="SC.fig" class="img-fluid"></p>
-<figcaption class="figure-caption">In Matlab, do: W = importdata(‘<sub>_hcpmmp1_parcels_coreg.csv’); figure, imagesc(W, [0 1]), xlabel([’ 379 Glasser regions ‘]), ylabel(’379 Glasser regions’), title([’ Structural connectome (streamline density) ‘]) colormap(jet), colorbar, set(gcf,’color’,‘w’), set(gca,‘fontsize’,14);</sub></figcaption>
+<p><img src="SC.png" class="img-fluid figure-img" width="784"></p>
+<figcaption class="figure-caption">W = importdata(‘<sub>_hcpmmp1_parcels_coreg.csv’); figure, imagesc(W, [0 1]), xlabel([’ 379 Glasser regions ‘]), ylabel(’379 Glasser regions’), title([’ Structural connectome (streamline density) ‘]); colormap(jet), colorbar, set(gcf,’color’,‘w’), set(gca,‘fontsize’,14)</sub></figcaption>
 </figure>
 </div>
 

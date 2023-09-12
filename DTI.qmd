@@ -263,4 +263,4 @@ You can then copy and save the structural connectomes wherever you like:
 find . -name \sub-*.csv -exec cp {} /path/to/where you want to save the SC \;
 ```
 
-![In Matlab, do: W = importdata('<sub>\_hcpmmp1_parcels_coreg.csv'); figure, imagesc(W, \[0 1\]), xlabel(\[' 379 Glasser regions '\]), ylabel('379 Glasser regions'), title(\[' Structural connectome (streamline density) '\]) colormap(jet), colorbar, set(gcf,'color','w'), set(gca,'fontsize',14); ](SC.fig)
+![W = importdata('<sub>\_hcpmmp1_parcels_coreg.csv'); figure, imagesc(W, \[0 1\]), xlabel(\[' 379 Glasser regions '\]), ylabel('379 Glasser regions'), title(\[' Structural connectome (streamline density) '\]); colormap(jet), colorbar, set(gcf,'color','w'), set(gca,'fontsize',14)](SC.png){fig-align="center" width="784"}
