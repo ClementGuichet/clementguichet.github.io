@@ -24,20 +24,21 @@ website:
     collapse-below: lg
     left: 
       - text: "Guide"
-        menu: 
-          - text: "Basic Setup"
-            file: content/basic_setup.qmd
-          - text: "DTI pipeline (SC)"
-            file: content/DTI.qmd
-          - text: "Parallel computing"
-            file: content/parallel.qmd
-          - text: "rs-fMRI pipeline (FC)"
-            file: content/rs-fMRI.qmd
+        file: content/guide/DTI/index.qmd
+        # menu: 
+        #   - text: "Basic Setup"
+        #     file: content/guide/DTI/basic_setup.qmd
+        #   - text: "DTI pipeline (SC)"
+        #     file: content/guide/DTIDTI.qmd
+        #   - text: "Parallel computing"
+        #     file: content/guide/DTI/parallel.qmd
+        #   - text: "rs-fMRI pipeline (FC)"
+        #     file: content/guide/rs-fMRI/rs-fMRI.qmd
       - text: "Publications"
         file: content/publications.qmd
       - text: "About"
         file: about.qmd
-        
+      
     tools:
       - icon: twitter
         href: https://twitter.com/ClementGuichet
@@ -48,6 +49,24 @@ website:
       - icon: github
         href: https://github.com/ClementGuichet
         text: Personal GitHub
+      
+      
+  sidebar: 
+    - id: guide
+      collapse-level: 1
+      contents: 
+        - section: "Guide"
+          file: content/guide/DTI/index.qmd
+          contents: 
+          - section: "DTI pipeline (SC)"
+            contents:
+              - content/guide/DTI/basic_setup.qmd
+              - content/guide/DTI/DTI.qmd
+              - content/guide/DTI/parallel.qmd
+          - section: "rs-fMRI pipeline (FC)"
+            contents: 
+              - content/guide/rs-fMRI/spm.qmd
+              - content/guide/rs-fMRI/conn.qmd
       
 format:
   html:

@@ -126,7 +126,7 @@ div.csl-indent {
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -143,29 +143,10 @@ div.csl-indent {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-guide" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Guide</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-guide">    
-        <li>
-    <a class="dropdown-item" href="../content/basic_setup.html" rel="" target="">
- <span class="dropdown-text">Basic Setup</span></a>
+  <li class="nav-item">
+    <a class="nav-link active" href="../content/guide/DTI/index.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Guide</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="../content/DTI.html" rel="" target="">
- <span class="dropdown-text">DTI pipeline (SC)</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../content/parallel.html" rel="" target="">
- <span class="dropdown-text">Parallel computing</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../content/rs-fMRI.html" rel="" target="">
- <span class="dropdown-text">rs-fMRI pipeline (FC)</span></a>
-  </li>  
-    </ul>
-  </li>
   <li class="nav-item">
     <a class="nav-link" href="../content/publications.html" rel="" target="">
  <span class="menu-text">Publications</span></a>
@@ -183,10 +164,90 @@ div.csl-indent {
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><strong>Diffusion Tensor Imaging (DTI)</strong></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../content/guide/DTI/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Guide</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">DTI pipeline (SC)</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/guide/DTI/basic_setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>Basic setup</strong></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/guide/DTI/DTI.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>Diffusion Tensor Imaging (DTI)</strong></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/guide/DTI/parallel.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>Parallel processing</strong></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+ <span class="menu-text">rs-fMRI pipeline (FC)</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/guide/rs-fMRI/spm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">spm</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/guide/rs-fMRI/conn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">conn</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -423,7 +484,7 @@ div.csl-indent {
 <span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="va">$SUBJECTS_DIR</span><span class="ex">/</span><span class="op">&lt;</span>sub<span class="op">&gt;</span>_recon/label/lh.hcpmmp1.annot</span>
 <span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="ex">mri_surf2surf</span> <span class="at">--srcsubject</span> fsaverage <span class="at">--trgsubject</span> <span class="op">&lt;</span>sub<span class="op">&gt;</span>_recon <span class="at">--hemi</span> rh <span class="at">--sval-annot</span> <span class="va">$SUBJECTS_DIR</span>/fsaverage/label/rh.hcpmmp1.annot <span class="at">--tval</span> <span class="va">$SUBJECTS_DIR</span>/<span class="op">&lt;</span>sub<span class="op">&gt;</span>_recon/label/rh.hcpmmp1.annot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>This step can be sped up with parallel computing. Click <a href="../content/parallel.html">here</a></strong></p>
+<p><strong>This step can be sped up with parallel computing. Click <a href="parallel.qmd">here</a></strong></p>
 </section>
 <section id="generate-the-structural-connectome-sc" class="level3">
 <h3 class="anchored" data-anchor-id="generate-the-structural-connectome-sc">Generate the Structural Connectome (SC)</h3>
