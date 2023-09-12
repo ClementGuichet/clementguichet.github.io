@@ -55,7 +55,7 @@ website:
     - id: guide
       alignment: left
       style: docked
-      collapse-level: 1
+      collapse-level: 2
       contents: 
         - section: "Guide"
           file: content/guide/DTI/index.qmd
