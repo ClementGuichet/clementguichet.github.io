@@ -54,7 +54,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -177,15 +196,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#mrtrix3" id="toc-mrtrix3" class="nav-link" data-scroll-target="#mrtrix3">MRtrix3</a></li>
   <li><a href="#freesurfer" id="toc-freesurfer" class="nav-link" data-scroll-target="#freesurfer">Freesurfer</a></li>
   <li><a href="#fsl" id="toc-fsl" class="nav-link" data-scroll-target="#fsl">FSL</a></li>
+  <li><a href="#ants" id="toc-ants" class="nav-link" data-scroll-target="#ants">ANTs</a></li>
   </ul></li>
   <li><a href="#batch-processing" id="toc-batch-processing" class="nav-link" data-scroll-target="#batch-processing">Batch processing</a>
   <ul class="collapse">
   <li><a href="#preprocessing" id="toc-preprocessing" class="nav-link" data-scroll-target="#preprocessing">Preprocessing</a></li>
   <li><a href="#streamline-generation" id="toc-streamline-generation" class="nav-link" data-scroll-target="#streamline-generation">Streamline generation</a></li>
   <li><a href="#recon-all" id="toc-recon-all" class="nav-link" data-scroll-target="#recon-all">Recon-all</a></li>
-  <li><a href="#generate-structural-connectomes-sc" id="toc-generate-structural-connectomes-sc" class="nav-link" data-scroll-target="#generate-structural-connectomes-sc">Generate Structural connectomes (SC)</a></li>
+  <li><a href="#generate-the-structural-connectome-sc" id="toc-generate-the-structural-connectome-sc" class="nav-link" data-scroll-target="#generate-the-structural-connectome-sc">Generate the Structural Connectome (SC)</a></li>
   </ul></li>
-  <li><a href="#automation" id="toc-automation" class="nav-link" data-scroll-target="#automation">Automation</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClementGuichet/quarto_web_clem/edit/main/DTI.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/ClementGuichet/quarto_web_clem/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -267,8 +286,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>``` python
  python "/mnt/c/Users/&lt;WindowsUserName&gt;/Downloads/fslinstaller.py"
 ```</code></pre>
-<section id="ants" class="level4">
-<h4 class="anchored" data-anchor-id="ants">ANTs</h4>
+</section>
+<section id="ants" class="level3">
+<h3 class="anchored" data-anchor-id="ants">ANTs</h3>
 <ol type="1">
 <li><p>Download the <a href="https://github.com/cookpa/antsInstallExample/blob/master/installANTs.sh">ANTs installer script</a></p></li>
 <li><p>In the terminal, enter:</p>
@@ -279,10 +299,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 </section>
 </section>
-</section>
 <section id="batch-processing" class="level2">
 <h2 class="anchored" data-anchor-id="batch-processing">Batch processing</h2>
-<p>I recommend you check <a href="https://andysbrainbook.readthedocs.io/en/latest/MRtrix/MRtrix_Introduction.html">Andrew Jahn’s book</a> for a thorough walk-through DTI analysis with MRtrix3. Below, I provide a synthesis of the preprocessing steps using the for_each command available on MRtrix3.</p>
+<p>I recommend you check <a href="https://andysbrainbook.readthedocs.io/en/latest/MRtrix/MRtrix_Introduction.html">Andrew Jahn’s book</a> for a thorough walk-through DTI analysis with MRtrix3. Below, I provide a synthesis of the preprocessing steps using the for_each command available on MRtrix3. You may want to tweak it to your systems specs and size of your cohort for a smooth run.</p>
 <section id="logical-processors" class="level4">
 <h4 class="anchored" data-anchor-id="logical-processors">Logical processors</h4>
 <p>To determine the number of available logical processors on your system, enter <em>nproc --all</em> in the terminal. The output number is the argument we’ll pass to the <em>-nthreads</em> flag below. I recommend you spare some of it if you wish to perform other tasks while the pipeline is running. For example, I only use 32 out of the 48 available on my system.</p>
@@ -382,20 +401,53 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="recon-all" class="level3">
 <h3 class="anchored" data-anchor-id="recon-all">Recon-all</h3>
-<p>This step can be speed up by using gnu parallel : brew install gcc brew install parallel</p>
+<p>Download the lh and rh.hcpmmp1 annot files in the supplementary files <a href="https://osf.io/fkyht/#!">here</a> and put them into $SUBJECTS_DIR/fsaverage/label. This allows to prepare the T1 image for the HCP MMP 1.0 atlas <span class="citation" data-cites="glasser2016">Glasser et al. (<a href="#ref-glasser2016" role="doc-biblioref">2016</a>)</span>.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Since the HCPMMP1-atlas is a FreeSurfer-based atlas, you have to preprocess the T1 image in FreeSurfer. </span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># This will take several hours to complete.</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ex">recon-all</span> –s <span class="op">&lt;</span>sub<span class="op">&gt;</span>_recon –i T1_raw.nii.gz –all</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># If the recon folder specific to your subject haq not been placed into $SUBJECTS_DIR, you may have to move it manually</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy into freesurfer's subjects directory</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="op">&lt;</span>password<span class="op">&gt;</span> <span class="kw">|</span> <span class="fu">sudo</span> <span class="at">-S</span> cp <span class="at">-r</span> <span class="pp">*</span>T1w_recon <span class="va">$SUBJECTS_DIR</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Grant permission to write the file</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="op">&lt;</span>password<span class="op">&gt;</span> <span class="kw">|</span> <span class="fu">sudo</span> <span class="at">-S</span> chmod <span class="at">-R</span> a+w /usr/local/freesurfer</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Map the annotation files of the HCP MMP 1.0 atlas from fsaverage to you subject for both hemispheres:</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="ex">mri_surf2surf</span> <span class="at">--srcsubject</span> fsaverage <span class="at">--trgsubject</span> <span class="op">&lt;</span>sub<span class="op">&gt;</span>_recon <span class="at">--hemi</span> lh <span class="at">--sval-annot</span> <span class="va">$SUBJECTS_DIR</span>/fsaverage/label/lh.hcpmmp1.annot <span class="at">--tval</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="va">$SUBJECTS_DIR</span><span class="ex">/</span><span class="op">&lt;</span>sub<span class="op">&gt;</span>_recon/label/lh.hcpmmp1.annot</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="ex">mri_surf2surf</span> <span class="at">--srcsubject</span> fsaverage <span class="at">--trgsubject</span> <span class="op">&lt;</span>sub<span class="op">&gt;</span>_recon <span class="at">--hemi</span> rh <span class="at">--sval-annot</span> <span class="va">$SUBJECTS_DIR</span>/fsaverage/label/rh.hcpmmp1.annot <span class="at">--tval</span> <span class="va">$SUBJECTS_DIR</span>/<span class="op">&lt;</span>sub<span class="op">&gt;</span>_recon/label/rh.hcpmmp1.annot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>This step can be sped up with parallel computing. See the next section.</strong></p>
 </section>
-<section id="generate-structural-connectomes-sc" class="level3">
-<h3 class="anchored" data-anchor-id="generate-structural-connectomes-sc">Generate Structural connectomes (SC)</h3>
-</section>
-</section>
-<section id="automation" class="level2">
-<h2 class="anchored" data-anchor-id="automation">Automation</h2>
-<p>Download the script below to run the entire pipeline You may have to adapt it to your system specs (# of logical processors available) and to the size of your cohort</p>
+<section id="generate-the-structural-connectome-sc" class="level3">
+<h3 class="anchored" data-anchor-id="generate-the-structural-connectome-sc">Generate the Structural Connectome (SC)</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">--all</span><span class="op">&gt;</span> -info <span class="pp">*</span>/dwi : mrconvert –datatype uint32  IN/hcpmmp1.mgz  IN/hcpmmp1.mif <span class="at">-force</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace the random integers of the hcpmmp1.mif file with integers</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># that start at 1 and increase by 1.</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">--all</span><span class="op">&gt;</span> -info <span class="pp">*</span>/dwi : labelconvert  IN/hcpmmp1.mif <span class="va">$MRtrix3</span>/share/mrtrix3/labelconvert/hcpmmp1_original.txt <span class="va">$MRtrix3</span>/share/mrtrix3/labelconvert/hcpmmp1_ordered.txt  IN/hcpmmp1_parcels_nocoreg.mif <span class="at">-force</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Register the ordered atlas-based volumetric parcellation to diffusion space.</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">--all</span><span class="op">&gt;</span> -info <span class="pp">*</span>/dwi : mrtransform  IN/hcpmmp1_parcels_nocoreg.mif –linear  IN/diff2struct_mrtrix.txt –inverse –datatype uint32  IN/hcpmmp1_parcels_coreg.mif <span class="at">-force</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a whole-brain connectome, representing the streamlines between each parcellation pair in the atlas (in this case, 84x84). The "symmetric" option will make the lower diagonal the same as the upper diagonal, </span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># and the "scale_invnodevol" option will scale the connectome by the inverse of the size of the node</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">--all</span><span class="op">&gt;</span> -info <span class="pp">*</span> : tck2connectome <span class="at">-symmetric</span> <span class="at">-zero_diagonal</span> <span class="at">-scale_invnodevol</span> <span class="at">-tck_weights_in</span> IN/dwi/sift_1M.txt IN/dwi/tracks_10M.tck IN/dwi/hcpmmp1_parcels_coreg.mif IN/dwi/IN_hcpmmp1_parcels_coreg.csv <span class="at">-out_assignment</span> IN/dwi/assignments_IN_hcpmmp1_parcels_coreg.csv <span class="at">-force</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can then copy and save the structural connectomes wherever you like:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> . <span class="at">-name</span> <span class="dt">\s</span>ub-<span class="pp">*</span>.csv <span class="at">-exec</span> cp {} /path/to/where you want to save the SC <span class="dt">\;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
+
+</section>
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-glasser2016" class="csl-entry" role="listitem">
+Glasser, Matthew F., Timothy S. Coalson, Emma C. Robinson, Carl D. Hacker, John Harwell, Essa Yacoub, Kamil Ugurbil, et al. 2016. <span>“A Multi-Modal Parcellation of Human Cerebral Cortex.”</span> <em>Nature</em> 536 (7615): 171–78. <a href="https://doi.org/10.1038/nature18933">https://doi.org/10.1038/nature18933</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

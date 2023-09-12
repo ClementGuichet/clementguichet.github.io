@@ -4,3 +4,5 @@ format: html
 editor: visual
 subtitle: Speeding up Recon-all computation
 ---
+
+This step can be speed up by using gnu parallel : brew install gcc brew install parallel
