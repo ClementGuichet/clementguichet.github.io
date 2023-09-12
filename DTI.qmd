@@ -257,10 +257,12 @@ for_each -nthreads <nproc --all> -info */dwi : mrtransform  IN/hcpmmp1_parcels_n
 for_each -nthreads <nproc --all> -info * : tck2connectome -symmetric -zero_diagonal -scale_invnodevol -tck_weights_in IN/dwi/sift_1M.txt IN/dwi/tracks_10M.tck IN/dwi/hcpmmp1_parcels_coreg.mif IN/dwi/IN_hcpmmp1_parcels_coreg.csv -out_assignment IN/dwi/assignments_IN_hcpmmp1_parcels_coreg.csv -force
 ```
 
+This is what you should end up with.\
+
+![W = importdata('sub-XXXXX_hcpmmp1_parcels_coreg.csv'); figure, imagesc(W, \[0 1\]), xlabel(\[' 379 Glasser regions '\]), ylabel('379 Glasser regions'), title(\[' Structural connectome (streamline density) '\]); colormap(jet), colorbar, set(gcf,'color','w'), set(gca,'fontsize',14)](SC.png){fig-align="center" width="784"}
+
 You can then copy and save the structural connectomes wherever you like:
 
 ``` bash
 find . -name \sub-*.csv -exec cp {} /path/to/where you want to save the SC \;
 ```
-
-![W = importdata('<sub>\_hcpmmp1_parcels_coreg.csv'); figure, imagesc(W, \[0 1\]), xlabel(\[' 379 Glasser regions '\]), ylabel('379 Glasser regions'), title(\[' Structural connectome (streamline density) '\]); colormap(jet), colorbar, set(gcf,'color','w'), set(gca,'fontsize',14)](SC.png){fig-align="center" width="784"}

@@ -434,14 +434,16 @@ div.csl-indent {
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co"># and the "scale_invnodevol" option will scale the connectome by the inverse of the size of the node</span></span>
 <span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">--all</span><span class="op">&gt;</span> -info <span class="pp">*</span> : tck2connectome <span class="at">-symmetric</span> <span class="at">-zero_diagonal</span> <span class="at">-scale_invnodevol</span> <span class="at">-tck_weights_in</span> IN/dwi/sift_1M.txt IN/dwi/tracks_10M.tck IN/dwi/hcpmmp1_parcels_coreg.mif IN/dwi/IN_hcpmmp1_parcels_coreg.csv <span class="at">-out_assignment</span> IN/dwi/assignments_IN_hcpmmp1_parcels_coreg.csv <span class="at">-force</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You can then copy and save the structural connectomes wherever you like:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> . <span class="at">-name</span> <span class="dt">\s</span>ub-<span class="pp">*</span>.csv <span class="at">-exec</span> cp {} /path/to/where you want to save the SC <span class="dt">\;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is what you should end up with.<br>
+</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="SC.png" class="img-fluid figure-img" width="784"></p>
-<figcaption class="figure-caption">W = importdata(‘<sub>_hcpmmp1_parcels_coreg.csv’); figure, imagesc(W, [0 1]), xlabel([’ 379 Glasser regions ‘]), ylabel(’379 Glasser regions’), title([’ Structural connectome (streamline density) ‘]); colormap(jet), colorbar, set(gcf,’color’,‘w’), set(gca,‘fontsize’,14)</sub></figcaption>
+<figcaption class="figure-caption">W = importdata(‘sub-XXXXX_hcpmmp1_parcels_coreg.csv’); figure, imagesc(W, [0 1]), xlabel([’ 379 Glasser regions ‘]), ylabel(’379 Glasser regions’), title([’ Structural connectome (streamline density) ‘]); colormap(jet), colorbar, set(gcf,’color’,‘w’), set(gca,‘fontsize’,14)</figcaption>
 </figure>
 </div>
+<p>You can then copy and save the structural connectomes wherever you like:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> . <span class="at">-name</span> <span class="dt">\s</span>ub-<span class="pp">*</span>.csv <span class="at">-exec</span> cp {} /path/to/where you want to save the SC <span class="dt">\;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 
