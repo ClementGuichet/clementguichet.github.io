@@ -1,6 +1,5 @@
 ---
 title: "Publications"
-bibliography: references.yaml
 ---
 
 [@guichet2023]
