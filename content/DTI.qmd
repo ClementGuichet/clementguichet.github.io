@@ -127,6 +127,8 @@ In a BIDS-compliant dataset, for_each will then iterate over the directories pat
 ### Preprocessing
 
 ``` bash
+#!/bin/bash
+
 ############################### STEP 1 ###############################
 #             Convert data to .mif format and denoise                #
 ######################################################################
@@ -199,6 +201,8 @@ for_each -nthreads <nproc -all> -info */dwi : 5tt2gmwmi IN/5tt_coreg.mif IN/gmwm
 Make sure to allocate at least 5Go of space for each subject on your local disk as streamline generation can get quite heavy. Here we generate 10 millions streamlines and then reduce that number using the *tckgen* and *tcksift2* command.
 
 ``` bash
+#!/bin/bash
+
 ########################## STEP 4 ###################################
 #                 Run the streamline analysis                        #
 ######################################################################
@@ -220,6 +224,8 @@ for_each -nthreads <nproc --all>/8 -info */dwi : tcksift2 -act IN/5tt_coreg.mif 
 Download the lh and rh.hcpmmp1 annot files in the supplementary files [here](https://osf.io/fkyht/#!) and put them into \$SUBJECTS_DIR/fsaverage/label. This allows to prepare the T1 image for the HCP MMP 1.0 atlas [@glasser2016 ].
 
 ``` bash
+#!/bin/bash
+
 # 1. Since the HCPMMP1-atlas is a FreeSurfer-based atlas, you have to preprocess the T1 image in FreeSurfer. 
 # This will take several hours to complete.
 recon-all –s <sub>_recon –i T1_raw.nii.gz –all
@@ -237,11 +243,13 @@ $SUBJECTS_DIR/<sub>_recon/label/lh.hcpmmp1.annot
 mri_surf2surf --srcsubject fsaverage --trgsubject <sub>_recon --hemi rh --sval-annot $SUBJECTS_DIR/fsaverage/label/rh.hcpmmp1.annot --tval $SUBJECTS_DIR/<sub>_recon/label/rh.hcpmmp1.annot
 ```
 
-**This step can be sped up with parallel computing. Click [here](parallel.qmd)**
+**This step can be sped up with parallel computing. Click [here](content/parallel.qmd)**
 
 ### Generate the Structural Connectome (SC)
 
 ``` bash
+#!/bin/bash
+
 for_each -nthreads <nproc --all> -info */dwi : mrconvert –datatype uint32  IN/hcpmmp1.mgz  IN/hcpmmp1.mif -force
 
 # Replace the random integers of the hcpmmp1.mif file with integers
@@ -258,7 +266,7 @@ for_each -nthreads <nproc --all> -info * : tck2connectome -symmetric -zero_diago
 
 This is what you should end up with. The upper left and lower right quadrant represent the left and right intra-hemispheric connections respectively.\
 
-![In Matlab: W = importdata('sub-XXXXX_hcpmmp1_parcels_coreg.csv'); figure, imagesc(W, \[0 1\]), xlabel(\[' 379 Glasser regions '\]), ylabel('379 Glasser regions'), title(\[' Structural connectome (streamline density) '\]); colormap(jet), colorbar, set(gcf,'color','w'), set(gca,'fontsize',14)](SC.png){fig-align="center" width="784"}
+![In Matlab: W = importdata('sub-XXXXX_hcpmmp1_parcels_coreg.csv'); figure, imagesc(W, \[0 1\]), xlabel(\[' 379 Glasser regions '\]), ylabel('379 Glasser regions'), title(\[' Structural connectome (streamline density) '\]); colormap(jet), colorbar, set(gcf,'color','w'), set(gca,'fontsize',14)](/images/SC.png){fig-align="center"}
 
 You can then copy and save the structural connectomes wherever you like:
 

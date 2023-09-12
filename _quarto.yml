@@ -4,7 +4,7 @@ project:
 
 website:
   title: "Clément Guichet"
-  favicon: "lpnc.jpeg"
+  favicon: "images/lpnc.jpeg"
   open-graph: true
   twitter-card: true
   page-navigation: true
@@ -19,22 +19,22 @@ website:
     
   navbar: 
     background: light
-    logo: "logo.png"
+    logo: "images/logo.png"
     title: false
     collapse-below: lg
     left: 
       - text: "Guide"
         menu: 
           - text: "Basic Setup"
-            href: basic_setup.qmd
+            href: content/basic_setup.qmd
           - text: "DTI pipeline (SC)"
-            href: DTI.qmd
+            href: content/DTI.qmd
           - text: "Parallel computing"
-            href: parallel.qmd
+            href: content/parallel.qmd
           - text: "rs-fMRI pipeline (FC)"
-            href: rs-fMRI.qmd
+            href: content/rs-fMRI.qmd
       - text: "Publications"
-        href: publications.qmd
+        href: content/publications.qmd
       - text: "About"
         href: about.qmd
         
