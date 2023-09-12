@@ -1,3 +1,89 @@
 ---
-title: "conn"
+title: "**CONN**"
+subtitle: ROI-to-ROI analysis with the CONN toolbox
+bibliography: references.yaml
 ---
+
+Following the standard preprocessing pipeline, the CONN toolbox [@whitfield-gabrieli2012] takes care of the FC generation after denoising [@behzadi2007]. This is an add-on to SPM which can be downloaded [here](https://www.nitrc.org/projects/conn/).
+
+### Importing the data into a new CONN project
+
+This script will create a new conn project named *conn_example* and automatically import the functional and structural volumes for the set number of subjects.
+
+``` matlab
+% Created by Andrew Jahn, University of Michigan, 02.27.2020
+% Adapted by Clément Guichet, UGA, LPNC, 07.01.2023
+
+% FIND functional/structural files
+NSUBJECTS= ??;
+cwd=pwd;
+
+# the smoothed out spatially preprocessed volumes, conn will automatically bind them to the unsmoothed ones
+FUNCTIONAL_FILE=cellstr(conn_dir('swar*.nii'));
+STRUCTURAL_FILE=cellstr(conn_dir('wm*.nii'));
+if rem(length(FUNCTIONAL_FILE),NSUBJECTS),error('mismatch number of functional files %n', length(FUNCTIONAL_FILE));end
+if rem(length(STRUCTURAL_FILE),NSUBJECTS),error('mismatch number of anatomical files %n', length(FUNCTIONAL_FILE));end
+nsessions=length(FUNCTIONAL_FILE)/NSUBJECTS;
+FUNCTIONAL_FILE=reshape(FUNCTIONAL_FILE,[nsessions, NSUBJECTS]);
+STRUCTURAL_FILE={STRUCTURAL_FILE{1:NSUBJECTS}};
+disp([num2str(size(FUNCTIONAL_FILE,1)),' sessions']);
+disp([num2str(size(FUNCTIONAL_FILE,2)),' subjects']);
+TR= ??; % Repetition time
+
+
+% CONN-SPECIFIC SECTION: RUNS SETUP STEPS
+% Prepares batch structure
+clear batch;
+batch.filename=fullfile(cwd,'conn_example.mat'); % New conn_*.mat experiment name
+
+% SETUP step
+batch.Setup.isnew=1;
+batch.Setup.nsubjects=NSUBJECTS;
+batch.Setup.RT=TR; % TR (seconds)
+
+batch.Setup.functionals=repmat({{}},[NSUBJECTS,1]); % Pre-allocation
+% Point to functional volumes for each subject/session
+for nsub=1:NSUBJECTS
+    for nses=1:nsessions
+        batch.Setup.functionals{nsub}{nses}{1}=FUNCTIONAL_FILE{nses,nsub};
+    end
+end 
+batch.Setup.structurals=STRUCTURAL_FILE; % Point to anatomical volumes for each subject
+
+
+% Define the names and files for the covariates
+covariate_names = {'Art_outliers_&_movement'};
+ART_FILE = cellstr(conn_dir('art_regression_outliers_and_movement_warRS.mat'));
+ncovariate=length(ART_FILE)/NSUBJECTS;
+ART_FILE = reshape(ART_FILE, [ncovariate, NSUBJECTS]);
+disp([num2str(size(ART_FILE,1)),'covariate']);
+disp([num2str(size(ART_FILE,2)),'subjects']);
+
+% Add covariates
+batch.Setup.covariates.add=1;
+batch.Setup.covariates.names=covariate_names; 
+for ncov=1:ncovariate
+    for nsub=1:NSUBJECTS
+        for nses=1:nsessions
+            batch.Setup.covariates.files{ncov}{nsub}{nses}{1}=ART_FILE{nses,nsub,ncov}; 
+        end 
+    end
+end
+
+
+% Run all analyses
+conn_batch(batch);
+```
+
+### Running CONN in the GUI
+
+After creating the project, you can open the gui by typing:
+
+``` matlab
+conn
+conn('load', fullfile(cwd, 'conn_example.mat'))
+```
+
+#### Import the atlas file & denoising
+
+#### Generate the Functional Connectome (FC)
