@@ -275,7 +275,6 @@ div.csl-indent {
   <ul>
   <li><a href="#step-1.-importing-the-data-into-a-new-conn-project" id="toc-step-1.-importing-the-data-into-a-new-conn-project" class="nav-link active" data-scroll-target="#step-1.-importing-the-data-into-a-new-conn-project">STEP 1. Importing the data into a new CONN project</a></li>
   <li><a href="#step-2.-running-conn-in-the-gui" id="toc-step-2.-running-conn-in-the-gui" class="nav-link" data-scroll-target="#step-2.-running-conn-in-the-gui">STEP 2. Running CONN in the GUI</a></li>
-  <li><a href="#generate-the-functional-connectome-fc" id="toc-generate-the-functional-connectome-fc" class="nav-link" data-scroll-target="#generate-the-functional-connectome-fc">Generate the Functional Connectome (FC)</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClementGuichet/clementguichet.github.io/edit/main/content/guide/rs-fMRI/conn.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
@@ -387,15 +386,32 @@ div.csl-indent {
 <p><img src="../../..\images/conn/denoising.png" class="img-fluid" width="880"></p></li>
 </ol>
 </section>
+<section id="generate-the-functional-connectome-fc" class="level4">
+<h4 class="anchored" data-anchor-id="generate-the-functional-connectome-fc">Generate the Functional Connectome (FC)</h4>
+<ol type="1">
+<li><p>Create a new analysis and select RRC (ROI-to-ROI connectivity).</p></li>
+<li><p>Select the brain regions to be included in the connectome.</p>
+<p><img src="../../..\images/conn/analyses.png" class="img-fluid" width="510"></p></li>
+<li><p>Click done to generate the .mat file. Under the path /conn_example/results/firstlevel/RRC, you should now visualize the .mat files for each subject.</p>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.5%;justify-content: center;">
+<p><img src="../../..\images/conn/analyses.png" class="img-fluid" width="255"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 49.5%;justify-content: center;">
+<p><img src="../../..\images/FC.png" class="img-fluid" width="250"></p>
+</div>
+</div>
+</div></li>
+</ol>
+<p><strong>Learn how to analyze these functional connectomes with graph theory <a href="content/guide/GT/graphvar.qmd">here</a>.</strong></p>
+
+
+
 </section>
-<section id="generate-the-functional-connectome-fc" class="level3">
-
-
-
-
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">Generate the Functional Connectome (FC)</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-behzadi2007" class="csl-entry" role="listitem">
 Behzadi, Yashar, Khaled Restom, Joy Liau, and Thomas T. Liu. 2007. <span>“A Component Based Noise Correction Method (CompCor) for BOLD and Perfusion Based fMRI.”</span> <em>NeuroImage</em> 37 (1): 90–101. <a href="https://doi.org/10.1016/j.neuroimage.2007.04.042">https://doi.org/10.1016/j.neuroimage.2007.04.042</a>.
 </div>

@@ -106,4 +106,22 @@ If the project does not load up, you can open the mat file in the GUI.
 
     ![](/images/conn/denoising.png){width="880"}
 
-### Generate the Functional Connectome (FC)
+#### Generate the Functional Connectome (FC)
+
+1.  Create a new analysis and select RRC (ROI-to-ROI connectivity).
+
+2.  Select the brain regions to be included in the connectome.
+
+    ![](/images/conn/analyses.png){width="510"}
+
+3.  Click done to generate the .mat file. Under the path /conn_example/results/firstlevel/RRC, you should now visualize the .mat files for each subject.
+
+    ::: {layout-ncol=2}
+
+    ![](/images/conn/analyses.png){width="255"}
+
+    ![](/images/FC.png){width="250"}
+    
+    :::
+
+**Learn how to analyze these functional connectomes with graph theory [here](content/guide/GT/graphvar.qmd).**
