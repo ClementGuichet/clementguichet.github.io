@@ -1,5 +1,6 @@
 ---
 title: "About"
+sidebar: false
 ---
 
 ::: {layout="\[21,79\]" .profile-header}
