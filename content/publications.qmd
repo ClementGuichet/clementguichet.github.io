@@ -6,9 +6,19 @@ bibliography: references.yaml
 
 **Research project:**
 
-Cognitive neuroscience is undergoing a paradigm shift. The abundance of multimodal empirical data, coupled with the unprecendented computational capabilities, is helping to redefine the links between the brain and human behavior. The brain is now understood as a vast network of interactions between cerebral regions from which cognitive operations and processes emerge. Specifically, \*\*language functions (L)\*\* are not isolated but constantly interact with \*\*declarative memory (M)\*\* and \*\*executive functions (EF)\*\*. However, the neural mechanisms underlying this \*\*L-M-EF dynamic\*\* remain unclear. The \*\*cognitomic perspective\*\* (structure-function-cognition) is closely linked to the identification of multimodal L-M-EF phenotypes, that is the neuropsychological implications that the language connectomic architecture places on cognition.
+Cognitive neuroscience is undergoing a paradigm shift. The abundance of multimodal empirical data, coupled with the unprecendented computational capabilities, is helping to redefine the links between the brain and human behavior. The brain is now understood as a vast network of interactions between cerebral regions from which cognitive operations and processes emerge.
 
-Thus, this project has a theoretical dimension, through the enrichment of a neurocognitive L-M-EF model, and a methodological dimension, through the fusion of multimodal data required to evaluate this model (i.e. structural, functional, cognitive-behavioral). In fine, we expect this project to enable significant advances in both fundamental and clinical research (e.g. pre-habilitation & cognitive rehabilitation).
+Specifically, **language functions (L)** are not isolated but constantly interact with **declarative memory (M)** and **executive functions (EF)**. However, the neural mechanisms underlying this **L-M-EF dynamic** remain unclear. The **cognitomic perspective** (structure-function-cognition) is closely linked to the identification of multimodal L-M-EF phenotypes, that is the neuropsychological implications that the language connectomic architecture places on cognition.
+
+Thus, this project has:
+
+-   a theoretical dimension, through the enrichment of a neurocognitive L-M-EF model
+
+-   a methodological dimension, through the fusion of multimodal data required to evaluate this model (i.e. structural, functional, cognitive-behavioral)
+
+In fine, we expect this project to enable significant advances in both fundamental and clinical research (e.g. pre-habilitation & cognitive rehabilitation).
+
+------------------------------------------------------------------------
 
 **Latest:**
 
@@ -26,7 +36,7 @@ In our latest preprint [@guichet2023], we modeled the neural mechanisms that uph
 
 -   Taken together [**(SE-NE-CA)**]{.underline}, less DMN-FPN coupling may be responsible for a transition around 50yo towards less synergistic processing, accelerating cognitive decline in highly synergistic tasks such as lexical production.
 
-    ![DMN-FPN coupling is associated with a Nonlinear and Emergent trajectory of healthy neurocognitive aging](/images/seneca_NE.png){width="550"}
+    ![DMN-FPN coupling is associated with a Nonlinear and Emergent trajectory across the lifespan](/images/seneca_NE.png){width="550"}
 
 #### What's next?
 
