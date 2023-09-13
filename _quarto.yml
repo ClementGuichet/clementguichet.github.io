@@ -4,11 +4,12 @@ project:
 
 website:
   title: "Clément Guichet"
-  favicon: "images/lpnc.jpeg"
+  favicon: "images/favicon.ico"
   open-graph: true
   twitter-card: true
   page-navigation: true
-  repo-url: https://github.com/ClementGuichet/quarto_web_clem
+  repo-url: https://github.com/ClementGuichet/clementguichet.github.io
+  repo-actions: [edit]
   search: 
     type: overlay
   
