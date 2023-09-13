@@ -118,9 +118,9 @@ If the project does not load up, you can open the mat file in the GUI.
 
     ::: {layout-ncol=2}
 
-    ![](/images/conn/analyses.png){width="255"}
+    ![](/images/conn/analyses.png){width="450"}
 
-    ![](/images/FC.png){width="250"}
+    ![](/images/FC.png){width="450"}
     
     :::
 
