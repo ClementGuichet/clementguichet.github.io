@@ -75,7 +75,7 @@ format:
     code-overflow: wrap
     page-layout: full
     grid: 
-      sidebar-width: 500px
+      sidebar-width: 150px
 
 editor: visual
 
