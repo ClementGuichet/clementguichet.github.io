@@ -50,6 +50,7 @@ website:
       collapse-level: 2
       contents: 
         - section: "Guide"
+          file: content/guide/DTI/basic_setup.qmd
           contents: 
           - section: "DTI pipeline (SC)"
             contents:
