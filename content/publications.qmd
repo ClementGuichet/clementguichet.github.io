@@ -10,7 +10,7 @@ Cognitive neuroscience is undergoing a paradigm shift. The abundance of multimod
 
 Thus, this project has a theoretical dimension, through the enrichment of a neurocognitive L-M-EF model, and a methodological dimension, through the fusion of multimodal data required to evaluate this model (i.e. structural, functional, cognitive-behavioral). In fine, we expect this project to enable significant advances in both fundamental and clinical research (e.g. pre-habilitation & cognitive rehabilitation).
 
-**Publications:**
+**Latest:**
 
 <div>
 
@@ -31,3 +31,7 @@ In our latest preprint [@guichet2023], we modeled the neural mechanisms that uph
 #### What's next?
 
 We are now investigating the structural underpinnings of the DMN-FPN coupling across the lifespan and whether SC-FC coupling can be a reliable biomarker of individuals with high vs. low cognitive reserve, thus predicting healthy cognitive aging.
+
+#### Previous works:
+
+[@ashokumar2022]
