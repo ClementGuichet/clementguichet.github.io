@@ -59,7 +59,6 @@ website:
       collapse-level: 2
       contents: 
         - section: "Guide"
-          file: content/guide/DTI/index.qmd
           contents: 
           - section: "DTI pipeline (SC)"
             contents:
