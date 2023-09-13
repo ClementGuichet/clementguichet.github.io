@@ -73,6 +73,8 @@ format:
     code-copy: true
     code-line-numbers: false
     code-overflow: wrap
+    grid: 
+      sidebar-width: 400px
 
 editor: visual
 
