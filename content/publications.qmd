@@ -12,11 +12,13 @@ Thus, this project has a theoretical dimension, through the enrichment of a neur
 
 **Publications:**
 
-::: {layout="[21,79]"}
-In our latest preprint [@guichet2023], we modeled the neural mechanisms that uphold inter-cognitive functioning across the lifespan. The SENECA model of healthy aging has three dimensions:
+<div>
+
+In our latest preprint [@guichet2023], we modeled the neural mechanisms that uphold inter-cognitive functioning across the lifespan. The SENECA model has three dimensions:
 
 ![](/images/seneca_abstract.png){fig-align="left"}
-:::
+
+</div>
 
 -   At the [**cognitive level (CA)**]{.underline}, we show that language is not isolated but works in synergy with LTM and EF across the lifespan
 
@@ -25,3 +27,7 @@ In our latest preprint [@guichet2023], we modeled the neural mechanisms that uph
 -   Taken together [**(SE-NE-CA)**]{.underline}, less DMN-FPN coupling may be responsible for a transition around 50yo towards less synergistic processing, accelerating cognitive decline in highly synergistic tasks such as lexical production.
 
     ![DMN-FPN coupling is associated with a Nonlinear and Emergent trajectory of healthy neurocognitive aging](/images/seneca_NE.png){width="550"}
+
+#### What's next?
+
+We are now investigating the structural underpinnings of the DMN-FPN coupling across the lifespan and whether SC-FC coupling can be a reliable biomarker of individuals with high vs. low cognitive reserve, thus predicting healthy cognitive aging.
