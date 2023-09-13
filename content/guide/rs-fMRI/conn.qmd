@@ -116,7 +116,7 @@ If the project does not load up, you can open the mat file in the GUI.
 
 3.  Click done to generate the .mat file. Under the path /conn_example/results/firstlevel/RRC, you should now visualize the .mat files for each subject.
 
-    ![](/images/FC.png){width="450"}
+    ![](/images/FC.png){fig-align="center"}
 
 
 **Learn how to analyze these functional connectomes with graph theory [here](../GT/graphvar.qmd).**
