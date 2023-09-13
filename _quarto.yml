@@ -46,7 +46,7 @@ website:
   sidebar: 
     - id: guide
       alignment: left
-      style: floating
+      style: docked
       collapse-level: 2
       contents: 
         - section: "Guide"
