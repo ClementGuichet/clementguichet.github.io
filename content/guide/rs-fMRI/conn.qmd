@@ -84,6 +84,16 @@ conn
 conn('load', fullfile(cwd, 'conn_example.mat'))
 ```
 
+If the project does not load up, you can open the mat file in the GUI.
+
 #### Import the atlas file & denoising
+
+In the GUI, check that the structural and functional volumes have all been imported correctly.
+
+::: {.profile-header layout="[21,79]"}
+In the ROIs section, remove the default atlas and import your atlas in nifti format manually. Make sure to check the 'Atlas file' box.
+
+![](/images/conn/atlas.png){width="723"}
+:::
 
 #### Generate the Functional Connectome (FC)

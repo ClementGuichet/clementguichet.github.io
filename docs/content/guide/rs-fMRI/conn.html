@@ -120,10 +120,12 @@ div.csl-indent {
 <link rel="stylesheet" href="../../../styles.css">
 <meta property="og:title" content="Clément Guichet - CONN">
 <meta property="og:description" content="ROI-to-ROI analysis with the CONN toolbox">
+<meta property="og:image" content="../../..\images/conn/atlas.png">
 <meta property="og:site-name" content="Clément Guichet">
 <meta name="twitter:title" content="Clément Guichet - CONN">
 <meta name="twitter:description" content="ROI-to-ROI analysis with the CONN toolbox">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="../../..\images/conn/atlas.png">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -369,8 +371,20 @@ div.csl-indent {
 <p>After creating the project, you can open the gui by typing:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">conn</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">conn</span>(<span class="ss">'load'</span><span class="op">,</span> <span class="va">fullfile</span>(<span class="va">cwd</span><span class="op">,</span> <span class="ss">'conn_example.mat'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If the project does not load up, you can open the mat file in the GUI.</p>
 <section id="import-the-atlas-file-denoising" class="level4">
 <h4 class="anchored" data-anchor-id="import-the-atlas-file-denoising">Import the atlas file &amp; denoising</h4>
+<p>In the GUI, check that the structural and functional volumes have all been imported correctly.</p>
+<div class="profile-header quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 21.0%;justify-content: center;">
+<p>In the ROIs section, remove the default atlas and import your atlas in nifti format manually. Make sure to check the ‘Atlas file’ box.</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 79.0%;justify-content: center;">
+<p><img src="../../..\images/conn/atlas.png" class="img-fluid" width="723"></p>
+</div>
+</div>
+</div>
 </section>
 <section id="generate-the-functional-connectome-fc" class="level4">
 
