@@ -25,16 +25,7 @@ website:
     collapse-below: lg
     left: 
       - text: "Guide"
-        file: content/guide/DTI/index.qmd
-        # menu: 
-        #   - text: "Basic Setup"
-        #     file: content/guide/DTI/basic_setup.qmd
-        #   - text: "DTI pipeline (SC)"
-        #     file: content/guide/DTIDTI.qmd
-        #   - text: "Parallel computing"
-        #     file: content/guide/DTI/parallel.qmd
-        #   - text: "rs-fMRI pipeline (FC)"
-        #     file: content/guide/rs-fMRI/rs-fMRI.qmd
+        file: content/guide/DTI/basic_setup.qmd
       - text: "Publications"
         file: content/publications.qmd
       - text: "About"
