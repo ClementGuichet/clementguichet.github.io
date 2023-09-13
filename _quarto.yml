@@ -38,7 +38,7 @@ website:
       - text: "Publications"
         file: content/publications.qmd
       - text: "About"
-        file: about.qmd
+        file: index.qmd
       
     tools:
       - icon: twitter
