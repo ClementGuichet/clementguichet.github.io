@@ -6,7 +6,7 @@ bibliography: references.yaml
 
 Following the standard preprocessing pipeline, the CONN toolbox [@whitfield-gabrieli2012] takes care of the FC generation after denoising [@behzadi2007]. This is an add-on to SPM which can be downloaded [here](https://www.nitrc.org/projects/conn/).
 
-### Importing the data into a new CONN project
+### STEP 1. Importing the data into a new CONN project
 
 This script will create a new conn project named *conn_example* and automatically import the functional and structural volumes for the set number of subjects.
 
@@ -75,7 +75,7 @@ end
 conn_batch(batch);
 ```
 
-### Running CONN in the GUI
+### STEP 2. Running CONN in the GUI
 
 After creating the project, you can open the gui by typing:
 
@@ -86,14 +86,24 @@ conn('load', fullfile(cwd, 'conn_example.mat'))
 
 If the project does not load up, you can open the mat file in the GUI.
 
-#### Import the atlas file & denoising
+#### Atlas selection & Denoising
 
-In the GUI, check that the structural and functional volumes have all been imported correctly.
+1.  Check that the structural and functional volumes have all been imported correctly.
 
-::: {.profile-header layout="[21,79]"}
-In the ROIs section, remove the default atlas and import your atlas in nifti format manually. Make sure to check the 'Atlas file' box.
+2.  In the **ROIs field**, remove the default atlas if there is one and import yours in NIFTI format.
 
-![](/images/conn/atlas.png){width="723"}
-:::
+3.  Check the 'Atlas file' box.
 
-#### Generate the Functional Connectome (FC)
+    ![](/images/conn/atlas.png){width="651"}
+
+4.  In the **Options field**, enable ROI-to-ROI analyses only.
+
+    ![](/images/conn/options.png){width="730"}
+
+5.  Click done. This may take up a few hours depending on the cohort size.
+
+6.  By default, CONN includes regressors derived from the tissue types you generated in the ROIs section (WM, CSF) of the Setup tab, and the 1st-level covariates of the Setup tab (Art_mvt). You can leave the default settings and proceed to the 1st-level analyses by clicking done.
+
+    ![](/images/conn/denoising.png){width="880"}
+
+### Generate the Functional Connectome (FC)

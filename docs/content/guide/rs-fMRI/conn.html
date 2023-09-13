@@ -273,8 +273,9 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#importing-the-data-into-a-new-conn-project" id="toc-importing-the-data-into-a-new-conn-project" class="nav-link active" data-scroll-target="#importing-the-data-into-a-new-conn-project">Importing the data into a new CONN project</a></li>
-  <li><a href="#running-conn-in-the-gui" id="toc-running-conn-in-the-gui" class="nav-link" data-scroll-target="#running-conn-in-the-gui">Running CONN in the GUI</a></li>
+  <li><a href="#step-1.-importing-the-data-into-a-new-conn-project" id="toc-step-1.-importing-the-data-into-a-new-conn-project" class="nav-link active" data-scroll-target="#step-1.-importing-the-data-into-a-new-conn-project">STEP 1. Importing the data into a new CONN project</a></li>
+  <li><a href="#step-2.-running-conn-in-the-gui" id="toc-step-2.-running-conn-in-the-gui" class="nav-link" data-scroll-target="#step-2.-running-conn-in-the-gui">STEP 2. Running CONN in the GUI</a></li>
+  <li><a href="#generate-the-functional-connectome-fc" id="toc-generate-the-functional-connectome-fc" class="nav-link" data-scroll-target="#generate-the-functional-connectome-fc">Generate the Functional Connectome (FC)</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClementGuichet/clementguichet.github.io/edit/main/content/guide/rs-fMRI/conn.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
@@ -300,8 +301,8 @@ div.csl-indent {
 </header>
 
 <p>Following the standard preprocessing pipeline, the CONN toolbox <span class="citation" data-cites="whitfield-gabrieli2012">(<a href="#ref-whitfield-gabrieli2012" role="doc-biblioref">Whitfield-Gabrieli and Nieto-Castanon 2012</a>)</span> takes care of the FC generation after denoising <span class="citation" data-cites="behzadi2007">(<a href="#ref-behzadi2007" role="doc-biblioref">Behzadi et al. 2007</a>)</span>. This is an add-on to SPM which can be downloaded <a href="https://www.nitrc.org/projects/conn/">here</a>.</p>
-<section id="importing-the-data-into-a-new-conn-project" class="level3">
-<h3 class="anchored" data-anchor-id="importing-the-data-into-a-new-conn-project">Importing the data into a new CONN project</h3>
+<section id="step-1.-importing-the-data-into-a-new-conn-project" class="level3">
+<h3 class="anchored" data-anchor-id="step-1.-importing-the-data-into-a-new-conn-project">STEP 1. Importing the data into a new CONN project</h3>
 <p>This script will create a new conn project named <em>conn_example</em> and automatically import the functional and structural volumes for the set number of subjects.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">% Created by Andrew Jahn, University of Michigan, 02.27.2020</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">% Adapted by Clément Guichet, UGA, LPNC, 07.01.2023</span></span>
@@ -366,32 +367,32 @@ div.csl-indent {
 <span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="co">% Run all analyses</span></span>
 <span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="va">conn_batch</span>(<span class="va">batch</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="running-conn-in-the-gui" class="level3">
-<h3 class="anchored" data-anchor-id="running-conn-in-the-gui">Running CONN in the GUI</h3>
+<section id="step-2.-running-conn-in-the-gui" class="level3">
+<h3 class="anchored" data-anchor-id="step-2.-running-conn-in-the-gui">STEP 2. Running CONN in the GUI</h3>
 <p>After creating the project, you can open the gui by typing:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">conn</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">conn</span>(<span class="ss">'load'</span><span class="op">,</span> <span class="va">fullfile</span>(<span class="va">cwd</span><span class="op">,</span> <span class="ss">'conn_example.mat'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If the project does not load up, you can open the mat file in the GUI.</p>
-<section id="import-the-atlas-file-denoising" class="level4">
-<h4 class="anchored" data-anchor-id="import-the-atlas-file-denoising">Import the atlas file &amp; denoising</h4>
-<p>In the GUI, check that the structural and functional volumes have all been imported correctly.</p>
-<div class="profile-header quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 21.0%;justify-content: center;">
-<p>In the ROIs section, remove the default atlas and import your atlas in nifti format manually. Make sure to check the ‘Atlas file’ box.</p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 79.0%;justify-content: center;">
-<p><img src="../../..\images/conn/atlas.png" class="img-fluid" width="723"></p>
-</div>
-</div>
-</div>
+<section id="atlas-selection-denoising" class="level4">
+<h4 class="anchored" data-anchor-id="atlas-selection-denoising">Atlas selection &amp; Denoising</h4>
+<ol type="1">
+<li><p>Check that the structural and functional volumes have all been imported correctly.</p></li>
+<li><p>In the <strong>ROIs field</strong>, remove the default atlas if there is one and import yours in NIFTI format.</p></li>
+<li><p>Check the ‘Atlas file’ box.</p>
+<p><img src="../../..\images/conn/atlas.png" class="img-fluid" width="651"></p></li>
+<li><p>In the <strong>Options field</strong>, enable ROI-to-ROI analyses only.</p>
+<p><img src="../../..\images/conn/options.png" class="img-fluid" width="730"></p></li>
+<li><p>Click done. This may take up a few hours depending on the cohort size.</p></li>
+<li><p>By default, CONN includes regressors derived from the tissue types you generated in the ROIs section (WM, CSF) of the Setup tab, and the 1st-level covariates of the Setup tab (Art_mvt). You can leave the default settings and proceed to the 1st-level analyses by clicking done.</p>
+<p><img src="../../..\images/conn/denoising.png" class="img-fluid" width="880"></p></li>
+</ol>
 </section>
-<section id="generate-the-functional-connectome-fc" class="level4">
-
-
-
-
 </section>
+<section id="generate-the-functional-connectome-fc" class="level3">
+
+
+
+
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">Generate the Functional Connectome (FC)</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
