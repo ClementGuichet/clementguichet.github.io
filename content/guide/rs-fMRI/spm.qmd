@@ -1,3 +1,4 @@
 ---
-title: "spm"
+title: "SPM12"
+subtitle: Preprocessing resting-state fMRI
 ---

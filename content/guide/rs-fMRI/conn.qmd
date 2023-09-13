@@ -4,7 +4,7 @@ subtitle: ROI-to-ROI analysis with the CONN toolbox
 bibliography: references.yaml
 ---
 
-Following the standard preprocessing pipeline, the CONN toolbox [@whitfield-gabrieli2012] takes care of the FC generation after denoising [@behzadi2007]. This is an add-on to SPM which can be downloaded [here](https://www.nitrc.org/projects/conn/).
+Following the standard preprocessing pipeline, the CONN toolbox [@whitfield-gabrieli2012] takes care of the FC generation after denoising [@behzadi2007]. This is an add-on to SPM that can be downloaded [here](https://www.nitrc.org/projects/conn/).
 
 ### STEP 1. Importing the data into a new CONN project
 
@@ -116,12 +116,7 @@ If the project does not load up, you can open the mat file in the GUI.
 
 3.  Click done to generate the .mat file. Under the path /conn_example/results/firstlevel/RRC, you should now visualize the .mat files for each subject.
 
-    ::: {layout-ncol=2}
-
-    ![](/images/conn/output.png){width="450"}
-
     ![](/images/FC.png){width="450"}
-    
-    :::
+
 
 **Learn how to analyze these functional connectomes with graph theory [here](../GT/graphvar.qmd).**
