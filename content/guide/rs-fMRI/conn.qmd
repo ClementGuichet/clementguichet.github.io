@@ -124,4 +124,4 @@ If the project does not load up, you can open the mat file in the GUI.
     
     :::
 
-**Learn how to analyze these functional connectomes with graph theory [here](graphvar.qmd).**
+**Learn how to analyze these functional connectomes with graph theory [here](../GT/graphvar.qmd).**
