@@ -116,7 +116,6 @@ If the project does not load up, you can open the mat file in the GUI.
 
 3.  Click done to generate the .mat file. Under the path /conn_example/results/firstlevel/RRC, you should now visualize the .mat files for each subject.
 
-    ![](/images/FC.png){fig-align="center"}
-
+    ![In Matlab: connectome = load('resultsROI_Subject001_Condition001.mat'); W = connectome.Z; figure, imagesc(W, \[0 1\]), xlabel(\[' 131 LANG regions '\]), ylabel('131 LANG regions'), title(\[' Functional connectome '\]); colormap(jet), colorbar, set(gcf,'color','w'), set(gca,'fontsize',14)](/images/FC.png){fig-align="center"}
 
 **Learn how to analyze these functional connectomes with graph theory [here](../GT/graphvar.qmd).**

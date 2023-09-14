@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>CG - Basic setup</title>
+<title>CG - Setup</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -98,10 +98,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="../../../styles.css">
-<meta property="og:title" content="CG - Basic setup">
+<meta property="og:title" content="CG - Setup">
 <meta property="og:description" content="">
 <meta property="og:site-name" content="CG">
-<meta name="twitter:title" content="CG - Basic setup">
+<meta name="twitter:title" content="CG - Setup">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -182,7 +182,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../content/guide/DTI/basic_setup.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><strong>Basic setup</strong></span></a>
+ <span class="menu-text"><strong>Setup</strong></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -247,14 +247,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#os" id="toc-os" class="nav-link active" data-scroll-target="#os">OS</a></li>
+  <li><a href="#software-installation" id="toc-software-installation" class="nav-link" data-scroll-target="#software-installation">Software installation</a>
+  <ul class="collapse">
+  <li><a href="#mrtrix3" id="toc-mrtrix3" class="nav-link" data-scroll-target="#mrtrix3">MRtrix3</a></li>
+  <li><a href="#freesurfer" id="toc-freesurfer" class="nav-link" data-scroll-target="#freesurfer">Freesurfer</a></li>
+  <li><a href="#fsl" id="toc-fsl" class="nav-link" data-scroll-target="#fsl">FSL</a></li>
+  <li><a href="#ants" id="toc-ants" class="nav-link" data-scroll-target="#ants">ANTs</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClementGuichet/clementguichet.github.io/edit/main/content/guide/DTI/basic_setup.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><strong>Basic setup</strong></h1>
+<h1 class="title"><strong>Setup</strong></h1>
 </div>
 
 
@@ -269,6 +282,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+<section id="os" class="level2">
+<h2 class="anchored" data-anchor-id="os">OS</h2>
 <p>The pipelines work with Linux or <a href="https://learn.microsoft.com/fr-fr/windows/wsl/install">WSL2</a> for Windows already installed on your system. I also assume you are familiar with the basic UNIX commands. Otherwise you can check this <a href="https://andysbrainbook.readthedocs.io/en/latest/unix/Unix_Intro.html">tutorial</a>.</p>
 <p>Check that WSL2 is running by typing this command in PowerShell:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  wsl <span class="op">-</span>l <span class="op">-</span>v </span>
@@ -301,8 +316,77 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Go to <strong>Control panel</strong>&nbsp;&gt;&nbsp;<strong>System and security</strong>&nbsp;&gt;&nbsp;<strong>Windows defender firewall</strong>&nbsp;&gt;&nbsp;<strong>Advanced settings</strong>&nbsp;&gt;&nbsp;<strong>Inbound rules</strong>&nbsp;and make sure that the VcXsrv rules are&nbsp;<strong>not</strong>&nbsp;set to&nbsp;<em>block</em>&nbsp;- if they are you will need to edit the VcXsrv rule and change it from&nbsp;<em>block</em>&nbsp;to&nbsp;<em>allow</em>.</li>
 </ul></li>
 </ol>
+</section>
+<section id="software-installation" class="level2">
+<h2 class="anchored" data-anchor-id="software-installation">Software installation</h2>
+<p>The pipeline revolves around MRtrix3 which works hand in hand with Freesurfer, FSL, and ANTs</p>
+<section id="mrtrix3" class="level3">
+<h3 class="anchored" data-anchor-id="mrtrix3">MRtrix3</h3>
+<p>Download MRtrix3 by copy pasting this command in a bash terminal:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Clone the MRtrix3 repo</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/MRtrix3/mrtrix3.git</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Configure the install</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> mrtrix3</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">./configure</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Build the binaries</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">./build</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Add it to your path</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="ex">./set_path</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If everything went fine, you should now see a window pop up when typing <em>mrview</em> on the command line.</p>
+</section>
+<section id="freesurfer" class="level3">
+<h3 class="anchored" data-anchor-id="freesurfer">Freesurfer</h3>
+<section id="linux" class="level4">
+<h4 class="anchored" data-anchor-id="linux">Linux</h4>
+<p>Follow the instructions <a href="https://surfer.nmr.mgh.harvard.edu/fswiki//FS7_linux">here</a>.</p>
+</section>
+<section id="windows-wsl" class="level4">
+<h4 class="anchored" data-anchor-id="windows-wsl">Windows (WSL)</h4>
+<ol type="1">
+<li><p>In your “HOME” directory (cd $HOME), download the Freesurfer installer package:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/7.4.1/freesurfer_ubuntu22-7.4.1_amd64.deb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Make sure to install the Freesurfer distribution under the path /usr/local/freesurfer/7.4.1</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /usr/local</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get <span class="at">-y</span> install ./freesurfer_ubuntu22-7.4.1_amd64.deb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Add it to your PATH</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"export FREESURFER_HOME=/usr/local/freesurfer/7.4.1"</span> <span class="op">&gt;&gt;</span> <span class="va">$HOME</span>/.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Get the <a href="https://surfer.nmr.mgh.harvard.edu/registration.html">free license online</a>, download it in your home directory and add this command in your .bashrc:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">FS_LICENSE</span><span class="op">=</span><span class="va">$HOME</span>/license.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Set the Freesurfer env to be setup when you open the shell:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"source </span><span class="va">$FREESURFER_HOME</span><span class="st">/SetUpFreeSurfer.sh"</span> <span class="op">&gt;&gt;</span> <span class="va">$HOME</span>/.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+<p>Open a new Ubuntu linux terminal window and verify you see the following output showing the Freesurfer environment has been set. If everything went fine, you should see this output:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">-</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-freesurfer-linux-ubuntu22_x86_64-7.4.1-20230614-7eb8460-</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Setting</span> up environment for FreeSurfer/FS-FAST <span class="er">(</span><span class="ex">and</span> FSL<span class="kw">)</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">FREESURFER_HOME</span>   /usr/local/freesurfer/7.4.1</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ex">FSFAST_HOME</span>       /usr/local/freesurfer/7.4.1/fsfast</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="ex">FSF_OUTPUT_FORMAT</span> nii.gz</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="ex">SUBJECTS_DIR</span>      /usr/local/freesurfer/7.4.1/subjects</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="ex">MNI_DIR</span>           /usr/local/freesurfer/7.4.1/mni</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="fsl" class="level3">
+<h3 class="anchored" data-anchor-id="fsl">FSL</h3>
+<ol type="1">
+<li><p>Download the <a href="https://fsl.fmrib.ox.ac.uk/fsldownloads_registration">FSL installer script online</a>. When selecting the OS to install on the download page, <u>make sure to select Ubuntu and not Windows</u>.</p></li>
+<li><p>Run the installer script by replacing &lt;UserName&gt; with your windows user name. Make sure to install it under the path /usr/local/fsl/.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="st">"/mnt/c/Users/&lt;WindowsUserName&gt;/Downloads/fslinstaller.py"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+</section>
+<section id="ants" class="level3">
+<h3 class="anchored" data-anchor-id="ants">ANTs</h3>
+<ol type="1">
+<li><p>Download the <a href="https://github.com/cookpa/antsInstallExample/blob/master/installANTs.sh">ANTs installer script</a></p></li>
+<li><p>In the terminal, enter:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> installANTs.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Add it to your PATH</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"ANTSPATH=</span><span class="va">$HOME</span><span class="st">/install/bin/"</span> <span class="op">&gt;&gt;</span> <span class="va">$HOME</span>/.bashrc</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"export PATH=</span><span class="va">${ANTSPATH}</span><span class="st">:</span><span class="va">$PATH</span><span class="st">"</span> <span class="op">&gt;&gt;</span> <span class="va">$HOME</span>/.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -553,7 +637,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">Copyright © 2023, Clement Guichet<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClementGuichet/clementguichet.github.io/edit/main/content/guide/DTI/basic_setup.qmd" class="toc-action">Edit this page</a></p></div></div></div>
+    <div class="nav-footer-center">Copyright © 2023, Clement Guichet</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
