@@ -2,23 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "About",
+    "title": "What you will found",
     "section": "",
-    "text": "I’m a 2nd-year PhD Student in Cognitive and Computational Neuroscience at LPNC, CNRS UMR 5105, UGA, Grenoble, France. My research project is about modeling how our brain reorganizes across the lifespan to preserve optimal cognitive (language) performances. Find out more about our team LPNC-LANG here."
-  },
-  {
-    "objectID": "index.html#education",
-    "href": "index.html#education",
-    "title": "About",
-    "section": "Education",
-    "text": "Education\nPhD candidate (2022-2025) | LPNC, UGA | Supervised by Prof. Monica Baciu and Prof. Martial Mermillod\nMSc degree in Research in Psychology (2020-2022) | LPNC, UGA | Master theses in psycholinguistics supervised by Prof. Elsa Spinelli and Prof. Boris New\nBachelor’s degree in Psychology (2017-2020) | UGA"
-  },
-  {
-    "objectID": "index.html#experience",
-    "href": "index.html#experience",
-    "title": "About",
-    "section": "Experience",
-    "text": "Experience\nCo-analyst & Peer-reviewer (April 2022 - ongoing) | Center of Open Science (COS) | Multi100 project\nCNRS Individual contractor (Sept 2021 - March 2022 incl.) | GIPSA-lab, UGA | Supervised by Takayuki Ito\nCNRS Research intern (June - Aug 2021 incl.) | GIPSA-lab, UGA | Supervised by Takayuki Ito and Jean-Luc Schwartz"
+    "text": "This site hosts documentation to preprocess and analyze structural (DTI), and functional (rs-fMRI) data with the latest tools available.\n\n\n\n\nFor any inquiry, please contact me at: guichetc@univ-grenoble-alpes.fr"
   },
   {
     "objectID": "content/guide/rs-fMRI/conn.html",
@@ -54,6 +40,27 @@
     "title": "Basic setup",
     "section": "",
     "text": "The pipelines work with Linux or WSL2 for Windows already installed on your system. I also assume you are familiar with the basic UNIX commands. Otherwise you can check this tutorial.\nCheck that WSL2 is running by typing this command in PowerShell:\n  wsl -l -v \n# You should see something like this\n  NAME                   STATE           VERSION\n  Ubuntu-22.04           Running         2\n  \n# If you have WSL1, you can update to WSL2 by typing \n  wsl --set-default-version 2 wsl --set-version Ubuntu-22.04 2\nOtherwise, you can install Ubuntu by pasting the following commands:\n1. Enable WSL by opening PowerShell as administrator\n    wsl --install -d Ubuntu-22.04\n2. Restart your computer\n3. Start the Ubuntu app to open a Ubuntu shell\n4. Set up a username and password\nYou’ll also need to GUI for WSL. I recommend you install VcXsrv on your system, which is a free X-sever on Windows. After downloading and installing VcXsrv with default options, run Xlaunch (which gets installed automatically) and perform the following configuration:\n\nDisplay setting: select multiple windows option\nClient startup: check the Start no client option\nExtra setting: make sure “Disable access control” is enabled and “native opengl” is disabled\nAdd this to your .bashrc file:\n echo \"export DISPLAY=\\$(grep nameserver /etc/resolv.conf  | awk '{print \\$2; exit}'):0\" &gt;&gt; ~/.bashrc\n echo \"export LIBGL_ALWAYS_INDIRECT=0\" &gt;&gt; ~/.bashrc\n # For Windows 11 users, add this as well\n  echo \"export LIBGL_ALWAYS_SOFTWARE=1\" &gt;&gt; ~/.bashrc\nTry running glxgears. A window with three spinning gears should open.\nTroubleshooting:\n\nMake sure you are not using a VPN.\nGo to Control panel &gt; System and security &gt; Windows defender firewall &gt; Advanced settings &gt; Inbound rules and make sure that the VcXsrv rules are not set to block - if they are you will need to edit the VcXsrv rule and change it from block to allow."
+  },
+  {
+    "objectID": "content/about.html",
+    "href": "content/about.html",
+    "title": "About",
+    "section": "",
+    "text": "I’m a 2nd-year PhD Student in Cognitive and Computational Neuroscience at LPNC, CNRS UMR 5105, UGA, Grenoble, France. My research project is about modeling how our brain reorganizes across the lifespan to preserve optimal cognitive (language) performances. Find out more about our team LPNC-LANG here."
+  },
+  {
+    "objectID": "content/about.html#education",
+    "href": "content/about.html#education",
+    "title": "About",
+    "section": "Education",
+    "text": "Education\nPhD candidate (2022-2025) | LPNC, UGA | Supervised by Prof. Monica Baciu and Prof. Martial Mermillod\nMSc degree in Research in Psychology (2020-2022) | LPNC, UGA | Master theses in psycholinguistics supervised by Prof. Elsa Spinelli and Prof. Boris New\nBachelor’s degree in Psychology (2017-2020) | UGA"
+  },
+  {
+    "objectID": "content/about.html#experience",
+    "href": "content/about.html#experience",
+    "title": "About",
+    "section": "Experience",
+    "text": "Experience\nCo-analyst & Peer-reviewer (April 2022 - ongoing) | Center of Open Science (COS) | Multi100 project\nCNRS Individual contractor (Sept 2021 - March 2022 incl.) | GIPSA-lab, UGA | Supervised by Takayuki Ito\nCNRS Research intern (June - Aug 2021 incl.) | GIPSA-lab, UGA | Supervised by Takayuki Ito and Jean-Luc Schwartz"
   },
   {
     "objectID": "content/guide/DTI/DTI.html",
