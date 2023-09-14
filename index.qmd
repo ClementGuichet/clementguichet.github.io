@@ -1,17 +1,30 @@
 ---
 title: "About"
 sidebar: false
-links:
-    - icon: twitter
-      href: https://twitter.com/ClementGuichet
-    - icon: github
-      href: https://github.com/ClementGuichet
 ---
 
 ::: {.profile-header layout="[21,79]"}
 ![](images/profile_pic.jpg){.profile-pic width="150"}
 
 I'm a 2nd-year PhD Student in Cognitive and Computational Neuroscience at LPNC, CNRS UMR 5105, UGA, Grenoble, France. My [research project](https://lpnc.univ-grenoble-alpes.fr/recherche/production-scientifique/projets-en-cours/lumintermod) is about modeling how our brain reorganizes across the lifespan to preserve optimal cognitive (language) performances.
+:::
 
 Find out more about our team LPNC-LANG [here](https://lpnc.univ-grenoble-alpes.fr/recherche/equipes-recherche/equipe-langage).
-:::
+
+------------------------------------------------------------------------
+
+### Education
+
+**PhD candidate** (2022-2025) \| LPNC, UGA \| Supervised by Prof. Monica Baciu and Prof. Martial Mermillod
+
+**MSc degree in Research in Psychology** (2020-2022) \| LPNC, UGA \| Master theses in psycholinguistics supervised by Prof. Elsa Spinelli and Prof. Boris New
+
+**Bachelor's degree in Psychology (2017-2020) \|** UGA
+
+### Experience
+
+**Co-analyst & Peer-reviewer** (April 2022 - ongoing) \| Multi100 project for the Center of Open Science
+
+**CNRS Individual contractor** (Sept 2021 - March 2022 incl.) \| GIPSA-lab, UGA \| Supervised by Takayuki Ito
+
+CNRS Research intern (June - Aug 2021 incl.) \| GIPSA-lab, UGA \| Supervised by Takayuki Ito and Jean-Luc Schwartz
