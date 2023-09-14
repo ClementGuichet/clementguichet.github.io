@@ -3,11 +3,10 @@ title: "What you will found"
 sidebar: false
 ---
 
-::: {.welcome-header layout="[21,79]"}
+::: {.welcome-header layout="[30,70]"}
 ![](images/lpnc.jpeg){.profile-pic width="250
 "}
 
 This site hosts documentation to preprocess and analyze structural (DTI), and functional (rs-fMRI) data with the latest tools available.
-
 For any inquiry, please contact me at: guichetc@univ-grenoble-alpes.fr
 :::
