@@ -1,4 +1,4 @@
 ---
-title: "SPM12"
+title: "**SPM12**"
 subtitle: Preprocessing resting-state fMRI
 ---
