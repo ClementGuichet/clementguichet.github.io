@@ -6,9 +6,7 @@ sidebar: false
 ::: {.profile-header layout="[21,79]"}
 ![](images/profile_pic.jpg){.profile-pic width="150"}
 
-I'm a 2nd-year PhD Student in Cognitive and Computational Neuroscience at LPNC, CNRS UMR 5105, UGA, Grenoble, France. My [research project](https://lpnc.univ-grenoble-alpes.fr/recherche/production-scientifique/projets-en-cours/lumintermod) is about modeling how our brain reorganizes across the lifespan to preserve optimal cognitive (language) performances.
-
-Find out more about our team LPNC-LANG [here](https://lpnc.univ-grenoble-alpes.fr/recherche/equipes-recherche/equipe-langage).
+I'm a 2nd-year PhD Student in Cognitive and Computational Neuroscience at LPNC, CNRS UMR 5105, UGA, Grenoble, France. My [research project](https://lpnc.univ-grenoble-alpes.fr/recherche/production-scientifique/projets-en-cours/lumintermod) is about modeling how our brain reorganizes across the lifespan to preserve optimal cognitive (language) performances. Find out more about our team LPNC-LANG [here](https://lpnc.univ-grenoble-alpes.fr/recherche/equipes-recherche/equipe-langage).
 :::
 
 ## Education
