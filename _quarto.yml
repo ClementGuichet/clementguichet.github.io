@@ -47,7 +47,7 @@ website:
     - id: guide
       alignment: left
       style: docked
-      collapse-level: 2
+      collapse-level: 1
       contents: 
         - section: "Guide"
           file: content/guide/DTI/basic_setup.qmd
