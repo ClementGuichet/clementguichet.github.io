@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "Clément Guichet"
+  title: "CG"
   favicon: "images/favicon.ico"
   open-graph: true
   twitter-card: true
