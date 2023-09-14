@@ -42,6 +42,6 @@ In our latest preprint [@guichet2023], we modeled the neural mechanisms that uph
 
 We are now investigating the structural underpinnings of the DMN-FPN coupling across the lifespan and whether SC-FC coupling can be a reliable biomarker of individuals with high vs. low cognitive reserve, thus predicting healthy cognitive aging.
 
-#### Previous works:
+#### Publications:
 
 [@ashokumar2022]
