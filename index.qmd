@@ -1,6 +1,11 @@
 ---
 title: "About"
 sidebar: false
+links:
+    - icon: twitter
+      href: https://twitter.com/ClementGuichet
+    - icon: github
+      href: https://github.com/ClementGuichet
 ---
 
 ::: {.profile-header layout="[21,79]"}
