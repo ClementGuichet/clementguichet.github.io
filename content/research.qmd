@@ -1,10 +1,10 @@
 ---
-title: "Publications"
+title: "Research"
 sidebar: false
 bibliography: references.yaml
 ---
 
-**Research project:**
+**PhD project:**
 
 Cognitive neuroscience is undergoing a paradigm shift. The abundance of multimodal empirical data, coupled with the unprecendented computational capabilities, is helping to redefine the links between the brain and human behavior. The brain is now understood as a vast network of interactions between cerebral regions from which cognitive operations and processes emerge.
 

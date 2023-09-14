@@ -29,7 +29,7 @@ website:
       - text: "Guide"
         file: content/guide/DTI/basic_setup.qmd
       - text: "Publications"
-        file: content/publications.qmd
+        file: content/research.qmd
 
     tools:
       - icon: twitter
