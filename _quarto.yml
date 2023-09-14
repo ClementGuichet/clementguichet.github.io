@@ -25,7 +25,7 @@ website:
     collapse-below: lg
     left: 
       - text: "About"
-        file: index.qmd
+        file: content/about.qmd
       - text: "Guide"
         file: content/guide/DTI/basic_setup.qmd
       - text: "Publications"
