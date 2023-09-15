@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Clement Guichet - Graph Var Tutorial</title>
+<title>Clement Guichet - Setup (Windows)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,7 +64,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../content/guide/rs-fMRI/conn.html" rel="prev">
+<link href="../../../content/guide/DTI/setup_lin.html" rel="next">
 <link href="../../../images/favicon.ico" rel="icon">
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
@@ -64,9 +98,11 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../../../styles.css">
-<meta property="og:title" content="Clement Guichet - Graph Var Tutorial">
+<meta property="og:title" content="Clement Guichet - Setup (Windows)">
+<meta property="og:description" content="">
 <meta property="og:site-name" content="Clement Guichet">
-<meta name="twitter:title" content="Clement Guichet - Graph Var Tutorial">
+<meta name="twitter:title" content="Clement Guichet - Setup (Windows)">
+<meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -113,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../content/guide/DTI/setup_win.html">Guide</a></li><li class="breadcrumb-item"><a href="../../../content/guide/GT/graphvar.html">Graph theory</a></li><li class="breadcrumb-item"><a href="../../../content/guide/GT/graphvar.html"><strong>Graph Var Tutorial</strong></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../content/guide/DTI/setup_win.html">Guide</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -127,7 +163,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../content/guide/DTI/setup_win.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../content/guide/DTI/setup_win.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Guide</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -145,7 +181,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../content/guide/DTI/setup_win.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../content/guide/DTI/setup_win.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><strong>Setup (Windows)</strong></span></a>
   </div>
 </li>
@@ -203,7 +239,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../content/guide/GT/graphvar.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../content/guide/GT/graphvar.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><strong>Graph Var Tutorial</strong></span></a>
   </div>
 </li>
@@ -217,14 +253,27 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#os" id="toc-os" class="nav-link active" data-scroll-target="#os">OS</a></li>
+  <li><a href="#software-installation" id="toc-software-installation" class="nav-link" data-scroll-target="#software-installation">Software installation</a>
+  <ul class="collapse">
+  <li><a href="#mrtrix3" id="toc-mrtrix3" class="nav-link" data-scroll-target="#mrtrix3">MRtrix3</a></li>
+  <li><a href="#freesurfer" id="toc-freesurfer" class="nav-link" data-scroll-target="#freesurfer">Freesurfer</a></li>
+  <li><a href="#fsl" id="toc-fsl" class="nav-link" data-scroll-target="#fsl">FSL</a></li>
+  <li><a href="#ants" id="toc-ants" class="nav-link" data-scroll-target="#ants">ANTs</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClementGuichet/clementguichet.github.io/edit/main/content/guide/DTI/setup_win.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><strong>Graph Var Tutorial</strong></h1>
+<h1 class="title"><strong>Setup (Windows)</strong></h1>
 </div>
 
 
@@ -239,8 +288,103 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="os" class="level2">
+<h2 class="anchored" data-anchor-id="os">OS</h2>
+<p>Check that WSL2 is running by typing this command in PowerShell:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  wsl <span class="op">-</span>l <span class="op">-</span>v </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># You should see something like this</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  NAME                   STATE           VERSION</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  Ubuntu<span class="op">-</span>22<span class="op">.</span><span class="fu">04</span>           Running         2</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># If you have WSL1, you can update to WSL2 by typing </span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  wsl <span class="op">--</span>set<span class="op">-</span>default<span class="op">-</span>version 2 wsl <span class="op">--</span>set<span class="op">-</span>version Ubuntu<span class="op">-</span>22<span class="op">.</span><span class="fu">04</span> 2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Otherwise, you can install Ubuntu by pasting the following commands:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>1<span class="op">.</span> Enable WSL by opening PowerShell as administrator</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    wsl <span class="op">--</span>install <span class="op">-</span>d Ubuntu<span class="op">-</span>22<span class="op">.</span><span class="fu">04</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>2<span class="op">.</span> Restart your computer</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>3<span class="op">.</span> <span class="fu">Start</span> the Ubuntu app to open a Ubuntu shell</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>4<span class="op">.</span> <span class="fu">Set</span> up a username and password</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You’ll also need to GUI for WSL. I recommend you install VcXsrv on your system, which is a free X-sever on Windows. After downloading and installing <a href="https://sourceforge.net/projects/vcxsrv/">VcXsrv</a> with default options, run Xlaunch (which gets installed automatically) and perform the following configuration:</p>
+<ol type="1">
+<li><p>Display setting: select multiple windows option</p></li>
+<li><p>Client startup: check the Start no client option</p></li>
+<li><p>Extra setting: make sure “Disable access control” is enabled and “native opengl” is disabled</p></li>
+<li><p>Add this to your .bashrc file:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a> <span class="bu">echo</span> <span class="st">"export DISPLAY=</span><span class="dt">\$</span><span class="st">(grep nameserver /etc/resolv.conf  | awk '{print </span><span class="dt">\$</span><span class="st">2; exit}'):0"</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a> <span class="bu">echo</span> <span class="st">"export LIBGL_ALWAYS_INDIRECT=0"</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a> <span class="co"># For Windows 11 users, add this as well</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">"export LIBGL_ALWAYS_SOFTWARE=1"</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Try running&nbsp;glxgears. A window with three spinning gears should open.</p>
+<p>Troubleshooting:</p>
+<ul>
+<li>Make sure you are not using a VPN.</li>
+<li>Go to <strong>Control panel</strong>&nbsp;&gt;&nbsp;<strong>System and security</strong>&nbsp;&gt;&nbsp;<strong>Windows defender firewall</strong>&nbsp;&gt;&nbsp;<strong>Advanced settings</strong>&nbsp;&gt;&nbsp;<strong>Inbound rules</strong>&nbsp;and make sure that the VcXsrv rules are&nbsp;<strong>not</strong>&nbsp;set to&nbsp;<em>block</em>&nbsp;- if they are you will need to edit the VcXsrv rule and change it from&nbsp;<em>block</em>&nbsp;to&nbsp;<em>allow</em>.</li>
+</ul></li>
+</ol>
+</section>
+<section id="software-installation" class="level2">
+<h2 class="anchored" data-anchor-id="software-installation">Software installation</h2>
+<p>The pipeline revolves around MRtrix3 which works hand in hand with Freesurfer, FSL, and ANTs</p>
+<section id="mrtrix3" class="level3">
+<h3 class="anchored" data-anchor-id="mrtrix3">MRtrix3</h3>
+<p>Download MRtrix3 by copy pasting this command in a bash terminal:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Clone the MRtrix3 repo</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/MRtrix3/mrtrix3.git</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Configure the install</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> mrtrix3</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">./configure</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Build the binaries</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">./build</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Add it to your path</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="ex">./set_path</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If everything went fine, you should now see a window pop up when typing <em>mrview</em> on the command line.</p>
+</section>
+<section id="freesurfer" class="level3">
+<h3 class="anchored" data-anchor-id="freesurfer">Freesurfer</h3>
+<ol type="1">
+<li><p>In your “HOME” directory (cd $HOME), download the Freesurfer installer package:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/7.4.1/freesurfer_ubuntu22-7.4.1_amd64.deb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Make sure to install the Freesurfer distribution under the path /usr/local/freesurfer/7.4.1</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /usr/local</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get <span class="at">-y</span> install ./freesurfer_ubuntu22-7.4.1_amd64.deb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Add it to your PATH</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"export FREESURFER_HOME=/usr/local/freesurfer/7.4.1"</span> <span class="op">&gt;&gt;</span> <span class="va">$HOME</span>/.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Get the <a href="https://surfer.nmr.mgh.harvard.edu/registration.html">free license online</a>, download it in your home directory and add this command in your .bashrc:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">FS_LICENSE</span><span class="op">=</span><span class="va">$HOME</span>/license.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Set the Freesurfer env to be setup when you open the shell:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"source </span><span class="va">$FREESURFER_HOME</span><span class="st">/SetUpFreeSurfer.sh"</span> <span class="op">&gt;&gt;</span> <span class="va">$HOME</span>/.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+<p>Open a new Ubuntu linux terminal window and verify you see the following output showing the Freesurfer environment has been set. If everything went fine, you should see this output:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">-</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-freesurfer-linux-ubuntu22_x86_64-7.4.1-20230614-7eb8460-</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-</span> <span class="at">-</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Setting</span> up environment for FreeSurfer/FS-FAST <span class="er">(</span><span class="ex">and</span> FSL<span class="kw">)</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">FREESURFER_HOME</span>   /usr/local/freesurfer/7.4.1</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ex">FSFAST_HOME</span>       /usr/local/freesurfer/7.4.1/fsfast</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="ex">FSF_OUTPUT_FORMAT</span> nii.gz</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="ex">SUBJECTS_DIR</span>      /usr/local/freesurfer/7.4.1/subjects</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="ex">MNI_DIR</span>           /usr/local/freesurfer/7.4.1/mni</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="fsl" class="level3">
+<h3 class="anchored" data-anchor-id="fsl">FSL</h3>
+<ol type="1">
+<li><p>Download the <a href="https://fsl.fmrib.ox.ac.uk/fsldownloads_registration">FSL installer script online</a>. When selecting the OS to install on the download page, <u>make sure to select Ubuntu and not Windows</u>.</p></li>
+<li><p>Run the installer script by replacing &lt;UserName&gt; with your windows user name. Make sure to install it under the path /usr/local/fsl/.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="st">"/mnt/c/Users/&lt;WindowsUserName&gt;/Downloads/fslinstaller.py"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+</section>
+<section id="ants" class="level3">
+<h3 class="anchored" data-anchor-id="ants">ANTs</h3>
+<ol type="1">
+<li><p>Download the <a href="https://github.com/cookpa/antsInstallExample/blob/master/installANTs.sh">ANTs installer script</a></p></li>
+<li><p>In the terminal, enter:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> installANTs.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Add it to your PATH</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"ANTSPATH=</span><span class="va">$HOME</span><span class="st">/install/bin/"</span> <span class="op">&gt;&gt;</span> <span class="va">$HOME</span>/.bashrc</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"export PATH=</span><span class="va">${ANTSPATH}</span><span class="st">:</span><span class="va">$PATH</span><span class="st">"</span> <span class="op">&gt;&gt;</span> <span class="va">$HOME</span>/.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -478,11 +622,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../content/guide/rs-fMRI/conn.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><strong>CONN</strong></span>
-      </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../../content/guide/DTI/setup_lin.html" class="pagination-link">
+        <span class="nav-page-text"><strong>Setup (Linux)</strong></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -491,7 +635,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">Copyright © 2023, Clement Guichet<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClementGuichet/clementguichet.github.io/edit/main/content/guide/GT/graphvar.qmd" class="toc-action">Edit this page</a></p></div></div></div>
+    <div class="nav-footer-center">Copyright © 2023, Clement Guichet</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

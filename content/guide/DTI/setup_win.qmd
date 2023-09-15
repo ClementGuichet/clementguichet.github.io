@@ -1,12 +1,10 @@
 ---
-title: "**Setup**"
+title: "**Setup (Windows)**"
 format: html
 editor: visual
 ---
 
 ## OS
-
-The pipelines work with Linux or [WSL2](https://learn.microsoft.com/fr-fr/windows/wsl/install) for Windows already installed on your system. I also assume you are familiar with the basic UNIX commands. Otherwise you can check this [tutorial](https://andysbrainbook.readthedocs.io/en/latest/unix/Unix_Intro.html).
 
 Check that WSL2 is running by typing this command in PowerShell:
 
@@ -77,12 +75,6 @@ cd mrtrix3
 If everything went fine, you should now see a window pop up when typing *mrview* on the command line.
 
 ### Freesurfer
-
-#### Linux
-
-Follow the instructions [here](https://surfer.nmr.mgh.harvard.edu/fswiki//FS7_linux).
-
-#### Windows (WSL)
 
 1.  In your "HOME" directory (cd \$HOME), download the Freesurfer installer package:
 

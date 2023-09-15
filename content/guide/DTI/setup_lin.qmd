@@ -1,0 +1,80 @@
+---
+title: "**Setup (Linux)**"
+---
+
+## Software installation
+
+The pipeline revolves around MRtrix3 which works hand in hand with Freesurfer, FSL, and ANTs
+
+### MRtrix3
+
+Download MRtrix3 by copy pasting this command in a bash terminal:
+
+``` bash
+conda install -c mrtrix3 mrtrix3
+```
+
+If everything went fine, you should now see a window pop up when typing *mrview* on the command line.
+
+### Freesurfer
+
+1.  In your "HOME" directory (cd \$HOME), download the Freesurfer installer package:
+
+    ``` bash
+    wget https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/7.4.1/freesurfer_ubuntu22-7.4.1_amd64.tar.gz
+    ```
+
+2.  Install it
+
+    ``` bash
+    tar -zxpf freesurfer_ubuntu22-7.4.1_amd64.tar.gz
+    ```
+
+3.  Add this to your PATH
+
+    ``` bash
+    export FREESURFER_HOME=$HOME/freesurfer
+    source $FREESURFER_HOME/SetUpFreeSurfer.sh
+    ```
+
+4.  Get the [free license online](https://surfer.nmr.mgh.harvard.edu/registration.html), download it in your home directory and add this command in your .bashrc:
+
+    ``` bash
+    export FS_LICENSE=$HOME/license.txt
+    ```
+
+### FSL
+
+1.  Download the [FSL installer script online](https://fsl.fmrib.ox.ac.uk/fsldownloads_registration). When selecting the OS to install on the download page, [make sure to select Ubuntu and not Windows]{.underline}.
+
+2.  Run the installer
+
+    ``` bash
+    python3 "fslinstaller.py"
+    ```
+
+3.  Add this to your PATH
+
+    ``` bash
+    FSLDIR=$HOME/path/to/fsl
+    PATH=${FSLDIR}/share/fsl/bin:${PATH}
+    export FSLDIR PATH
+    . ${FSLDIR}/etc/fslconf/fsl.sh
+    ```
+
+### ANTs
+
+1.  Download the [ANTs installer script](https://github.com/cookpa/antsInstallExample/blob/master/installANTs.sh)
+
+2.  In the terminal, enter:
+
+    ``` bash
+    bash installANTs.sh
+    ```
+
+3.  Add it to your PATH
+
+    ``` bash
+    echo "ANTSPATH=$HOME/install/bin/" >> $HOME/.bashrc 
+    echo "export PATH=${ANTSPATH}:$PATH" >> $HOME/.bashrc
+    ```

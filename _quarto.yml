@@ -27,7 +27,7 @@ website:
       - text: "About"
         file: content/about.qmd
       - text: "Guide"
-        file: content/guide/DTI/basic_setup.qmd
+        file: content/guide/DTI/setup_win.qmd
       - text: "Research"
         file: content/research.qmd
 
@@ -50,11 +50,12 @@ website:
       collapse-level: 3
       contents: 
         - section: "Guide"
-          file: content/guide/DTI/basic_setup.qmd
+          file: content/guide/DTI/setup_win.qmd
           contents: 
           - section: "DTI pipeline (SC)"
             contents:
-              - content/guide/DTI/basic_setup.qmd
+              - content/guide/DTI/setup_win.qmd
+              - content/guide/DTI/setup_lin.qmd
               - content/guide/DTI/DTI.qmd
               - content/guide/DTI/parallel.qmd
           - section: "rs-fMRI pipeline (FC)"
