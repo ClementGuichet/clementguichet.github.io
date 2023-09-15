@@ -21,20 +21,22 @@ If everything went fine, you should now see a window pop up when typing *mrview*
 1.  In your "HOME" directory (cd \$HOME), download the Freesurfer installer package:
 
     ``` bash
-    wget https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/7.4.1/freesurfer_ubuntu22-7.4.1_amd64.tar.gz
+    wget https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/7.4.1/freesurfer-linux-ubuntu22_amd64-7.4.1.tar.gz
     ```
+
+    ubuntu22-7.4.1_amd64.tar.gz
 
 2.  Install it
 
     ``` bash
-    tar -zxpf freesurfer_ubuntu22-7.4.1_amd64.tar.gz
+    tar -zxpf freesurfer-linux-ubuntu22_amd64-7.4.1.tar.gz
     ```
 
 3.  Add this to your PATH
 
     ``` bash
-    export FREESURFER_HOME=$HOME/freesurfer
-    source $FREESURFER_HOME/SetUpFreeSurfer.sh
+    echo "export FREESURFER_HOME=$HOME/freesurfer" >> .bashrc
+    source "$FREESURFER_HOME/SetUpFreeSurfer.sh"" >> .bashrc
     ```
 
 4.  Get the [free license online](https://surfer.nmr.mgh.harvard.edu/registration.html), download it in your home directory and add this command in your .bashrc:
