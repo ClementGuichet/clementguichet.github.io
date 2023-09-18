@@ -116,6 +116,8 @@ Download the *lh and rh.hcpmmp1 annot* files in the supplementary files [here](h
 
 -   If recon-all does not work, make sure you have the tcsh shell installed by typing tcsh on the command line. In the event tcsh is not installed, enter *sudo apt install tcsh.*
 
+-   If the flag *-s* is not recognized, use -*subjid* instead
+
 ``` bash
 #!/bin/bash
 
