@@ -9,15 +9,21 @@ subtitle: Speeding up Recon-all computation
 
 ### Homebrew & Parallel GNU
 
-Install Homebrew with the following command:
+Install Homebrew with the following command and add it to your PATH:
 
 ``` bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+test -r ~/.bash_profile && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bash_profile
+echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.profile
 ```
 
-Then install parallel:
+Then install gcc and parallel:
 
 ``` bash
+brew install gcc
 brew install parallel
 ```
 
@@ -45,7 +51,7 @@ ls ../raw_data | grep ^sub- > subjList.txt
 
 # Path to the anatomical T1 image
 for sub in `cat subjList.txt`; do
-	cp ../raw_data/${sub}/anat/${sub}_T1w.nii.gz .
+    cp ../raw_data/${sub}/anat/${sub}_T1w.nii.gz .
 done
 
 # Unzip
@@ -55,7 +61,7 @@ gunzip *.gz
 # This avoids permission error
 SUBJECTS_DIR=`pwd`
 
-ls *.nii | parallel --jobs <nproc --all> recon-all -s {.}_recon -i {} -all
+ls *.nii | parallel --jobs 32 recon-all -s {.}_recon -i {} -all
 
 # Remove the copied T1.nii.gz files
 rm *.nii

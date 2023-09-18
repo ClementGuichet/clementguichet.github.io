@@ -112,7 +112,7 @@ tcksift2 -act 5tt_coreg.mif -out_mu sift_mu.txt -out_coeffs sift_coeffs.txt -nth
 
 Download the *lh and rh.hcpmmp1 annot* files in the supplementary files [here](https://osf.io/fkyht/#!) and put them into \$SUBJECTS_DIR/fsaverage/label. This will prepare the T1 image for the HCP MMP 1.0 atlas [@glasser2016].
 
--   Replace <sub> with the name of your subject.
+-   Replace `<sub>` with the name of your subject.
 
 -   If recon-all does not work, make sure you have the tcsh shell installed by typing tcsh on the command line. In the event tcsh is not installed, enter *sudo apt install tcsh.*
 
