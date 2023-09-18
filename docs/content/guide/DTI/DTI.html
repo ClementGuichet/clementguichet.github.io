@@ -279,14 +279,14 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#batch-processing" id="toc-batch-processing" class="nav-link active" data-scroll-target="#batch-processing">Batch processing</a>
+  <li><a href="#single-subject-processing" id="toc-single-subject-processing" class="nav-link active" data-scroll-target="#single-subject-processing">Single subject processing</a>
   <ul class="collapse">
   <li><a href="#preprocessing" id="toc-preprocessing" class="nav-link" data-scroll-target="#preprocessing">Preprocessing</a></li>
   <li><a href="#streamline-generation" id="toc-streamline-generation" class="nav-link" data-scroll-target="#streamline-generation">Streamline generation</a></li>
   <li><a href="#recon-all" id="toc-recon-all" class="nav-link" data-scroll-target="#recon-all">Recon-all</a></li>
   <li><a href="#generate-the-structural-connectome-sc" id="toc-generate-the-structural-connectome-sc" class="nav-link" data-scroll-target="#generate-the-structural-connectome-sc">Generate the Structural Connectome (SC)</a></li>
   </ul></li>
-  <li><a href="#batch-processing-1" id="toc-batch-processing-1" class="nav-link" data-scroll-target="#batch-processing-1">Batch processing</a>
+  <li><a href="#batch-processing" id="toc-batch-processing" class="nav-link" data-scroll-target="#batch-processing">Batch processing</a>
   <ul class="collapse">
   <li><a href="#preprocessing-1" id="toc-preprocessing-1" class="nav-link" data-scroll-target="#preprocessing-1">Preprocessing</a></li>
   <li><a href="#streamline-generation-1" id="toc-streamline-generation-1" class="nav-link" data-scroll-target="#streamline-generation-1">Streamline generation</a></li>
@@ -317,20 +317,13 @@ div.csl-indent {
 
 </header>
 
-<section id="batch-processing" class="level2">
-<h2 class="anchored" data-anchor-id="batch-processing">Batch processing</h2>
-<p>I recommend you check <a href="https://andysbrainbook.readthedocs.io/en/latest/MRtrix/MRtrix_Introduction.html">Andrew Jahn’s book</a> for a thorough walk-through DTI analysis with MRtrix3. Below, I provide a synthesis of the preprocessing steps using the for_each command available on MRtrix3.</p>
+<section id="single-subject-processing" class="level2">
+<h2 class="anchored" data-anchor-id="single-subject-processing">Single subject processing</h2>
+<p>I recommend you check <a href="https://andysbrainbook.readthedocs.io/en/latest/MRtrix/MRtrix_Introduction.html">Andrew Jahn’s book</a> for a thorough walk-through DTI analysis with MRtrix3.</p>
 <section id="logical-processors" class="level4">
 <h4 class="anchored" data-anchor-id="logical-processors">Logical processors</h4>
 <p>To determine the number of available logical processors or CPUs on your system, enter <em>nproc --all</em> in the terminal. The output number is the argument we’ll pass to the <em>-nthreads</em> flag below. I recommend you spare some of it if you wish to perform other tasks while the pipeline is running.</p>
 <p><strong>For example, I only use 8 out of the 48 available CPUs on my system. You may have to tweak it to your systems specs and size of your cohort for a smooth run.</strong></p>
-</section>
-<section id="for_each-command" class="level4">
-<h4 class="anchored" data-anchor-id="for_each-command">For_each command</h4>
-<p>For_each is useful when you want to run multiple subjects, with multi-threading if possible. You have to provide the path to your dwi directory where your raw data is stored (bvals, bvecs, etc…) as a template :</p>
-<p><em>assuming you are in the raw_data directory: */dwi</em></p>
-<p>In a BIDS-compliant dataset, for_each will then iterate over the directories paths that match this template, substituting the * with each subject in your dataset.</p>
-<p><em>IN</em> is used in the MRtrix command to echo the path to the dwi directory of each subject.</p>
 </section>
 <section id="preprocessing" class="level3">
 <h3 class="anchored" data-anchor-id="preprocessing">Preprocessing</h3>
@@ -473,11 +466,11 @@ div.csl-indent {
 <hr>
 </section>
 </section>
-<section id="batch-processing-1" class="level2">
-<h2 class="anchored" data-anchor-id="batch-processing-1">Batch processing</h2>
+<section id="batch-processing" class="level2">
+<h2 class="anchored" data-anchor-id="batch-processing">Batch processing</h2>
 <p>Below, I provide a synthesis of the preprocessing steps using the for_each command available on MRtrix3.</p>
-<section id="for_each-command-1" class="level4">
-<h4 class="anchored" data-anchor-id="for_each-command-1">For_each command</h4>
+<section id="for_each-command" class="level4">
+<h4 class="anchored" data-anchor-id="for_each-command">For_each command</h4>
 <p>For_each is useful when you want to run multiple subjects, with multi-threading if possible. You have to provide the path to your dwi directory where your raw data is stored (bvals, bvecs, etc…) as a template :</p>
 <p><em>assuming you are in the raw_data directory: */dwi</em></p>
 <p>for_each will then iterate over the directories paths that match this template, substituting the * with each subject in your dataset.</p>

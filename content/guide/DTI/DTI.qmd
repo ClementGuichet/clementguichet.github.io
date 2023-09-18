@@ -4,25 +4,15 @@ subtitle: A step-by-step guide to DTI preprocessing & SC generation based on MRt
 bibliography: references.yaml
 ---
 
-## Batch processing
+## Single subject processing
 
-I recommend you check [Andrew Jahn's book](https://andysbrainbook.readthedocs.io/en/latest/MRtrix/MRtrix_Introduction.html) for a thorough walk-through DTI analysis with MRtrix3. Below, I provide a synthesis of the preprocessing steps using the for_each command available on MRtrix3.
+I recommend you check [Andrew Jahn's book](https://andysbrainbook.readthedocs.io/en/latest/MRtrix/MRtrix_Introduction.html) for a thorough walk-through DTI analysis with MRtrix3.
 
 #### Logical processors
 
 To determine the number of available logical processors or CPUs on your system, enter *nproc \--all* in the terminal. The output number is the argument we'll pass to the *-nthreads* flag below. I recommend you spare some of it if you wish to perform other tasks while the pipeline is running.
 
 **For example, I only use 8 out of the 48 available CPUs on my system. You may have to tweak it to your systems specs and size of your cohort for a smooth run.**
-
-#### For_each command
-
-For_each is useful when you want to run multiple subjects, with multi-threading if possible. You have to provide the path to your dwi directory where your raw data is stored (bvals, bvecs, etc...) as a template :
-
-*assuming you are in the raw_data directory: \*/dwi*
-
-In a BIDS-compliant dataset, for_each will then iterate over the directories paths that match this template, substituting the \* with each subject in your dataset.
-
-*IN* is used in the MRtrix command to echo the path to the dwi directory of each subject.
 
 ### Preprocessing
 
