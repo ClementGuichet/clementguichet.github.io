@@ -99,7 +99,7 @@ Make sure to allocate at least 5Go of space for each subject on your local disk 
 # Create streamlines
 # Note that the "right" number of streamlines is still up for debate. Last I read from the MRtrix documentation,
 # They recommend about 100 million tracks. Here I use 10 million, if only to save time. Read their papers and then make a decision
-tckgen -act 5tt_coreg.mif -backtrack -seed_gmwmi gmwmSeed_coreg.mif -nthreads 8 -maxlength 250 -cutoff 0.06 -select 10000k wmfod_norm.miftracks_10M.tck 
+tckgen -act 5tt_coreg.mif -backtrack -seed_gmwmi gmwmSeed_coreg.mif -nthreads 8 -maxlength 250 -cutoff 0.06 -select 10000k wmfod_norm.mif tracks_10M.tck 
 
 # Extract a subset of tracks (here, 200 thousand) for ease of visualization
 # tckedit tracks_10M.tck -number 200k smallerTracks_200k.tck
@@ -124,6 +124,7 @@ Download the *lh and rh.hcpmmp1 annot* files in the supplementary files [here](h
 recon-all –s <sub>_recon –i T1_raw.nii.gz –all
 
 # If the recon folder specific to your subject haq not been placed into $SUBJECTS_DIR, you may have to move it manually
+
 # Copy into freesurfer's subjects directory
 echo <password> | sudo -S cp -r *recon $SUBJECTS_DIR
 # Grant permission to write the file
