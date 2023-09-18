@@ -34,66 +34,65 @@ In a BIDS-compliant dataset, for_each will then iterate over the directories pat
 ######################################################################
 
 # Also consider doing Gibbs denoising (using mrdegibbs). Check your diffusion data for ringing artifacts before deciding whether to use it
-for_each -nthreads 8 -info */dwi : mrconvert IN/*dwi.nii.gz IN/dwi.mif 
-for_each -nthreads 8 -info */dwi : mrconvert IN/dwi.mif -fslgrad IN/*.bvec IN/*.bval IN/dwi_header.mif 
+mrconvert *dwi.nii.gz dwi.mif 
+mrconvert dwi.mif -fslgrad *.bvec *.bval dwi_header.mif 
 
-for_each -nthreads 8 -info */dwi : dwidenoise IN/dwi_header.mif IN/dwi_den.mif -noise IN/noise.mif 
-for_each -nthreads 8 -info */dwi : mrdegibbs IN/dwi_den.mif IN/dwi_den_unr.mif 
+dwidenoise dwi_header.mif dwi_den.mif -noise noise.mif 
+mrdegibbs dwi_den.mif dwi_den_unr.mif 
 
 # Extract the b0 images from the diffusion data acquired in the AP direction
-for_each -nthreads 8 -info */dwi : dwiextract IN/dwi_den.mif - -bzero \| mrmath - mean IN/mean_b0_AP.mif -axis 3 
+dwiextract dwi_den.mif - -bzero | mrmath - mean mean_b0_AP.mif -axis 3 
 
 ######################################################################
 # Runs the dwipreproc command, which is a wrapper for eddy and topup.
-#### !!! Here the CAMCAN dataset does not provide reverse encoding, hence -rpe_none !!! ####
-#### !!! <nproc --all>/8 means you should divide by 8 as each subject's preprocessing will be performed by 8 threads already (see at the end of the line) #### !!!
+#### !!! Here the CAMCAN dataset does not provide reverse encoding, hence -rpe_none !!!
 ######################################################################
-for_each <nproc --all>/8 -info */dwi : dwifslpreproc IN/dwi_den.mif IN/dwi_den_preproc.mif -pe_dir AP -rpe_none -readout_time 0.0342002 -eddy_options " --slm=linear --data_is_shelled"  -nthreads 8
+dwifslpreproc dwi_den.mif dwi_den_preproc.mif -pe_dir AP -rpe_none -readout_time 0.0342002 -eddy_options " --slm=linear --data_is_shelled"  -nthreads 8
 
 # Performs bias field correction. Needs ANTs to be installed in order to use the "ants" option (use "fsl" otherwise)
-for_each -nthreads 8 -info */dwi : dwibiascorrect ants IN/dwi_den_preproc.mif IN/dwi_den_preproc_unbiased.mif -bias IN/bias.mif 
+dwibiascorrect ants dwi_den_preproc.mif dwi_den_preproc_unbiased.mif -bias bias.mif 
 
 # Create a mask for future processing steps
-for_each -nthreads 8 -info */dwi : dwi2mask IN/dwi_den_preproc_unbiased.mif IN/mask.mif 
+dwi2mask dwi_den_preproc_unbiased.mif mask.mif 
 
 ########################### STEP 2 ###################################
 #             Basis function for each tissue type                    #
 ######################################################################
 
 # Create a basis function from the subject's DWI data. The "dhollander" function is best used for multi-shell acquisitions; it will estimate different basis functions for each tissue type. For single-shell acquisition, use the "tournier" function instead
-for_each -nthreads 8 -info */dwi : dwi2response dhollander IN/dwi_den_preproc_unbiased.mif IN/wm.txt IN/gm.txt IN/csf.txt -voxels IN/voxels.mif 
+dwi2response dhollander dwi_den_preproc_unbiased.mif wm.txt gm.txt csf.txt -voxels voxels.mif 
 
 # Performs multishell-multitissue constrained spherical deconvolution, using the basis functions estimated above
-for_each -nthreads 8 -info */dwi : dwi2fod msmt_csd IN/dwi_den_preproc_unbiased.mif -mask IN/mask.mif IN/wm.txt IN/wmfod.mif IN/gm.txt IN/gmfod.mif IN/csf.txt IN/csffod.mif 
+dwi2fod msmt_csd dwi_den_preproc_unbiased.mif -mask mask.mif wm.txt wmfod.mif gm.txt gmfod.mif csf.txt csffod.mif 
 
 # Creates an image of the fiber orientation densities overlaid onto the estimated tissues (Blue=WM; Green=GM; Red=CSF)
 # You should see FOD's mostly within the white matter. These can be viewed later with the command "mrview vf.mif -odf.load_sh wmfod.mif"
-for_each -nthreads 8 -info */dwi : mrconvert -coord 3 0 IN/wmfod.mif - \| mrcat IN/csffod.mif IN/gmfod.mif - IN/vf.mif 
+mrconvert -coord 3 0 wmfod.mif - | mrcat csffod.mif gmfod.mif - vf.mif 
 
 # Now normalize the FODs to enable comparison between subjects
-for_each -nthreads 8 -info */dwi : mtnormalise IN/wmfod.mif IN/wmfod_norm.mif IN/gmfod.mif IN/gmfod_norm.mif IN/csffod.mif IN/csffod_norm.mif -mask IN/mask.mif 
+mtnormalise wmfod.mif wmfod_norm.mif gmfod.mif gmfod_norm.mif csffod.mif csffod_norm.mif -mask mask.mif 
 
 ########################### STEP 3 ###################################
 #            Create a GM/WM boundary for seed analysis               #
 ######################################################################
 
 # Convert the anatomical image to .mif format, and then extract all five tissue catagories (1=GM; 2=Subcortical GM; 3=WM; 4=CSF; 5=Pathological tissue)
-for_each -nthreads 8 -info */dwi : mrconvert IN/../anat/*T1w.nii.gz IN/T1.mif 
-for_each <nproc --all>/8 -info */dwi : 5ttgen fsl IN/T1.mif IN/5tt_nocoreg.mif -nthreads 8 
+mrconvert ../anat/*T1w.nii.gz T1.mif 
+5ttgen fsl T1.mif 5tt_nocoreg.mif -nthreads 8 
 
 # The following series of commands will take the average of the b0 images (which have the best contrast), convert them and the 5tt image to NIFTI format, and use it for coregistration.
-for_each -nthreads 8 -info */dwi : dwiextract IN/dwi_den_preproc_unbiased.mif - -bzero \| mrmath - mean IN/mean_b0_processed.mif -axis 3 
-for_each -nthreads 8 -info */dwi : mrconvert IN/mean_b0_processed.mif IN/mean_b0_processed.nii.gz 
-for_each -nthreads 8 -info */dwi : mrconvert IN/5tt_nocoreg.mif IN/5tt_nocoreg.nii.gz 
+dwiextract dwi_den_preproc_unbiased.mif - -bzero | mrmath - mean mean_b0_processed.mif -axis 3 
+mrconvert mean_b0_processed.mif mean_b0_processed.nii.gz 
+mrconvert 5tt_nocoreg.mif 5tt_nocoreg.nii.gz 
 
 # Uses FSL commands fslroi and flirt to create a transformation matrix for regisitration between the tissue map and the b0 images
-for_each -nthreads 8 -info */dwi : fslroi IN/5tt_nocoreg.nii.gz IN/5tt_vol0.nii.gz 0 1 #Extract the first volume of the 5tt dataset (since flirt can only use 3D images, not 4D images)
-for_each -nthreads 8 -info */dwi : flirt -in IN/mean_b0_processed.nii.gz -ref IN/5tt_vol0.nii.gz -interp nearestneighbour -dof 6 -omat IN/diff2struct_fsl.mat
-for_each -nthreads 8 -info */dwi : transformconvert IN/diff2struct_fsl.mat IN/mean_b0_processed.nii.gz IN/5tt_nocoreg.nii.gz flirt_import IN/diff2struct_mrtrix.txt 
-for_each -nthreads 8 -info */dwi : mrtransform IN/5tt_nocoreg.mif -linear IN/diff2struct_mrtrix.txt -inverse IN/5tt_coreg.mif 
+fslroi 5tt_nocoreg.nii.gz 5tt_vol0.nii.gz 0 1 #Extract the first volume of the 5tt dataset (since flirt can only use 3D images, not 4D images)
+flirt -in mean_b0_processed.nii.gz -ref 5tt_vol0.nii.gz -interp nearestneighbour -dof 6 -omat diff2struct_fsl.mat
+transformconvert diff2struct_fsl.mat mean_b0_processed.nii.gz 5tt_nocoreg.nii.gz flirt_import diff2struct_mrtrix.txt 
+mrtransform 5tt_nocoreg.mif -linear diff2struct_mrtrix.txt -inverse 5tt_coreg.mif 
 
 #Create a seed region along the GM/WM boundary
-for_each -nthreads 8 -info */dwi : 5tt2gmwmi IN/5tt_coreg.mif IN/gmwmSeed_coreg.mif 
+5tt2gmwmi 5tt_coreg.mif gmwmSeed_coreg.mif 
 ```
 
 ### Streamline generation
@@ -110,20 +109,22 @@ Make sure to allocate at least 5Go of space for each subject on your local disk 
 # Create streamlines
 # Note that the "right" number of streamlines is still up for debate. Last I read from the MRtrix documentation,
 # They recommend about 100 million tracks. Here I use 10 million, if only to save time. Read their papers and then make a decision
-for_each -nthreads <nproc --all>/8 -info */dwi : tckgen -act IN/5tt_coreg.mif -backtrack -seed_gmwmi IN/gmwmSeed_coreg.mif -nthreads 8 -maxlength 250 -cutoff 0.06 -select 10000k IN/wmfod_norm.mif IN/tracks_10M.tck 
+tckgen -act 5tt_coreg.mif -backtrack -seed_gmwmi gmwmSeed_coreg.mif -nthreads 8 -maxlength 250 -cutoff 0.06 -select 10000k wmfod_norm.miftracks_10M.tck 
 
 # Extract a subset of tracks (here, 200 thousand) for ease of visualization
 # tckedit tracks_10M.tck -number 200k smallerTracks_200k.tck
 
 # Reduce the number of streamlines with tcksift
-for_each -nthreads <nproc --all>/8 -info */dwi : tcksift2 -act IN/5tt_coreg.mif -out_mu IN/sift_mu.txt -out_coeffs IN/sift_coeffs.txt -nthreads 8 IN/tracks_10M.tck IN/wmfod_norm.mif IN/sift_1M.txt 
+tcksift2 -act 5tt_coreg.mif -out_mu sift_mu.txt -out_coeffs sift_coeffs.txt -nthreads 8 tracks_10M.tck wmfod_norm.mif sift_1M.txt 
 ```
 
 ### Recon-all
 
 Download the *lh and rh.hcpmmp1 annot* files in the supplementary files [here](https://osf.io/fkyht/#!) and put them into \$SUBJECTS_DIR/fsaverage/label. This will prepare the T1 image for the HCP MMP 1.0 atlas [@glasser2016].
 
-The script below is designed to process one subject at a time. **This step can be sped up with parallel computing. Click [here](/content/guide/DTI/parallel.qmd)**
+-   Replace <sub> with the name of your subject.
+
+-   If recon-all does not work, make sure you have the tcsh shell installed by typing tcsh on the command line. In the event tcsh is not installed, enter *sudo apt install tcsh.*
 
 ``` bash
 #!/bin/bash
@@ -145,30 +146,162 @@ $SUBJECTS_DIR/<sub>_recon/label/lh.hcpmmp1.annot
 mri_surf2surf --srcsubject fsaverage --trgsubject <sub>_recon --hemi rh --sval-annot $SUBJECTS_DIR/fsaverage/label/rh.hcpmmp1.annot --tval $SUBJECTS_DIR/<sub>_recon/label/rh.hcpmmp1.annot
 ```
 
-If recon-all does not work, make sure you have the tcsh shell installed by typing tcsh on the command line. In the event tcsh is not installed, enter *sudo apt install tcsh.*
+### Generate the Structural Connectome (SC)
+
+``` bash
+#!/bin/bash
+
+for_each -nthreads <nproc --all> -info */dwi : mrconvert –datatype uint32 hcpmmp1.mgz  hcpmmp1.mif -force
+
+# Replace the random integers of the hcpmmp1.mif file with integers
+# that start at 1 and increase by 1.
+labelconvert hcpmmp1.mif $MRtrix3/share/mrtrix3/labelconvert/hcpmmp1_original.txt $MRtrix3/share/mrtrix3/labelconvert/hcpmmp1_ordered.txt hcpmmp1_parcels_nocoreg.mif -force
+
+# Register the ordered atlas-based volumetric parcellation to diffusion space.
+mrtransform hcpmmp1_parcels_nocoreg.mif –linear diff2struct_mrtrix.txt –inverse –datatype uint32 hcpmmp1_parcels_coreg.mif -force
+
+# Create a whole-brain connectome, representing the streamlines between each parcellation pair in the atlas (in this case, 379x379). The "symmetric" option will make the lower diagonal the same as the upper diagonal, and the "scale_invnodevol" option will scale the connectome by the inverse of the size of the node
+
+tck2connectome -symmetric -zero_diagonal -scale_invnodevol -tck_weights_in sift_1M.txt tracks_10M.tck hcpmmp1_parcels_coreg.mif IN_hcpmmp1_parcels_coreg.csv -out_assignment assignments_IN_hcpmmp1_parcels_coreg.csv -force
+```
+
+This is what you should end up with. The upper left and lower right quadrant represent the left and right intra-hemispheric connections respectively.\
+
+![In Matlab: W = importdata('sub-XXXXX_hcpmmp1_parcels_coreg.csv'); figure, imagesc(W, \[0 1\]), xlabel(\[' 379 Glasser regions '\]), ylabel('379 Glasser regions'), title(\[' Structural connectome (streamline density) '\]); colormap(jet), colorbar, set(gcf,'color','w'), set(gca,'fontsize',14)](/images/SC.png){fig-align="center"}
+
+------------------------------------------------------------------------
+
+## Batch processing
+
+Below, I provide a synthesis of the preprocessing steps using the for_each command available on MRtrix3.
+
+#### For_each command
+
+For_each is useful when you want to run multiple subjects, with multi-threading if possible. You have to provide the path to your dwi directory where your raw data is stored (bvals, bvecs, etc...) as a template :
+
+*assuming you are in the raw_data directory: \*/dwi*
+
+for_each will then iterate over the directories paths that match this template, substituting the \* with each subject in your dataset.
+
+*IN* is used in the MRtrix command to echo the path to the dwi directory of each subject.
+
+### Preprocessing
+
+``` bash
+#!/bin/bash
+
+############################### STEP 1 ###############################
+#             Convert data to .mif format and denoise                #
+######################################################################
+
+# Also consider doing Gibbs denoising (using mrdegibbs). Check your diffusion data for ringing artifacts before deciding whether to use it
+for_each -nthreads 8 -info */dwi : mrconvert *dwi.nii.gz dwi.mif 
+for_each -nthreads 8 -info */dwi : mrconvert dwi.mif -fslgrad *.bvec *.bval dwi_header.mif 
+
+for_each -nthreads 8 -info */dwi : dwidenoise dwi_header.mif dwi_den.mif -noise noise.mif 
+for_each -nthreads 8 -info */dwi : mrdegibbs dwi_den.mif dwi_den_unr.mif 
+
+# Extract the b0 images from the diffusion data acquired in the AP direction
+for_each -nthreads 8 -info */dwi : dwiextract dwi_den.mif - -bzero \| mrmath - mean mean_b0_AP.mif -axis 3 
+
+######################################################################
+# Runs the dwipreproc command, which is a wrapper for eddy and topup.
+#### !!! Here the CAMCAN dataset does not provide reverse encoding, hence -rpe_none !!! ####
+#### !!! <nproc --all>/8 means you should divide by 8 as each subject's preprocessing will be performed by 8 threads already (see at the end of the line) #### !!!
+######################################################################
+for_each <nproc --all>/8 -info */dwi : dwifslpreproc dwi_den.mif dwi_den_preproc.mif -pe_dir AP -rpe_none -readout_time 0.0342002 -eddy_options " --slm=linear --data_is_shelled"  -nthreads 8
+
+# Performs bias field correction. Needs ANTs to be installed in order to use the "ants" option (use "fsl" otherwise)
+for_each -nthreads 8 -info */dwi : dwibiascorrect ants dwi_den_preproc.mif dwi_den_preproc_unbiased.mif -bias bias.mif 
+
+# Create a mask for future processing steps
+for_each -nthreads 8 -info */dwi : dwi2mask dwi_den_preproc_unbiased.mif mask.mif 
+
+########################### STEP 2 ###################################
+#             Basis function for each tissue type                    #
+######################################################################
+
+# Create a basis function from the subject's DWI data. The "dhollander" function is best used for multi-shell acquisitions; it will estimate different basis functions for each tissue type. For single-shell acquisition, use the "tournier" function instead
+for_each -nthreads 8 -info */dwi : dwi2response dhollander dwi_den_preproc_unbiased.mif wm.txt gm.txt csf.txt -voxels voxels.mif 
+
+# Performs multishell-multitissue constrained spherical deconvolution, using the basis functions estimated above
+for_each -nthreads 8 -info */dwi : dwi2fod msmt_csd dwi_den_preproc_unbiased.mif -mask mask.mif wm.txt wmfod.mif gm.txt gmfod.mif csf.txt csffod.mif 
+
+# Creates an image of the fiber orientation densities overlaid onto the estimated tissues (Blue=WM; Green=GM; Red=CSF)
+# You should see FOD's mostly within the white matter. These can be viewed later with the command "mrview vf.mif -odf.load_sh wmfod.mif"
+for_each -nthreads 8 -info */dwi : mrconvert -coord 3 0 wmfod.mif - \| mrcat csffod.mif gmfod.mif - vf.mif 
+
+# Now normalize the FODs to enable comparison between subjects
+for_each -nthreads 8 -info */dwi : mtnormalise wmfod.mif wmfod_norm.mif gmfod.mif gmfod_norm.mif csffod.mif csffod_norm.mif -mask mask.mif 
+
+########################### STEP 3 ###################################
+#            Create a GM/WM boundary for seed analysis               #
+######################################################################
+
+# Convert the anatomical image to .mif format, and then extract all five tissue catagories (1=GM; 2=Subcortical GM; 3=WM; 4=CSF; 5=Pathological tissue)
+for_each -nthreads 8 -info */dwi : mrconvert ../anat/*T1w.nii.gz T1.mif 
+for_each <nproc --all>/8 -info */dwi : 5ttgen fsl T1.mif 5tt_nocoreg.mif -nthreads 8 
+
+# The following series of commands will take the average of the b0 images (which have the best contrast), convert them and the 5tt image to NIFTI format, and use it for coregistration.
+for_each -nthreads 8 -info */dwi : dwiextract dwi_den_preproc_unbiased.mif - -bzero \| mrmath - mean mean_b0_processed.mif -axis 3 
+for_each -nthreads 8 -info */dwi : mrconvert mean_b0_processed.mif mean_b0_processed.nii.gz 
+for_each -nthreads 8 -info */dwi : mrconvert 5tt_nocoreg.mif 5tt_nocoreg.nii.gz 
+
+# Uses FSL commands fslroi and flirt to create a transformation matrix for regisitration between the tissue map and the b0 images
+for_each -nthreads 8 -info */dwi : fslroi 5tt_nocoreg.nii.gz 5tt_vol0.nii.gz 0 1 #Extract the first volume of the 5tt dataset (since flirt can only use 3D images, not 4D images)
+for_each -nthreads 8 -info */dwi : flirt -in mean_b0_processed.nii.gz -ref 5tt_vol0.nii.gz -interp nearestneighbour -dof 6 -omat diff2struct_fsl.mat
+for_each -nthreads 8 -info */dwi : transformconvert diff2struct_fsl.mat mean_b0_processed.nii.gz 5tt_nocoreg.nii.gz flirt_import diff2struct_mrtrix.txt 
+for_each -nthreads 8 -info */dwi : mrtransform 5tt_nocoreg.mif -linear diff2struct_mrtrix.txt -inverse 5tt_coreg.mif 
+
+#Create a seed region along the GM/WM boundary
+for_each -nthreads 8 -info */dwi : 5tt2gmwmi 5tt_coreg.mif gmwmSeed_coreg.mif
+```
+
+### Streamline generation
+
+Make sure to allocate at least 5Go of space for each subject on your local disk as streamline generation can get quite heavy. Here we generate 10 millions streamlines and then reduce that number using the *tckgen* and *tcksift2* command.
+
+``` bash
+#!/bin/bash
+
+########################## STEP 4 ###################################
+#                 Run the streamline analysis                        #
+######################################################################
+
+# Create streamlines
+# Note that the "right" number of streamlines is still up for debate. Last I read from the MRtrix documentation,
+# They recommend about 100 million tracks. Here I use 10 million, if only to save time. Read their papers and then make a decision
+for_each -nthreads <nproc --all>/8 -info */dwi : tckgen -act 5tt_coreg.mif -backtrack -seed_gmwmi gmwmSeed_coreg.mif -nthreads 8 -maxlength 250 -cutoff 0.06 -select 10000k wmfod_norm.mif tracks_10M.tck 
+
+# Extract a subset of tracks (here, 200 thousand) for ease of visualization
+# tckedit tracks_10M.tck -number 200k smallerTracks_200k.tck
+
+# Reduce the number of streamlines with tcksift
+for_each -nthreads <nproc --all>/8 -info */dwi : tcksift2 -act 5tt_coreg.mif -out_mu sift_mu.txt -out_coeffs sift_coeffs.txt -nthreads 8 tracks_10M.tck wmfod_norm.mif sift_1M.txt 
+```
+
+### Recon-all
+
+Check the [parallel processing section](content/guide/DTI/parallel.qmd) to speed up this step using parallel computing**.**
 
 ### Generate the Structural Connectome (SC)
 
 ``` bash
 #!/bin/bash
 
-for_each -nthreads <nproc --all> -info */dwi : mrconvert –datatype uint32 IN/hcpmmp1.mgz  IN/hcpmmp1.mif -force
+for_each -nthreads <nproc --all> -info */dwi : mrconvert –datatype uint32 hcpmmp1.mgz  hcpmmp1.mif -force
 
 # Replace the random integers of the hcpmmp1.mif file with integers
 # that start at 1 and increase by 1.
-for_each -nthreads <nproc --all> -info */dwi : labelconvert IN/hcpmmp1.mif $MRtrix3/share/mrtrix3/labelconvert/hcpmmp1_original.txt $MRtrix3/share/mrtrix3/labelconvert/hcpmmp1_ordered.txt IN/hcpmmp1_parcels_nocoreg.mif -force
+for_each -nthreads <nproc --all> -info */dwi : labelconvert hcpmmp1.mif $MRtrix3/share/mrtrix3/labelconvert/hcpmmp1_original.txt $MRtrix3/share/mrtrix3/labelconvert/hcpmmp1_ordered.txt hcpmmp1_parcels_nocoreg.mif -force
 
 # Register the ordered atlas-based volumetric parcellation to diffusion space.
-for_each -nthreads <nproc --all> -info */dwi : mrtransformIN/hcpmmp1_parcels_nocoreg.mif –linearIN/diff2struct_mrtrix.txt –inverse –datatype uint32  IN/hcpmmp1_parcels_coreg.mif -force
+for_each -nthreads <nproc --all> -info */dwi : mrtransformhcpmmp1_parcels_nocoreg.mif –lineardiff2struct_mrtrix.txt –inverse –datatype uint32  hcpmmp1_parcels_coreg.mif -force
 
 # Create a whole-brain connectome, representing the streamlines between each parcellation pair in the atlas (in this case, 379x379). The "symmetric" option will make the lower diagonal the same as the upper diagonal, and the "scale_invnodevol" option will scale the connectome by the inverse of the size of the node
 
-for_each -nthreads <nproc --all> -info * : tck2connectome -symmetric -zero_diagonal -scale_invnodevol -tck_weights_in IN/dwi/sift_1M.txt IN/dwi/tracks_10M.tck IN/dwi/hcpmmp1_parcels_coreg.mif IN/dwi/IN_hcpmmp1_parcels_coreg.csv -out_assignment IN/dwi/assignments_IN_hcpmmp1_parcels_coreg.csv -force
+for_each -nthreads <nproc --all> -info * : tck2connectome -symmetric -zero_diagonal -scale_invnodevol -tck_weights_in dwi/sift_1M.txt dwi/tracks_10M.tck dwi/hcpmmp1_parcels_coreg.mif dwi/IN_hcpmmp1_parcels_coreg.csv -out_assignment dwi/assignments_IN_hcpmmp1_parcels_coreg.csv -force
 ```
-
-This is what you should end up with. The upper left and lower right quadrant represent the left and right intra-hemispheric connections respectively.\
-
-![In Matlab: W = importdata('sub-XXXXX_hcpmmp1_parcels_coreg.csv'); figure, imagesc(W, \[0 1\]), xlabel(\[' 379 Glasser regions '\]), ylabel('379 Glasser regions'), title(\[' Structural connectome (streamline density) '\]); colormap(jet), colorbar, set(gcf,'color','w'), set(gca,'fontsize',14)](/images/SC.png){fig-align="center"}
 
 You can then copy and save the structural connectomes wherever you like:
 

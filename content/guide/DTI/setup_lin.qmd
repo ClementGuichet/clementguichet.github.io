@@ -24,8 +24,6 @@ If everything went fine, you should now see a window pop up when typing *mrview*
     wget https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/7.4.1/freesurfer-linux-ubuntu22_amd64-7.4.1.tar.gz
     ```
 
-    ubuntu22-7.4.1_amd64.tar.gz
-
 2.  Install it
 
     ``` bash
