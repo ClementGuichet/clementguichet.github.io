@@ -282,7 +282,7 @@ for_each -nthreads <nproc --all>/8 -info */dwi : tcksift2 -act 5tt_coreg.mif -ou
 
 ### Recon-all
 
-Check the [parallel processing section](content/guide/DTI/parallel.qmd) to speed up this step using parallel computing**.**
+Check the [parallel processing section](parallel.qmd) to speed up this step using parallel computing**.**
 
 ### Generate the Structural Connectome (SC)
 
