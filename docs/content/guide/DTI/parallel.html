@@ -330,28 +330,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># This avoids permission error</span></span>
 <span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="va">SUBJECTS_DIR</span><span class="op">=</span><span class="kw">`</span><span class="bu">pwd</span><span class="kw">`</span></span>
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="pp">*</span>.nii <span class="kw">|</span> <span class="ex">parallel</span> <span class="at">--jobs</span> 32 recon-all <span class="at">-s</span> {.}_recon <span class="at">-i</span> {} <span class="at">-all</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="pp">*</span>.nii <span class="kw">|</span> <span class="ex">parallel</span> <span class="at">--jobs</span> 12 recon-all <span class="at">-s</span> {.}_recon <span class="at">-i</span> {} <span class="at">-all</span></span>
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the copied T1.nii.gz files</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="pp">*</span>.nii</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="pp">*</span>.nii</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy into freesurfer's subjects directory</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="ex">**On</span> Windows<span class="pp">**</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="op">&lt;</span>password<span class="op">&gt;</span> <span class="kw">|</span> <span class="fu">sudo</span> <span class="at">-S</span> cp <span class="at">-r</span> <span class="pp">*</span>recon <span class="va">$SUBJECTS_DIR</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Grant permission to write the file</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="op">&lt;</span>password<span class="op">&gt;</span> <span class="kw">|</span> <span class="fu">sudo</span> <span class="at">-S</span> chmod <span class="at">-R</span> a+w /usr/local/freesurfer</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="ex">**On</span> linux<span class="pp">**</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-r</span> <span class="pp">*</span>recon <span class="va">$SUBJECTS_DIR</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You can then carry on with mapping the glasser annotation file:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy into freesurfer's subjects directory</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> Windows</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="op">&lt;</span>password<span class="op">&gt;</span> <span class="kw">|</span> <span class="fu">sudo</span> <span class="at">-S</span> cp <span class="at">-r</span> <span class="pp">*</span>recon <span class="va">$SUBJECTS_DIR</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Grant permission to write the file</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="op">&lt;</span>password<span class="op">&gt;</span> <span class="kw">|</span> <span class="fu">sudo</span> <span class="at">-S</span> chmod <span class="at">-R</span> a+w /usr/local/freesurfer</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> linux</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-r</span> <span class="pp">*</span>recon <span class="va">$SUBJECTS_DIR</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Map the annotation files of the HCP MMP 1.0 atlas from fsaverage to you subject for both hemispheres:</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> . <span class="kw">|</span> <span class="fu">grep</span> ^sub- <span class="op">&gt;</span> subjList.txt</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sub <span class="kw">in</span> <span class="kw">`</span><span class="fu">cat</span> subjList.txt<span class="kw">`;</span> <span class="cf">do</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="ex">mri_surf2surf</span> <span class="at">--srcsubject</span> fsaverage <span class="at">--trgsubject</span> <span class="va">${sub}</span>_recon <span class="at">--hemi</span> lh <span class="at">--sval-annot</span> <span class="va">$SUBJECTS_DIR</span>/fsaverage/label/lh.hcpmmp1.annot <span class="at">--tval</span> <span class="va">$SUBJECTS_DIR</span>/<span class="va">${sub}</span>_T1w_recon/label/lh.hcpmmp1.annot</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="ex">mri_surf2surf</span> <span class="at">--srcsubject</span> fsaverage <span class="at">--trgsubject</span> <span class="va">${sub}</span>_recon <span class="at">--hemi</span> rh <span class="at">--sval-annot</span> <span class="va">$SUBJECTS_DIR</span>/fsaverage/label/rh.hcpmmp1.annot <span class="at">--tval</span> <span class="va">$SUBJECTS_DIR</span>/<span class="va">${sub}</span>_T1w_recon/label/rh.hcpmmp1.annot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the annotation files of the HCP MMP 1.0 atlas from fsaverage to you subject for both hemispheres:</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> . <span class="kw">|</span> <span class="fu">grep</span> ^sub- <span class="op">&gt;</span> subjList.txt</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sub <span class="kw">in</span> <span class="kw">`</span><span class="fu">cat</span> subjList.txt<span class="kw">`;</span> <span class="cf">do</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Left hemisphere</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="ex">mri_surf2surf</span> <span class="at">--srcsubject</span> fsaverage <span class="at">--trgsubject</span> <span class="va">${sub}</span>_recon <span class="at">--hemi</span> lh <span class="at">--sval-annot</span> <span class="va">$SUBJECTS_DIR</span>/fsaverage/label/lh.hcpmmp1.annot <span class="at">--tval</span> <span class="va">$SUBJECTS_DIR</span>/<span class="va">${sub}</span>_T1w_recon/label/lh.hcpmmp1.annot</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Right hemisphere</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="ex">mri_surf2surf</span> <span class="at">--srcsubject</span> fsaverage <span class="at">--trgsubject</span> <span class="va">${sub}</span>_recon <span class="at">--hemi</span> rh <span class="at">--sval-annot</span> <span class="va">$SUBJECTS_DIR</span>/fsaverage/label/rh.hcpmmp1.annot <span class="at">--tval</span> <span class="va">$SUBJECTS_DIR</span>/<span class="va">${sub}</span>_T1w_recon/label/rh.hcpmmp1.annot</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="bu">cd</span> ./{sub}/dwi</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="ex">mri_aparc2aseg</span> <span class="at">--old-ribbon</span> <span class="at">--s</span> <span class="va">${sub}</span>_recon <span class="at">--annot</span> hcpmmp1 <span class="at">--o</span> <span class="va">${sub}</span>/dwi/hcpmmp1.mgz <span class="at">--nthreads</span> 12</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="bu">cd</span> ../..</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>

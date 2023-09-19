@@ -121,8 +121,7 @@ Download the *lh and rh.hcpmmp1 annot* files in the supplementary files [here](h
 ``` bash
 #!/bin/bash
 
-# 1. Since the HCPMMP1-atlas is a FreeSurfer-based atlas, you have to preprocess the T1 image in FreeSurfer. 
-# This will take several hours to complete.
+# 1. Since the HCPMMP1-atlas is a FreeSurfer-based atlas, you have to preprocess the T1 image in FreeSurfer. This will take several hours to complete.
 SUBJECTS_DIR=`pwd`;
 recon-all –s <sub>_recon –i T1_raw.nii.gz –all
 
@@ -134,6 +133,7 @@ echo <password> | sudo -S chmod -R a+w /usr/local/freesurfer
 
 On linux
 cp -r *recon $SUBJECTS_DIR
+
 # 2. Map the annotation files of the HCP MMP 1.0 atlas from fsaverage to you subject for both hemispheres:
 mri_surf2surf --srcsubject fsaverage --trgsubject <sub>_recon --hemi lh --sval-annot $SUBJECTS_DIR/fsaverage/label/lh.hcpmmp1.annot --tval
 $SUBJECTS_DIR/<sub>_recon/label/lh.hcpmmp1.annot
@@ -143,22 +143,25 @@ mri_surf2surf --srcsubject fsaverage --trgsubject <sub>_recon --hemi rh --sval-a
 
 ### Generate the Structural Connectome (SC)
 
+-   Navigate back in the directory that contains you dwi data
+
 ``` bash
 #!/bin/bash
-mri_aparc2aseg --old-ribbon --s <sub>_T1w_recon --annot hcpmmp1 --o hcpmmp1.mgz -force
 
-mrconvert –datatype uint32 hcpmmp1.mgz  hcpmmp1.mif -force
+mri_aparc2aseg --old-ribbon --s <sub>_recon --annot hcpmmp1 --o hcpmmp1.mgz --nthreads 12
+
+mrconvert –datatype uint32 hcpmmp1.mgz  hcpmmp1.mif
 
 # Replace the random integers of the hcpmmp1.mif file with integers
 # that start at 1 and increase by 1.
-labelconvert hcpmmp1.mif $MRtrix3/share/mrtrix3/labelconvert/hcpmmp1_original.txt $MRtrix3/share/mrtrix3/labelconvert/hcpmmp1_ordered.txt hcpmmp1_parcels_nocoreg.mif -force
+labelconvert hcpmmp1.mif $MRtrix3/share/mrtrix3/labelconvert/hcpmmp1_original.txt $MRtrix3/share/mrtrix3/labelconvert/hcpmmp1_ordered.txt hcpmmp1_parcels_nocoreg.mif
 
 # Register the ordered atlas-based volumetric parcellation to diffusion space.
-mrtransform hcpmmp1_parcels_nocoreg.mif –linear diff2struct_mrtrix.txt –inverse –datatype uint32 hcpmmp1_parcels_coreg.mif -force
+mrtransform hcpmmp1_parcels_nocoreg.mif –linear diff2struct_mrtrix.txt –inverse –datatype uint32 hcpmmp1_parcels_coreg.mif
 
 # Create a whole-brain connectome, representing the streamlines between each parcellation pair in the atlas (in this case, 379x379). The "symmetric" option will make the lower diagonal the same as the upper diagonal, and the "scale_invnodevol" option will scale the connectome by the inverse of the size of the node
 
-tck2connectome -symmetric -zero_diagonal -scale_invnodevol -tck_weights_in sift_1M.txt tracks_10M.tck hcpmmp1_parcels_coreg.mif IN_hcpmmp1_parcels_coreg.csv -out_assignment assignments_IN_hcpmmp1_parcels_coreg.csv -force
+tck2connectome -symmetric -zero_diagonal -scale_invnodevol -tck_weights_in sift_1M.txt tracks_10M.tck hcpmmp1_parcels_coreg.mif IN_hcpmmp1_parcels_coreg.csv -out_assignment assignments_IN_hcpmmp1_parcels_coreg.csv
 ```
 
 This is what you should end up with. The upper left and lower right quadrant represent the left and right intra-hemispheric connections respectively.\
@@ -285,8 +288,6 @@ Check the [parallel processing section](parallel.qmd) to speed up this step usin
 ``` bash
 #!/bin/bash
 
-for_each -nthreads <nproc --all> -info * : mri_aparc2aseg --old-ribbon --s IN_T1w_recon --annot hcpmmp1 --o IN/dwi/hcpmmp1.mgz -force
-  
 for_each -nthreads <nproc --all> -info */dwi : mrconvert –datatype uint32 hcpmmp1.mgz  hcpmmp1.mif -force
 
 # Replace the random integers of the hcpmmp1.mif file with integers
