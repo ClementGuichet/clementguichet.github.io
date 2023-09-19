@@ -123,15 +123,17 @@ Download the *lh and rh.hcpmmp1 annot* files in the supplementary files [here](h
 
 # 1. Since the HCPMMP1-atlas is a FreeSurfer-based atlas, you have to preprocess the T1 image in FreeSurfer. 
 # This will take several hours to complete.
+SUBJECTS_DIR=`pwd`;
 recon-all –s <sub>_recon –i T1_raw.nii.gz –all
 
-# If the recon folder specific to your subject haq not been placed into $SUBJECTS_DIR, you may have to move it manually
-
 # Copy into freesurfer's subjects directory
+On Windows
 echo <password> | sudo -S cp -r *recon $SUBJECTS_DIR
 # Grant permission to write the file
 echo <password> | sudo -S chmod -R a+w /usr/local/freesurfer
 
+On linux
+cp -r *recon $SUBJECTS_DIR
 # 2. Map the annotation files of the HCP MMP 1.0 atlas from fsaverage to you subject for both hemispheres:
 mri_surf2surf --srcsubject fsaverage --trgsubject <sub>_recon --hemi lh --sval-annot $SUBJECTS_DIR/fsaverage/label/lh.hcpmmp1.annot --tval
 $SUBJECTS_DIR/<sub>_recon/label/lh.hcpmmp1.annot
@@ -282,6 +284,8 @@ Check the [parallel processing section](parallel.qmd) to speed up this step usin
 ``` bash
 #!/bin/bash
 
+for_each -nthreads <nproc --all> -info * : mri_aparc2aseg --old-ribbon --s IN_T1w_recon --annot IN/dwi/hcpmmp1 --o IN/dwi/hcpmmp1.mgz -force
+  
 for_each -nthreads <nproc --all> -info */dwi : mrconvert –datatype uint32 hcpmmp1.mgz  hcpmmp1.mif -force
 
 # Replace the random integers of the hcpmmp1.mif file with integers
