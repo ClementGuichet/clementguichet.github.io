@@ -86,7 +86,7 @@ Type an MRtrix3 command like *mrconvert* to check everything's working correctly
 Add MRtrix3 to your PATH:
 
 ``` bash
-echo "export MRtrix3=$HOME/miniconda3/pkgs/mrtrix3-3.0.4-h2bc3f7f_0" >> .bashrc
+echo "export MRtrix3=/path/to/miniconda3/pkgs/mrtrix3-3.0.4-h2bc3f7f_0/share/mrtrix3" >> .bashrc
 echo "export PATH=${MRtrix3}:$PATH" >> .bashrc
 ```
 

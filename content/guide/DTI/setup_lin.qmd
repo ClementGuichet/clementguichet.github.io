@@ -14,7 +14,14 @@ Download MRtrix3 by copy pasting this command in a bash terminal:
 conda install -c mrtrix3 mrtrix3
 ```
 
-If everything went fine, you should now see a window pop up when typing *mrview* on the command line.
+Type an MRtrix3 command like *mrconvert* to check everything's working correctly.
+
+Add MRtrix3 to your PATH:
+
+``` bash
+echo "export MRtrix3=/path/to/miniconda3/share/mrtrix3" >> .bashrc 
+echo "export PATH=${MRtrix3}:$PATH" >> .bashrc
+```
 
 ### Freesurfer
 

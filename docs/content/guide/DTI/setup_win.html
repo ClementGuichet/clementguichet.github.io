@@ -344,7 +344,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> mrtrix3 mrtrix3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Type an MRtrix3 command like <em>mrconvert</em> to check everything’s working correctly.</p>
 <p>Add MRtrix3 to your PATH:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"export MRtrix3=</span><span class="va">$HOME</span><span class="st">/miniconda3/pkgs/mrtrix3-3.0.4-h2bc3f7f_0"</span> <span class="op">&gt;&gt;</span> .bashrc</span>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"export MRtrix3=/path/to/miniconda3/pkgs/mrtrix3-3.0.4-h2bc3f7f_0/share/mrtrix3"</span> <span class="op">&gt;&gt;</span> .bashrc</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"export PATH=</span><span class="va">${MRtrix3}</span><span class="st">:</span><span class="va">$PATH</span><span class="st">"</span> <span class="op">&gt;&gt;</span> .bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="freesurfer" class="level3">
