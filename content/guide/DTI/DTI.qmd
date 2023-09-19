@@ -14,7 +14,7 @@ To determine the number of available logical processors or CPUs on your system, 
 
 **For example, I only use 8 out of the 48 available CPUs on my system. You may have to tweak it to your systems specs and size of your cohort for a smooth run.**
 
-### Preprocessing
+### STEP 1. Preprocessing
 
 ``` bash
 #!/bin/bash
@@ -85,7 +85,7 @@ mrtransform 5tt_nocoreg.mif -linear diff2struct_mrtrix.txt -inverse 5tt_coreg.mi
 5tt2gmwmi 5tt_coreg.mif gmwmSeed_coreg.mif 
 ```
 
-### Streamline generation
+### STEP 2. Streamline generation
 
 Make sure to allocate at least 5Go of space for each subject on your local disk as streamline generation can get quite heavy. Here we generate 10 millions streamlines and then reduce that number using the *tckgen* and *tcksift2* command.
 
@@ -108,7 +108,7 @@ tckgen -act 5tt_coreg.mif -backtrack -seed_gmwmi gmwmSeed_coreg.mif -nthreads 8 
 tcksift2 -act 5tt_coreg.mif -out_mu sift_mu.txt -out_coeffs sift_coeffs.txt -nthreads 8 tracks_10M.tck wmfod_norm.mif sift_1M.txt 
 ```
 
-### Recon-all
+### STEP 3. Recon-all
 
 Download the *lh and rh.hcpmmp1 annot* files in the supplementary files [here](https://osf.io/fkyht/#!) and put them into \$SUBJECTS_DIR/fsaverage/label. This will prepare the T1 image for the HCP MMP 1.0 atlas [@glasser2016].
 
@@ -147,7 +147,7 @@ mri_surf2surf --srcsubject fsaverage --trgsubject <sub>_recon --hemi rh --sval-a
 mri_aparc2aseg --old-ribbon --s <sub>_recon --annot hcpmmp1 --o hcpmmp1.mgz --nthreads 12
 ```
 
-### Generate the Structural Connectome (SC)
+### STEP 4. Generate the Structural Connectome (SC)
 
 ``` bash
 #!/bin/bash
@@ -186,7 +186,7 @@ for_each will then iterate over the directories paths that match this template, 
 
 *IN* is used in the MRtrix command to echo the path to the dwi directory of each subject.
 
-### Preprocessing
+### STEP 1. Preprocessing
 
 ``` bash
 #!/bin/bash
@@ -258,7 +258,7 @@ for_each -nthreads 8 -info */dwi : mrtransform 5tt_nocoreg.mif -linear diff2stru
 for_each -nthreads 8 -info */dwi : 5tt2gmwmi 5tt_coreg.mif gmwmSeed_coreg.mif
 ```
 
-### Streamline generation
+### STEP 2. Streamline generation
 
 Make sure to allocate at least 5Go of space for each subject on your local disk as streamline generation can get quite heavy. Here we generate 10 millions streamlines and then reduce that number using the *tckgen* and *tcksift2* command.
 
@@ -281,11 +281,11 @@ for_each -nthreads <nproc --all>/8 -info */dwi : tckgen -act 5tt_coreg.mif -back
 for_each -nthreads <nproc --all>/8 -info */dwi : tcksift2 -act 5tt_coreg.mif -out_mu sift_mu.txt -out_coeffs sift_coeffs.txt -nthreads 8 tracks_10M.tck wmfod_norm.mif sift_1M.txt 
 ```
 
-### Recon-all
+### STEP 3. Recon-all
 
 Check the [parallel processing section](parallel.qmd) to speed up this step using parallel computing**.**
 
-### Generate the Structural Connectome (SC)
+### STEP 4. Generate the Structural Connectome (SC)
 
 ``` bash
 #!/bin/bash
