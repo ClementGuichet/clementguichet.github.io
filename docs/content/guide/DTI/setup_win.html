@@ -310,7 +310,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Client startup: check the Start no client option</p></li>
 <li><p>Extra setting: make sure “Disable access control” is enabled and “native opengl” is disabled</p></li>
 <li><p>Add this to your .bashrc file:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a> <span class="bu">echo</span> <span class="st">"export DISPLAY=</span><span class="dt">\$</span><span class="st">(grep nameserver /etc/resolv.conf  | awk '{print </span><span class="dt">\$</span><span class="st">2; exit}'):0"</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a> <span class="bu">echo</span> <span class="st">"export DISPLAY=</span><span class="va">$(</span><span class="fu">grep</span> nameserver /etc/resolv.conf  <span class="kw">|</span> <span class="fu">awk</span> <span class="st">'{print $2; exit}'</span><span class="va">)</span><span class="st">:0"</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a> <span class="bu">echo</span> <span class="st">"export LIBGL_ALWAYS_INDIRECT=0"</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a> <span class="co"># For Windows 11 users, add this as well</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">"export LIBGL_ALWAYS_SOFTWARE=1"</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
@@ -376,7 +376,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li><p>Download the <a href="https://fsl.fmrib.ox.ac.uk/fsldownloads_registration">FSL installer script online</a>. When selecting the OS to install on the download page, <u>make sure to select Ubuntu and not Windows</u>.</p></li>
 <li><p>Run the installer script by replacing &lt;UserName&gt; with your windows user name. Make sure to install it under the path /usr/local/fsl/.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="st">"/mnt/c/Users/&lt;WindowsUserName&gt;/Downloads/fslinstaller.py"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="st">"fslinstaller.py"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
 </section>
 <section id="ants" class="level3">

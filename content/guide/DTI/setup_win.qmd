@@ -39,7 +39,7 @@ You'll also need to GUI for WSL. I recommend you install VcXsrv on your system, 
 4.  Add this to your .bashrc file:
 
     ``` bash
-     echo "export DISPLAY=\$(grep nameserver /etc/resolv.conf  | awk '{print \$2; exit}'):0" >> ~/.bashrc
+     echo "export DISPLAY=$(grep nameserver /etc/resolv.conf  | awk '{print $2; exit}'):0" >> ~/.bashrc
      echo "export LIBGL_ALWAYS_INDIRECT=0" >> ~/.bashrc
      # For Windows 11 users, add this as well
       echo "export LIBGL_ALWAYS_SOFTWARE=1" >> ~/.bashrc
@@ -142,7 +142,7 @@ MNI_DIR           /usr/local/freesurfer/7.4.1/mni
 2.  Run the installer script by replacing \<UserName\> with your windows user name. Make sure to install it under the path /usr/local/fsl/.
 
     ``` bash
-    python "/mnt/c/Users/<WindowsUserName>/Downloads/fslinstaller.py"
+    python3 "fslinstaller.py"
     ```
 
 ### ANTs
