@@ -145,8 +145,9 @@ mri_surf2surf --srcsubject fsaverage --trgsubject <sub>_recon --hemi rh --sval-a
 
 ``` bash
 #!/bin/bash
+mri_aparc2aseg --old-ribbon --s <sub>_T1w_recon --annot hcpmmp1 --o hcpmmp1.mgz -force
 
-for_each -nthreads <nproc --all> -info */dwi : mrconvert –datatype uint32 hcpmmp1.mgz  hcpmmp1.mif -force
+mrconvert –datatype uint32 hcpmmp1.mgz  hcpmmp1.mif -force
 
 # Replace the random integers of the hcpmmp1.mif file with integers
 # that start at 1 and increase by 1.
@@ -284,7 +285,7 @@ Check the [parallel processing section](parallel.qmd) to speed up this step usin
 ``` bash
 #!/bin/bash
 
-for_each -nthreads <nproc --all> -info * : mri_aparc2aseg --old-ribbon --s IN_T1w_recon --annot IN/dwi/hcpmmp1 --o IN/dwi/hcpmmp1.mgz -force
+for_each -nthreads <nproc --all> -info * : mri_aparc2aseg --old-ribbon --s IN_T1w_recon --annot hcpmmp1 --o IN/dwi/hcpmmp1.mgz -force
   
 for_each -nthreads <nproc --all> -info */dwi : mrconvert –datatype uint32 hcpmmp1.mgz  hcpmmp1.mif -force
 

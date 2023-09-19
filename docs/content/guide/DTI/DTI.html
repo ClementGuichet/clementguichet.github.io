@@ -446,19 +446,20 @@ div.csl-indent {
 <section id="generate-the-structural-connectome-sc" class="level3">
 <h3 class="anchored" data-anchor-id="generate-the-structural-connectome-sc">Generate the Structural Connectome (SC)</h3>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">--all</span><span class="op">&gt;</span> -info <span class="pp">*</span>/dwi : mrconvert –datatype uint32 hcpmmp1.mgz  hcpmmp1.mif <span class="at">-force</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace the random integers of the hcpmmp1.mif file with integers</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># that start at 1 and increase by 1.</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">labelconvert</span> hcpmmp1.mif <span class="va">$MRtrix3</span>/share/mrtrix3/labelconvert/hcpmmp1_original.txt <span class="va">$MRtrix3</span>/share/mrtrix3/labelconvert/hcpmmp1_ordered.txt hcpmmp1_parcels_nocoreg.mif <span class="at">-force</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Register the ordered atlas-based volumetric parcellation to diffusion space.</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="ex">mrtransform</span> hcpmmp1_parcels_nocoreg.mif –linear diff2struct_mrtrix.txt –inverse –datatype uint32 hcpmmp1_parcels_coreg.mif <span class="at">-force</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a whole-brain connectome, representing the streamlines between each parcellation pair in the atlas (in this case, 379x379). The "symmetric" option will make the lower diagonal the same as the upper diagonal, and the "scale_invnodevol" option will scale the connectome by the inverse of the size of the node</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="ex">tck2connectome</span> <span class="at">-symmetric</span> <span class="at">-zero_diagonal</span> <span class="at">-scale_invnodevol</span> <span class="at">-tck_weights_in</span> sift_1M.txt tracks_10M.tck hcpmmp1_parcels_coreg.mif IN_hcpmmp1_parcels_coreg.csv <span class="at">-out_assignment</span> assignments_IN_hcpmmp1_parcels_coreg.csv <span class="at">-force</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">mri_aparc2aseg</span> <span class="at">--old-ribbon</span> <span class="at">--s</span> <span class="op">&lt;</span>sub<span class="op">&gt;</span>_T1w_recon <span class="at">--annot</span> hcpmmp1 <span class="at">--o</span> hcpmmp1.mgz <span class="at">-force</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">mrconvert</span> –datatype uint32 hcpmmp1.mgz  hcpmmp1.mif <span class="at">-force</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace the random integers of the hcpmmp1.mif file with integers</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># that start at 1 and increase by 1.</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ex">labelconvert</span> hcpmmp1.mif <span class="va">$MRtrix3</span>/share/mrtrix3/labelconvert/hcpmmp1_original.txt <span class="va">$MRtrix3</span>/share/mrtrix3/labelconvert/hcpmmp1_ordered.txt hcpmmp1_parcels_nocoreg.mif <span class="at">-force</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Register the ordered atlas-based volumetric parcellation to diffusion space.</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="ex">mrtransform</span> hcpmmp1_parcels_nocoreg.mif –linear diff2struct_mrtrix.txt –inverse –datatype uint32 hcpmmp1_parcels_coreg.mif <span class="at">-force</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a whole-brain connectome, representing the streamlines between each parcellation pair in the atlas (in this case, 379x379). The "symmetric" option will make the lower diagonal the same as the upper diagonal, and the "scale_invnodevol" option will scale the connectome by the inverse of the size of the node</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="ex">tck2connectome</span> <span class="at">-symmetric</span> <span class="at">-zero_diagonal</span> <span class="at">-scale_invnodevol</span> <span class="at">-tck_weights_in</span> sift_1M.txt tracks_10M.tck hcpmmp1_parcels_coreg.mif IN_hcpmmp1_parcels_coreg.csv <span class="at">-out_assignment</span> assignments_IN_hcpmmp1_parcels_coreg.csv <span class="at">-force</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This is what you should end up with. The upper left and lower right quadrant represent the left and right intra-hemispheric connections respectively.<br>
 </p>
 <div class="quarto-figure quarto-figure-center">
@@ -578,7 +579,7 @@ div.csl-indent {
 <h3 class="anchored" data-anchor-id="generate-the-structural-connectome-sc-1">Generate the Structural Connectome (SC)</h3>
 <div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">--all</span><span class="op">&gt;</span> -info <span class="pp">*</span> : mri_aparc2aseg <span class="at">--old-ribbon</span> <span class="at">--s</span> IN_T1w_recon <span class="at">--annot</span> IN/dwi/hcpmmp1 <span class="at">--o</span> IN/dwi/hcpmmp1.mgz <span class="at">-force</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">--all</span><span class="op">&gt;</span> -info <span class="pp">*</span> : mri_aparc2aseg <span class="at">--old-ribbon</span> <span class="at">--s</span> IN_T1w_recon <span class="at">--annot</span> hcpmmp1 <span class="at">--o</span> IN/dwi/hcpmmp1.mgz <span class="at">-force</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">--all</span><span class="op">&gt;</span> -info <span class="pp">*</span>/dwi : mrconvert –datatype uint32 hcpmmp1.mgz  hcpmmp1.mif <span class="at">-force</span></span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
