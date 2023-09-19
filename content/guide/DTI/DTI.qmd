@@ -126,29 +126,31 @@ SUBJECTS_DIR=`pwd`;
 recon-all –s <sub>_recon –i T1_raw.nii.gz –all
 
 # Copy into freesurfer's subjects directory
-On Windows
+**On Windows**
 echo <password> | sudo -S cp -r *recon $SUBJECTS_DIR
 # Grant permission to write the file
 echo <password> | sudo -S chmod -R a+w /usr/local/freesurfer
 
-On linux
+**On linux**
 cp -r *recon $SUBJECTS_DIR
+```
 
-# 2. Map the annotation files of the HCP MMP 1.0 atlas from fsaverage to you subject for both hemispheres:
+You can then carry on with mapping the glasser annotation file:
+
+``` bash
+# Map the annotation files of the HCP MMP 1.0 atlas from fsaverage to you subject for both hemispheres:
 mri_surf2surf --srcsubject fsaverage --trgsubject <sub>_recon --hemi lh --sval-annot $SUBJECTS_DIR/fsaverage/label/lh.hcpmmp1.annot --tval
 $SUBJECTS_DIR/<sub>_recon/label/lh.hcpmmp1.annot
 
 mri_surf2surf --srcsubject fsaverage --trgsubject <sub>_recon --hemi rh --sval-annot $SUBJECTS_DIR/fsaverage/label/rh.hcpmmp1.annot --tval $SUBJECTS_DIR/<sub>_recon/label/rh.hcpmmp1.annot
+
+mri_aparc2aseg --old-ribbon --s <sub>_recon --annot hcpmmp1 --o hcpmmp1.mgz --nthreads 12
 ```
 
 ### Generate the Structural Connectome (SC)
 
--   Navigate back in the directory that contains you dwi data
-
 ``` bash
 #!/bin/bash
-
-mri_aparc2aseg --old-ribbon --s <sub>_recon --annot hcpmmp1 --o hcpmmp1.mgz --nthreads 12
 
 mrconvert –datatype uint32 hcpmmp1.mgz  hcpmmp1.mif
 

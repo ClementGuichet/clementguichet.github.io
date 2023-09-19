@@ -79,7 +79,7 @@ cp -r *recon $SUBJECTS_DIR
 You can then carry on with mapping the glasser annotation file:
 
 ``` bash
-# the annotation files of the HCP MMP 1.0 atlas from fsaverage to you subject for both hemispheres:
+# Map the annotation files of the HCP MMP 1.0 atlas from fsaverage to you subject for both hemispheres:
 
 ls . | grep ^sub- > subjList.txt
 
