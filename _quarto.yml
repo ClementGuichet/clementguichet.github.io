@@ -53,7 +53,8 @@ website:
           file: content/guide/DTI/setup_win.qmd
           contents: 
           - section: "DTI pipeline (SC)"
-            contents:
+            - section: "Setup"
+              contents:
               - content/guide/DTI/setup_win.qmd
               - content/guide/DTI/setup_lin.qmd
               - section: "Scripts"
