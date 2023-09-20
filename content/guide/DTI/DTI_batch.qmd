@@ -153,5 +153,5 @@ for_each -nthreads 8 -info */dwi : dwi2tensor IN/dwi_den_preproc_unbiased.mif - 
 # Generate the connectome
 for_each -nthreads 8 -info * : tcksample dwi/tracks_10M.tck -tck_weights_in dwi/sift_1M.txt dwi/FA.mif dwi/IN_mean_FA_per_streamline.csv -stat_tck mean
 
-for_each -nthreads 8 -info * : tck2connectome dwi/tracks_10M.tck -tck_weights_in dwi/sift_1M.txt dwi/hcpmmp1_parcels_coreg.mif dwi/IN_mean_FA_connectome.csv -scale_file dwi/IN_mean_FA_per_streamline.csv -stat_edge mean
+for_each -nthreads 8 -info * : tck2connectome -symmetric dwi/tracks_10M.tck -tck_weights_in dwi/sift_1M.txt dwi/hcpmmp1_parcels_coreg.mif dwi/IN_mean_FA_connectome.csv -scale_file dwi/IN_mean_FA_per_streamline.csv -stat_edge mean
 ```

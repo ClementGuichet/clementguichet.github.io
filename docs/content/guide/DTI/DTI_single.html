@@ -501,7 +501,7 @@ div.csl-indent {
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the connectome</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">tcksample</span> tracks_10M.tck <span class="at">-tck_weights_in</span> sift_1M.txt FA.mif mean_FA_per_streamline.csv <span class="at">-stat_tck</span> mean</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">tck2connectome</span> tracks_10M.tck <span class="at">-tck_weights_in</span> sift_1M.txt hcpmmp1_parcels_coreg.mif mean_FA_connectome.csv <span class="at">-scale_file</span> mean_FA_per_streamline.csv <span class="at">-stat_edge</span> mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">tck2connectome</span> <span class="at">-symmetric</span> tracks_10M.tck <span class="at">-tck_weights_in</span> sift_1M.txt hcpmmp1_parcels_coreg.mif mean_FA_connectome.csv <span class="at">-scale_file</span> mean_FA_per_streamline.csv <span class="at">-stat_edge</span> mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 

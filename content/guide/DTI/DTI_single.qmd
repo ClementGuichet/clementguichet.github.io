@@ -181,5 +181,5 @@ dwi2tensor dwi_den_preproc_unbiased.mif - | tensor2metric - -vec - | mrcalc - -a
 # Generate the connectome
 tcksample tracks_10M.tck -tck_weights_in sift_1M.txt FA.mif mean_FA_per_streamline.csv -stat_tck mean
 
-tck2connectome tracks_10M.tck -tck_weights_in sift_1M.txt hcpmmp1_parcels_coreg.mif mean_FA_connectome.csv -scale_file mean_FA_per_streamline.csv -stat_edge mean
+tck2connectome -symmetric tracks_10M.tck -tck_weights_in sift_1M.txt hcpmmp1_parcels_coreg.mif mean_FA_connectome.csv -scale_file mean_FA_per_streamline.csv -stat_edge mean
 ```
