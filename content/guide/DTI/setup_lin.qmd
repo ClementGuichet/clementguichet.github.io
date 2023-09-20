@@ -1,5 +1,5 @@
 ---
-title: "**Setup (Linux)**"
+title: "Setup (**Linux**)"
 ---
 
 ## Software installation

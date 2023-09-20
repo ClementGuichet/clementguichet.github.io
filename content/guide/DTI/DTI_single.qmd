@@ -1,5 +1,5 @@
 ---
-title: "**Diffusion Tensor Imaging (DTI) - Single subject**"
+title: "Diffusion Tensor Imaging (DTI) - **Single subject**"
 subtitle: A step-by-step guide to DTI preprocessing & SC generation based on MRtrix3
 bibliography: references.yaml
 ---

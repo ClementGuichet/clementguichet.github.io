@@ -1,5 +1,5 @@
 ---
-title: "**Diffusion Tensor Imaging (DTI) - Batch processing**"
+title: "Diffusion Tensor Imaging (DTI) - **Batch processing**"
 subtitle: A step-by-step guide to DTI preprocessing & SC generation based on MRtrix3
 bibliography: references.yaml
 ---
