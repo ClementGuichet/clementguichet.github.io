@@ -24,7 +24,7 @@ In fine, we expect this project to enable significant advances in both fundament
 
 <div>
 
-In our latest preprint [@guichet2023], we modeled the neural mechanisms that uphold inter-cognitive functioning across the lifespan. The SENECA model has three dimensions:
+In our latest preprint [@guichet2023], we modeled the neural mechanisms that uphold inter-cognitive functioning, lexical production being a prime example of the L-M-EF interaction, across the lifespan. The SENECA model has three dimensions:
 
 ![](/images/seneca_abstract.png){fig-align="left"}
 
