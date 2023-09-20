@@ -92,7 +92,7 @@ for sub in `cat subjList.txt`; do
   mri_surf2surf --srcsubject fsaverage --trgsubject ${sub}_recon --hemi rh --sval-annot $SUBJECTS_DIR/fsaverage/label/rh.hcpmmp1.annot --tval $SUBJECTS_DIR/${sub}_T1w_recon/label/rh.hcpmmp1.annot
   
   cd ./{sub}/dwi
-  mri_aparc2aseg --old-ribbon --s ${sub}_recon --annot hcpmmp1 --o ${sub}/dwi/hcpmmp1.mgz
+  mri_aparc2aseg --old-ribbon --s ${sub}_recon --annot hcpmmp1 --o ${sub}/dwi/hcpmmp1.mgz --nthreads 12
   cd ../..
   
 done
