@@ -53,15 +53,15 @@ website:
           file: content/guide/DTI/setup_win.qmd
           contents: 
           - section: "DTI pipeline (SC)"
-            - section: "Setup"
-              contents:
-              - content/guide/DTI/setup_win.qmd
-              - content/guide/DTI/setup_lin.qmd
-              - section: "Scripts"
+              - section: "Setup"
                 contents:
-                 - content/guide/DTI/DTI_single.qmd
-                 - content/guide/DTI/DTI_batch.qmd
-                 - content/guide/DTI/parallel.qmd
+                - content/guide/DTI/setup_win.qmd
+                - content/guide/DTI/setup_lin.qmd
+                - section: "Scripts"
+                  contents:
+                  - content/guide/DTI/DTI_single.qmd
+                  - content/guide/DTI/DTI_batch.qmd
+                  - content/guide/DTI/parallel.qmd
           - section: "rs-fMRI pipeline (FC)"
             contents: 
               - content/guide/rs-fMRI/spm.qmd
