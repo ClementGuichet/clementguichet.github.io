@@ -309,3 +309,17 @@ You can then copy and save the structural connectomes wherever you like:
 ``` bash
 find . -name \sub-*.csv -exec cp {} /path/to/where you want to save the SC \;
 ```
+
+------------------------------------------------------------------------
+
+### FA-weighted connectome
+
+``` bash
+# Generate the RGB-colored FA map
+dwi2tensor dwi_den_preproc_unbiased.mif - | tensor2metric - -vec - | mrcalc - -abs FA.mif
+
+# Generate the connectome
+tcksample tracks_10M.tck -tck_weights_in sift_1M.txt FA.mif mean_FA_per_streamline.csv -stat_tck mean
+
+tck2connectome tracks_10M.tck -tck_weights_in sift_1M.txt hcpmmp1_parcels_coreg.mif mean_FA_connectome.csv -scale_file mean_FA_per_streamline.csv -stat_edge mean
+```

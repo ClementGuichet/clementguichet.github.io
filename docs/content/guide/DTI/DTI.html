@@ -292,6 +292,7 @@ div.csl-indent {
   <li><a href="#step-2.-streamline-generation-1" id="toc-step-2.-streamline-generation-1" class="nav-link" data-scroll-target="#step-2.-streamline-generation-1">STEP 2. Streamline generation</a></li>
   <li><a href="#step-3.-recon-all-1" id="toc-step-3.-recon-all-1" class="nav-link" data-scroll-target="#step-3.-recon-all-1">STEP 3. Recon-all</a></li>
   <li><a href="#step-4.-generate-the-structural-connectome-sc-1" id="toc-step-4.-generate-the-structural-connectome-sc-1" class="nav-link" data-scroll-target="#step-4.-generate-the-structural-connectome-sc-1">STEP 4. Generate the Structural Connectome (SC)</a></li>
+  <li><a href="#fa-weighted-connectome" id="toc-fa-weighted-connectome" class="nav-link" data-scroll-target="#fa-weighted-connectome">FA-weighted connectome</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClementGuichet/clementguichet.github.io/edit/main/content/guide/DTI/DTI.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
@@ -594,6 +595,17 @@ div.csl-indent {
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">--all</span><span class="op">&gt;</span> -info <span class="pp">*</span> : tck2connectome <span class="at">-symmetric</span> <span class="at">-zero_diagonal</span> <span class="at">-scale_invnodevol</span> <span class="at">-tck_weights_in</span> dwi/sift_1M.txt dwi/tracks_10M.tck dwi/hcpmmp1_parcels_coreg.mif dwi/IN_hcpmmp1_parcels_coreg.csv <span class="at">-out_assignment</span> dwi/assignments_IN_hcpmmp1_parcels_coreg.csv </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You can then copy and save the structural connectomes wherever you like:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> . <span class="at">-name</span> <span class="dt">\s</span>ub-<span class="pp">*</span>.csv <span class="at">-exec</span> cp {} /path/to/where you want to save the SC <span class="dt">\;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="fa-weighted-connectome" class="level3">
+<h3 class="anchored" data-anchor-id="fa-weighted-connectome">FA-weighted connectome</h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the RGB-colored FA map</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">dwi2tensor</span> dwi_den_preproc_unbiased.mif <span class="at">-</span> <span class="kw">|</span> <span class="ex">tensor2metric</span> <span class="at">-</span> <span class="at">-vec</span> <span class="at">-</span> <span class="kw">|</span> <span class="ex">mrcalc</span> <span class="at">-</span> <span class="at">-abs</span> FA.mif</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the connectome</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="ex">tcksample</span> tracks_10M.tck <span class="at">-tck_weights_in</span> sift_1M.txt FA.mif mean_FA_per_streamline.csv <span class="at">-stat_tck</span> mean</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="ex">tck2connectome</span> tracks_10M.tck <span class="at">-tck_weights_in</span> sift_1M.txt hcpmmp1_parcels_coreg.mif mean_FA_connectome.csv <span class="at">-scale_file</span> mean_FA_per_streamline.csv <span class="at">-stat_edge</span> mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 
