@@ -56,8 +56,11 @@ website:
             contents:
               - content/guide/DTI/setup_win.qmd
               - content/guide/DTI/setup_lin.qmd
-              - content/guide/DTI/DTI.qmd
-              - content/guide/DTI/parallel.qmd
+              - section: "Scripts"
+                contents:
+                 - content/guide/DTI/DTI_single.qmd
+                 - content/guide/DTI/DTI_batch.qmd
+                 - content/guide/DTI/parallel.qmd
           - section: "rs-fMRI pipeline (FC)"
             contents: 
               - content/guide/rs-fMRI/spm.qmd

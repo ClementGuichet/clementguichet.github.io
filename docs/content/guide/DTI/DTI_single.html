@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Clement Guichet - Diffusion Tensor Imaging (DTI)</title>
+<title>Clement Guichet - Diffusion Tensor Imaging (DTI) - Single subject</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -83,7 +83,7 @@ div.csl-indent {
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../content/guide/DTI/parallel.html" rel="next">
+<link href="../../../content/guide/DTI/DTI_batch.html" rel="next">
 <link href="../../../content/guide/DTI/setup_lin.html" rel="prev">
 <link href="../../../images/favicon.ico" rel="icon">
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
@@ -118,11 +118,11 @@ div.csl-indent {
 
 
 <link rel="stylesheet" href="../../../styles.css">
-<meta property="og:title" content="Clement Guichet - Diffusion Tensor Imaging (DTI)">
+<meta property="og:title" content="Clement Guichet - Diffusion Tensor Imaging (DTI) - Single subject">
 <meta property="og:description" content="A step-by-step guide to DTI preprocessing &amp; SC generation based on MRtrix3">
 <meta property="og:image" content="../../..\images/SC.png">
 <meta property="og:site-name" content="Clement Guichet">
-<meta name="twitter:title" content="Clement Guichet - Diffusion Tensor Imaging (DTI)">
+<meta name="twitter:title" content="Clement Guichet - Diffusion Tensor Imaging (DTI) - Single subject">
 <meta name="twitter:description" content="A step-by-step guide to DTI preprocessing &amp; SC generation based on MRtrix3">
 <meta name="twitter:image" content="../../..\images/SC.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -171,7 +171,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../content/guide/DTI/setup_win.html">Guide</a></li><li class="breadcrumb-item"><a href="../../../content/guide/DTI/setup_win.html">DTI pipeline (SC)</a></li><li class="breadcrumb-item"><a href="../../../content/guide/DTI/DTI.html"><strong>Diffusion Tensor Imaging (DTI)</strong></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../content/guide/DTI/setup_win.html">Guide</a></li><li class="breadcrumb-item"><a href="../../../content/guide/DTI/setup_win.html">DTI pipeline (SC)</a></li><li class="breadcrumb-item"><a href="../../../content/guide/DTI/DTI_single.html">Scripts</a></li><li class="breadcrumb-item"><a href="../../../content/guide/DTI/DTI_single.html"><strong>Diffusion Tensor Imaging (DTI) - Single subject</strong></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -213,10 +213,25 @@ div.csl-indent {
  <span class="menu-text"><strong>Setup (Linux)</strong></span></a>
   </div>
 </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Scripts</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth3 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../content/guide/DTI/DTI.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><strong>Diffusion Tensor Imaging (DTI)</strong></span></a>
+  <a href="../../../content/guide/DTI/DTI_single.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><strong>Diffusion Tensor Imaging (DTI) - Single subject</strong></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../content/guide/DTI/DTI_batch.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>Diffusion Tensor Imaging (DTI) - Batch processing</strong></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -227,15 +242,17 @@ div.csl-indent {
 </li>
       </ul>
   </li>
+      </ul>
+  </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
  <span class="menu-text">rs-fMRI pipeline (FC)</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../content/guide/rs-fMRI/spm.html" class="sidebar-item-text sidebar-link">
@@ -252,13 +269,13 @@ div.csl-indent {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
  <span class="menu-text">Graph theory</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../content/guide/GT/graphvar.html" class="sidebar-item-text sidebar-link">
@@ -285,24 +302,17 @@ div.csl-indent {
   <li><a href="#step-2.-streamline-generation" id="toc-step-2.-streamline-generation" class="nav-link" data-scroll-target="#step-2.-streamline-generation">STEP 2. Streamline generation</a></li>
   <li><a href="#step-3.-recon-all" id="toc-step-3.-recon-all" class="nav-link" data-scroll-target="#step-3.-recon-all">STEP 3. Recon-all</a></li>
   <li><a href="#step-4.-generate-the-structural-connectome-sc" id="toc-step-4.-generate-the-structural-connectome-sc" class="nav-link" data-scroll-target="#step-4.-generate-the-structural-connectome-sc">STEP 4. Generate the Structural Connectome (SC)</a></li>
-  </ul></li>
-  <li><a href="#batch-processing" id="toc-batch-processing" class="nav-link" data-scroll-target="#batch-processing">Batch processing</a>
-  <ul class="collapse">
-  <li><a href="#step-1.-preprocessing-1" id="toc-step-1.-preprocessing-1" class="nav-link" data-scroll-target="#step-1.-preprocessing-1">STEP 1. Preprocessing</a></li>
-  <li><a href="#step-2.-streamline-generation-1" id="toc-step-2.-streamline-generation-1" class="nav-link" data-scroll-target="#step-2.-streamline-generation-1">STEP 2. Streamline generation</a></li>
-  <li><a href="#step-3.-recon-all-1" id="toc-step-3.-recon-all-1" class="nav-link" data-scroll-target="#step-3.-recon-all-1">STEP 3. Recon-all</a></li>
-  <li><a href="#step-4.-generate-the-structural-connectome-sc-1" id="toc-step-4.-generate-the-structural-connectome-sc-1" class="nav-link" data-scroll-target="#step-4.-generate-the-structural-connectome-sc-1">STEP 4. Generate the Structural Connectome (SC)</a></li>
   <li><a href="#fa-weighted-connectome" id="toc-fa-weighted-connectome" class="nav-link" data-scroll-target="#fa-weighted-connectome">FA-weighted connectome</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClementGuichet/clementguichet.github.io/edit/main/content/guide/DTI/DTI.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClementGuichet/clementguichet.github.io/edit/main/content/guide/DTI/DTI_single.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><strong>Diffusion Tensor Imaging (DTI)</strong></h1>
+<h1 class="title"><strong>Diffusion Tensor Imaging (DTI) - Single subject</strong></h1>
 <p class="subtitle lead">A step-by-step guide to DTI preprocessing &amp; SC generation based on MRtrix3</p>
 </div>
 
@@ -472,140 +482,15 @@ div.csl-indent {
 </div>
 <hr>
 </section>
-</section>
-<section id="batch-processing" class="level2">
-<h2 class="anchored" data-anchor-id="batch-processing">Batch processing</h2>
-<p>Below, I provide a synthesis of the preprocessing steps using the for_each command available on MRtrix3.</p>
-<section id="for_each-command" class="level4">
-<h4 class="anchored" data-anchor-id="for_each-command">For_each command</h4>
-<p>For_each is useful when you want to run multiple subjects, with multi-threading if possible. You have to provide the path to your dwi directory where your raw data is stored (bvals, bvecs, etc…) as a template :</p>
-<p><em>assuming you are in the raw_data directory: */dwi</em></p>
-<p>for_each will then iterate over the directories paths that match this template, substituting the * with each subject in your dataset.</p>
-<p><em>IN</em> is used in the MRtrix command to echo the path to the dwi directory of each subject.</p>
-</section>
-<section id="step-1.-preprocessing-1" class="level3">
-<h3 class="anchored" data-anchor-id="step-1.-preprocessing-1">STEP 1. Preprocessing</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">############################### STEP 1 ###############################</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#             Convert data to .mif format and denoise                #</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">######################################################################</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Also consider doing Gibbs denoising (using mrdegibbs). Check your diffusion data for ringing artifacts before deciding whether to use it</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> 8 <span class="at">-info</span> <span class="pp">*</span>/dwi : mrconvert <span class="pp">*</span>dwi.nii.gz dwi.mif </span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> 8 <span class="at">-info</span> <span class="pp">*</span>/dwi : mrconvert dwi.mif <span class="at">-fslgrad</span> <span class="pp">*</span>.bvec <span class="pp">*</span>.bval dwi_header.mif </span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> 8 <span class="at">-info</span> <span class="pp">*</span>/dwi : dwidenoise dwi_header.mif dwi_den.mif <span class="at">-noise</span> noise.mif </span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> 8 <span class="at">-info</span> <span class="pp">*</span>/dwi : mrdegibbs dwi_den.mif dwi_den_unr.mif </span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the b0 images from the diffusion data acquired in the AP direction</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> 8 <span class="at">-info</span> <span class="pp">*</span>/dwi : dwiextract dwi_den.mif <span class="at">-</span> <span class="at">-bzero</span> <span class="dt">\|</span> mrmath <span class="at">-</span> mean mean_b0_AP.mif <span class="at">-axis</span> 3 </span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">######################################################################</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Runs the dwipreproc command, which is a wrapper for eddy and topup.</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">#### !!! Here the CAMCAN dataset does not provide reverse encoding, hence -rpe_none !!! ####</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co">#### !!! &lt;nproc --all&gt;/8 means you should divide by 8 as each subject's preprocessing will be performed by 8 threads already (see at the end of the line) #### !!!</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co">######################################################################</span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="op">&lt;</span>nproc <span class="at">--all</span><span class="op">&gt;</span>/8 <span class="at">-info</span> <span class="pp">*</span>/dwi : dwifslpreproc dwi_den.mif dwi_den_preproc.mif <span class="at">-pe_dir</span> AP <span class="at">-rpe_none</span> <span class="at">-readout_time</span> 0.0342002 <span class="at">-eddy_options</span> <span class="st">" --slm=linear --data_is_shelled"</span>  <span class="at">-nthreads</span> 8</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Performs bias field correction. Needs ANTs to be installed in order to use the "ants" option (use "fsl" otherwise)</span></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> 8 <span class="at">-info</span> <span class="pp">*</span>/dwi : dwibiascorrect ants dwi_den_preproc.mif dwi_den_preproc_unbiased.mif <span class="at">-bias</span> bias.mif </span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a mask for future processing steps</span></span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> 8 <span class="at">-info</span> <span class="pp">*</span>/dwi : dwi2mask dwi_den_preproc_unbiased.mif mask.mif </span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="co">########################### STEP 2 ###################################</span></span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co">#             Basis function for each tissue type                    #</span></span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="co">######################################################################</span></span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a basis function from the subject's DWI data. The "dhollander" function is best used for multi-shell acquisitions; it will estimate different basis functions for each tissue type. For single-shell acquisition, use the "tournier" function instead</span></span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> 8 <span class="at">-info</span> <span class="pp">*</span>/dwi : dwi2response dhollander dwi_den_preproc_unbiased.mif wm.txt gm.txt csf.txt <span class="at">-voxels</span> voxels.mif </span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Performs multishell-multitissue constrained spherical deconvolution, using the basis functions estimated above</span></span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> 8 <span class="at">-info</span> <span class="pp">*</span>/dwi : dwi2fod msmt_csd dwi_den_preproc_unbiased.mif <span class="at">-mask</span> mask.mif wm.txt wmfod.mif gm.txt gmfod.mif csf.txt csffod.mif </span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Creates an image of the fiber orientation densities overlaid onto the estimated tissues (Blue=WM; Green=GM; Red=CSF)</span></span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a><span class="co"># You should see FOD's mostly within the white matter. These can be viewed later with the command "mrview vf.mif -odf.load_sh wmfod.mif"</span></span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> 8 <span class="at">-info</span> <span class="pp">*</span>/dwi : mrconvert <span class="at">-coord</span> 3 0 wmfod.mif <span class="at">-</span> <span class="dt">\|</span> mrcat csffod.mif gmfod.mif <span class="at">-</span> vf.mif </span>
-<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Now normalize the FODs to enable comparison between subjects</span></span>
-<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> 8 <span class="at">-info</span> <span class="pp">*</span>/dwi : mtnormalise wmfod.mif wmfod_norm.mif gmfod.mif gmfod_norm.mif csffod.mif csffod_norm.mif <span class="at">-mask</span> mask.mif </span>
-<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a><span class="co">########################### STEP 3 ###################################</span></span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a><span class="co">#            Create a GM/WM boundary for seed analysis               #</span></span>
-<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a><span class="co">######################################################################</span></span>
-<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the anatomical image to .mif format, and then extract all five tissue catagories (1=GM; 2=Subcortical GM; 3=WM; 4=CSF; 5=Pathological tissue)</span></span>
-<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> 8 <span class="at">-info</span> <span class="pp">*</span>/dwi : mrconvert ../anat/<span class="pp">*</span>T1w.nii.gz T1.mif </span>
-<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="op">&lt;</span>nproc <span class="at">--all</span><span class="op">&gt;</span>/8 <span class="at">-info</span> <span class="pp">*</span>/dwi : 5ttgen fsl T1.mif 5tt_nocoreg.mif <span class="at">-nthreads</span> 8 </span>
-<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a><span class="co"># The following series of commands will take the average of the b0 images (which have the best contrast), convert them and the 5tt image to NIFTI format, and use it for coregistration.</span></span>
-<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> 8 <span class="at">-info</span> <span class="pp">*</span>/dwi : dwiextract dwi_den_preproc_unbiased.mif <span class="at">-</span> <span class="at">-bzero</span> <span class="dt">\|</span> mrmath <span class="at">-</span> mean mean_b0_processed.mif <span class="at">-axis</span> 3 </span>
-<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> 8 <span class="at">-info</span> <span class="pp">*</span>/dwi : mrconvert mean_b0_processed.mif mean_b0_processed.nii.gz </span>
-<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> 8 <span class="at">-info</span> <span class="pp">*</span>/dwi : mrconvert 5tt_nocoreg.mif 5tt_nocoreg.nii.gz </span>
-<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a><span class="co"># Uses FSL commands fslroi and flirt to create a transformation matrix for regisitration between the tissue map and the b0 images</span></span>
-<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> 8 <span class="at">-info</span> <span class="pp">*</span>/dwi : fslroi 5tt_nocoreg.nii.gz 5tt_vol0.nii.gz 0 1 <span class="co">#Extract the first volume of the 5tt dataset (since flirt can only use 3D images, not 4D images)</span></span>
-<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> 8 <span class="at">-info</span> <span class="pp">*</span>/dwi : flirt <span class="at">-in</span> mean_b0_processed.nii.gz <span class="at">-ref</span> 5tt_vol0.nii.gz <span class="at">-interp</span> nearestneighbour <span class="at">-dof</span> 6 <span class="at">-omat</span> diff2struct_fsl.mat</span>
-<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> 8 <span class="at">-info</span> <span class="pp">*</span>/dwi : transformconvert diff2struct_fsl.mat mean_b0_processed.nii.gz 5tt_nocoreg.nii.gz flirt_import diff2struct_mrtrix.txt </span>
-<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> 8 <span class="at">-info</span> <span class="pp">*</span>/dwi : mrtransform 5tt_nocoreg.mif <span class="at">-linear</span> diff2struct_mrtrix.txt <span class="at">-inverse</span> 5tt_coreg.mif </span>
-<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a seed region along the GM/WM boundary</span></span>
-<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> 8 <span class="at">-info</span> <span class="pp">*</span>/dwi : 5tt2gmwmi 5tt_coreg.mif gmwmSeed_coreg.mif</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="step-2.-streamline-generation-1" class="level3">
-<h3 class="anchored" data-anchor-id="step-2.-streamline-generation-1">STEP 2. Streamline generation</h3>
-<p>Make sure to allocate at least 5Go of space for each subject on your local disk as streamline generation can get quite heavy. Here we generate 10 millions streamlines and then reduce that number using the <em>tckgen</em> and <em>tcksift2</em> command.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">########################## STEP 4 ###################################</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#                 Run the streamline analysis                        #</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">######################################################################</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create streamlines</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Note that the "right" number of streamlines is still up for debate. Last I read from the MRtrix documentation,</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># They recommend about 100 million tracks. Here I use 10 million, if only to save time. Read their papers and then make a decision</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">--all</span><span class="op">&gt;</span>/8 <span class="at">-info</span> <span class="pp">*</span>/dwi : tckgen <span class="at">-act</span> 5tt_coreg.mif <span class="at">-backtrack</span> <span class="at">-seed_gmwmi</span> gmwmSeed_coreg.mif <span class="at">-nthreads</span> 8 <span class="at">-maxlength</span> 250 <span class="at">-cutoff</span> 0.06 <span class="at">-select</span> 10000k wmfod_norm.mif tracks_10M.tck </span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract a subset of tracks (here, 200 thousand) for ease of visualization</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># tckedit tracks_10M.tck -number 200k smallerTracks_200k.tck</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Reduce the number of streamlines with tcksift</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">--all</span><span class="op">&gt;</span>/8 <span class="at">-info</span> <span class="pp">*</span>/dwi : tcksift2 <span class="at">-act</span> 5tt_coreg.mif <span class="at">-out_mu</span> sift_mu.txt <span class="at">-out_coeffs</span> sift_coeffs.txt <span class="at">-nthreads</span> 8 tracks_10M.tck wmfod_norm.mif sift_1M.txt </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="step-3.-recon-all-1" class="level3">
-<h3 class="anchored" data-anchor-id="step-3.-recon-all-1">STEP 3. Recon-all</h3>
-<p>Check the <a href="../../../content/guide/DTI/parallel.html">parallel processing section</a> to speed up this step using parallel computing<strong>.</strong></p>
-</section>
-<section id="step-4.-generate-the-structural-connectome-sc-1" class="level3">
-<h3 class="anchored" data-anchor-id="step-4.-generate-the-structural-connectome-sc-1">STEP 4. Generate the Structural Connectome (SC)</h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">--all</span><span class="op">&gt;</span> -info <span class="pp">*</span>/dwi : mrconvert –datatype uint32 hcpmmp1.mgz  hcpmmp1.mif </span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace the random integers of the hcpmmp1.mif file with integers</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># that start at 1 and increase by 1.</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">--all</span><span class="op">&gt;</span> -info <span class="pp">*</span>/dwi : labelconvert hcpmmp1.mif <span class="va">$MRtrix3</span>/share/mrtrix3/labelconvert/hcpmmp1_original.txt <span class="va">$MRtrix3</span>/share/mrtrix3/labelconvert/hcpmmp1_ordered.txt hcpmmp1_parcels_nocoreg.mif </span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Register the ordered atlas-based volumetric parcellation to diffusion space.</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">--all</span><span class="op">&gt;</span> -info <span class="pp">*</span>/dwi : mrtransformhcpmmp1_parcels_nocoreg.mif –lineardiff2struct_mrtrix.txt –inverse –datatype uint32  hcpmmp1_parcels_coreg.mif </span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a whole-brain connectome, representing the streamlines between each parcellation pair in the atlas (in this case, 379x379). The "symmetric" option will make the lower diagonal the same as the upper diagonal, and the "scale_invnodevol" option will scale the connectome by the inverse of the size of the node</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="op">&lt;</span>nproc <span class="at">--all</span><span class="op">&gt;</span> -info <span class="pp">*</span> : tck2connectome <span class="at">-symmetric</span> <span class="at">-zero_diagonal</span> <span class="at">-scale_invnodevol</span> <span class="at">-tck_weights_in</span> dwi/sift_1M.txt dwi/tracks_10M.tck dwi/hcpmmp1_parcels_coreg.mif dwi/IN_hcpmmp1_parcels_coreg.csv <span class="at">-out_assignment</span> dwi/assignments_IN_hcpmmp1_parcels_coreg.csv </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You can then copy and save the structural connectomes wherever you like:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> . <span class="at">-name</span> <span class="dt">\s</span>ub-<span class="pp">*</span>.csv <span class="at">-exec</span> cp {} /path/to/where you want to save the SC <span class="dt">\;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
-</section>
 <section id="fa-weighted-connectome" class="level3">
 <h3 class="anchored" data-anchor-id="fa-weighted-connectome">FA-weighted connectome</h3>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the RGB-colored FA map</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">dwi2tensor</span> dwi_den_preproc_unbiased.mif <span class="at">-</span> <span class="kw">|</span> <span class="ex">tensor2metric</span> <span class="at">-</span> <span class="at">-vec</span> <span class="at">-</span> <span class="kw">|</span> <span class="ex">mrcalc</span> <span class="at">-</span> <span class="at">-abs</span> FA.mif</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the connectome</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="ex">tcksample</span> tracks_10M.tck <span class="at">-tck_weights_in</span> sift_1M.txt FA.mif mean_FA_per_streamline.csv <span class="at">-stat_tck</span> mean</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="ex">tck2connectome</span> tracks_10M.tck <span class="at">-tck_weights_in</span> sift_1M.txt hcpmmp1_parcels_coreg.mif mean_FA_connectome.csv <span class="at">-scale_file</span> mean_FA_per_streamline.csv <span class="at">-stat_edge</span> mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the RGB-colored FA map</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">dwi2tensor</span> dwi_den_preproc_unbiased.mif <span class="at">-</span> <span class="kw">|</span> <span class="ex">tensor2metric</span> <span class="at">-</span> <span class="at">-vec</span> <span class="at">-</span> <span class="kw">|</span> <span class="ex">mrcalc</span> <span class="at">-</span> <span class="at">-abs</span> FA.mif</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the connectome</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">tcksample</span> tracks_10M.tck <span class="at">-tck_weights_in</span> sift_1M.txt FA.mif mean_FA_per_streamline.csv <span class="at">-stat_tck</span> mean</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">tck2connectome</span> tracks_10M.tck <span class="at">-tck_weights_in</span> sift_1M.txt hcpmmp1_parcels_coreg.mif mean_FA_connectome.csv <span class="at">-scale_file</span> mean_FA_per_streamline.csv <span class="at">-stat_edge</span> mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 
@@ -857,8 +742,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../content/guide/DTI/parallel.html" class="pagination-link">
-        <span class="nav-page-text"><strong>Parallel processing</strong></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../content/guide/DTI/DTI_batch.html" class="pagination-link">
+        <span class="nav-page-text"><strong>Diffusion Tensor Imaging (DTI) - Batch processing</strong></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
