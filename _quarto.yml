@@ -61,6 +61,7 @@ website:
               - section: "Scripts"
                 contents:
                 - content/guide/DTI/DTI_single.qmd
+                  text: "**Single Subject**"
                 - section: "Batch processing"
                   contents:
                   - content/guide/DTI/DTI_batch.qmd
