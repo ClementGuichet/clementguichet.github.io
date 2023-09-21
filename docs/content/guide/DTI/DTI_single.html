@@ -475,7 +475,7 @@ div.csl-indent {
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace the random integers of the hcpmmp1.mif file with integers</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># that start at 1 and increase by 1.</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ex">labelconvert</span> hcpmmp1.mif <span class="va">$MRtrix3</span>/labelconvert/hcpmmp1_original.txt <span class="va">$MRtrix3</span>/share/mrtrix3/labelconvert/hcpmmp1_ordered.txt hcpmmp1_parcels_nocoreg.mif</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ex">labelconvert</span> hcpmmp1.mif <span class="va">$MRtrix3</span>/labelconvert/hcpmmp1_original.txt <span class="va">$MRtrix3</span>/labelconvert/hcpmmp1_ordered.txt hcpmmp1_parcels_nocoreg.mif</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Register the ordered atlas-based volumetric parcellation to diffusion space.</span></span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="ex">mrtransform</span> hcpmmp1_parcels_nocoreg.mif –linear diff2struct_mrtrix.txt –inverse –datatype uint32 hcpmmp1_parcels_coreg.mif</span>
