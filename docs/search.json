@@ -74,7 +74,7 @@
     "href": "content/guide/DTI/DTI_batch.html#download",
     "title": "Diffusion Tensor Imaging (DTI) - Batch processing",
     "section": "Download",
-    "text": "Download\nYou can download the full preprocessing script here and run it by typing this command in the folder that contains your subject’s data:\nbash batch_full_preproc.sh\nBefore running the script, open it and change the following parameters:\n\ndwifslpreproc: check your json file for the PhaseEncodingDirection (-pe_dir), the total readout time. More information on MRtrix3 documentation.\nIf you wish to generate a connectome with HCP regions, make sure you’ve downloaded the lh and rh.hcpmmp1 annot files in the supplementary files here and put them into $SUBJECTS_DIR/fsaverage/label (see also STEP 3. Recon-all)."
+    "text": "Download\nYou can download the full preprocessing script here and run it by typing this command in the folder that contains your subject’s data:\nbash batch_full_preproc.sh\nBefore running the script, open it and change the following parameters:\n\ndwifslpreproc: check your json file for the PhaseEncodingDirection (-pe_dir), the total readout time. More information on MRtrix3 documentation.\nIf you wish to generate a connectome with HCP regions, make sure you’ve downloaded the lh and rh.hcpmmp1 annot files in the supplementary files here and put them into $SUBJECTS_DIR/fsaverage/label (see also parallel.qmd)."
   },
   {
     "objectID": "content/about.html",
