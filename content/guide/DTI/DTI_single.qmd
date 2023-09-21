@@ -10,9 +10,7 @@ I recommend you check [Andrew Jahn's book](https://andysbrainbook.readthedocs.io
 
 #### CPUs
 
-To determine the number of available logical processors or CPUs on your system, enter *nproc \--all* in the terminal. The output number is the argument we'll pass to the *-nthreads* flag below. I recommend you spare some of it if you wish to perform other tasks while the pipeline is running.
-
-**Below, I only use 8 CPUs. You may have to tweak it to your systems specs and size of your cohort for a smooth run.**
+To determine the number of available logical processors or CPUs on your system, enter *nproc* in the terminal. We'll pass the output to the *-nthreads* flag below. I recommend you spare some of it if you wish to perform other tasks while the pipeline is running.
 
 ### STEP 1. Preprocessing
 
@@ -110,20 +108,22 @@ tcksift2 -act 5tt_coreg.mif -out_mu sift_mu.txt -out_coeffs sift_coeffs.txt -nth
 
 ### STEP 3. Recon-all
 
-Download the *lh* and *rh.hcpmmp1 annot* files in the supplementary files [here](https://osf.io/fkyht/#!) and put them into \$SUBJECTS_DIR/fsaverage/label. This will prepare the T1 image for the HCP MMP 1.0 atlas [@glasser2016].
+Download the ***lh*** and ***rh.hcpmmp1 annot*** files in the supplementary files [here](https://osf.io/fkyht/#!) and put them into **\$SUBJECTS_DIR/fsaverage/label**. This will prepare the T1 image for the HCP MMP 1.0 atlas [@glasser2016].
 
 -   Replace `<sub>` with the name of your subject.
 
--   If recon-all does not work, make sure you have the tcsh shell installed by typing tcsh on the command line. In the event tcsh is not installed, enter *sudo apt install tcsh.*
+-   If recon-all does not work, make sure you have the *tcsh* shell installed by typing *tcsh* on the command line. In the event *tcsh* is not installed, enter "*sudo apt install tcsh".*
 
 -   If the flag *-s* is not recognized, use -*subjid* instead
 
 ``` bash
 #!/bin/bash
 
-# 1. Since the HCPMMP1-atlas is a FreeSurfer-based atlas, you have to preprocess the T1 image in FreeSurfer. This will take several hours to complete.
+NPROC=$(nproc)
+
+# Since the HCPMMP1-atlas is a FreeSurfer-based atlas, you have to preprocess the T1 image in FreeSurfer. This will take several hours to complete.
 SUBJECTS_DIR=`pwd`;
-recon-all –s <sub>_recon –i T1_raw.nii.gz –all
+recon-all –s <sub>_recon –i T1_raw.nii.gz –all -nthreads $NPROC
 
 # Move into freesurfer's subjects directory. Substitute <password> for your UNIX password
 echo <password> | sudo -S mv *recon $SUBJECTS_DIR
@@ -140,7 +140,7 @@ $SUBJECTS_DIR/<sub>_recon/label/lh.hcpmmp1.annot
 
 mri_surf2surf --srcsubject fsaverage --trgsubject <sub>_recon --hemi rh --sval-annot $SUBJECTS_DIR/fsaverage/label/rh.hcpmmp1.annot --tval $SUBJECTS_DIR/<sub>_recon/label/rh.hcpmmp1.annot
 
-mri_aparc2aseg --old-ribbon --s <sub>_recon --annot hcpmmp1 --o hcpmmp1.mgz --nthreads 12
+mri_aparc2aseg --old-ribbon --s <sub>_recon --annot hcpmmp1 --o hcpmmp1.mgz --nthreads $NPROC
 ```
 
 ### STEP 4. Generate the Structural Connectome (SC)
@@ -192,8 +192,6 @@ bash single_subj_full_preproc.sh
 ```
 
 Before running the script, open it and change the following parameters:
-
--   NPROC: number of CPUs available on your machine
 
 -   ***dwifslpreproc***: check your json file for the *PhaseEncodingDirection* (-pe_dir), the total readout time. More information on [MRtrix3 documentation](https://www.mrtrix.org/documentation/).
 

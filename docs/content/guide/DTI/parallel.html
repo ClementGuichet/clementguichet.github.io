@@ -345,12 +345,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="using-the-parallel-command" class="level2">
 <h2 class="anchored" data-anchor-id="using-the-parallel-command">Using the parallel command</h2>
 <p>Parallel is run by piping the <em>ls</em> command into the <em>parallel</em> command:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">NPROC</span><span class="op">=</span><span class="va">$(</span><span class="fu">nproc</span> <span class="at">--all</span><span class="va">)</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$NPROC</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="pp">*</span>.nii <span class="kw">|</span> <span class="ex">parallel</span> <span class="at">--jobs</span> <span class="va">$NPROC</span> recon-all <span class="at">-s</span> {.}_recon <span class="at">-i</span> {} <span class="at">-all</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">NPROC</span><span class="op">=</span><span class="va">$(</span><span class="fu">nproc</span><span class="va">)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="pp">*</span>.nii <span class="kw">|</span> <span class="ex">parallel</span> <span class="at">--jobs</span> <span class="va">$NPROC</span> recon-all <span class="at">-s</span> {.}_recon <span class="at">-i</span> {} <span class="at">-all</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>--jobs NPROC indicates that NPROC cores will be used to analyze the data and that each instance of recon-all will be assigned to a different core.</p>
-<p>The full bash script consists in copying the <em>T1.nii.gz</em> images in the new directory (FS), unzip them, run and store the output of recon-all in this directory. Then, we move the newly created recon directory into freesurfer’s $SUBJECTS_DIR.</p>
+<p>The full bash script consists in copying the <em>T1.nii.gz</em> images in the new directory (/<em>FS</em>), unzip them, run and store the output of recon-all in this directory. Then, we move the newly created recon directory into freesurfer’s $SUBJECTS_DIR.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming you are in the raw_data directory which lists all the subjects folders</span></span>
@@ -373,7 +372,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co"># This avoids permission error</span></span>
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="va">SUBJECTS_DIR</span><span class="op">=</span><span class="kw">`</span><span class="bu">pwd</span><span class="kw">`</span></span>
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="pp">*</span>.nii <span class="kw">|</span> <span class="ex">parallel</span> <span class="at">--jobs</span> 12 recon-all <span class="at">-s</span> {.}_recon <span class="at">-i</span> {} <span class="at">-all</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="pp">*</span>.nii <span class="kw">|</span> <span class="ex">parallel</span> <span class="at">--jobs</span> <span class="va">$NPROC</span> recon-all <span class="at">-s</span> {.}_recon <span class="at">-i</span> {} <span class="at">-all</span></span>
 <span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the copied T1.nii.gz files</span></span>
 <span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="pp">*</span>.nii</span>
 <span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>

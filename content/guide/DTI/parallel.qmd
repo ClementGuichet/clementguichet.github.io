@@ -32,15 +32,14 @@ brew install parallel
 Parallel is run by piping the *ls* command into the *parallel* command:
 
 ``` bash
-NPROC=$(nproc --all)
-echo $NPROC
+NPROC=$(nproc)
 
 ls *.nii | parallel --jobs $NPROC recon-all -s {.}_recon -i {} -all
 ```
 
 \--jobs NPROC indicates that NPROC cores will be used to analyze the data and that each instance of recon-all will be assigned to a different core.
 
-The full bash script consists in copying the *T1.nii.gz* images in the new directory (FS), unzip them, run and store the output of recon-all in this directory. Then, we move the newly created recon directory into freesurfer's \$SUBJECTS_DIR.
+The full bash script consists in copying the *T1.nii.gz* images in the new directory (/*FS*), unzip them, run and store the output of recon-all in this directory. Then, we move the newly created recon directory into freesurfer's \$SUBJECTS_DIR.
 
 ``` bash
 #!/bin/bash
@@ -65,7 +64,7 @@ gunzip *.gz
 # This avoids permission error
 SUBJECTS_DIR=`pwd`
 
-ls *.nii | parallel --jobs 12 recon-all -s {.}_recon -i {} -all
+ls *.nii | parallel --jobs $NPROC recon-all -s {.}_recon -i {} -all
 # Remove the copied T1.nii.gz files
 rm *.nii
 
