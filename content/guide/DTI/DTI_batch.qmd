@@ -4,9 +4,7 @@ subtitle: A step-by-step guide to DTI preprocessing & SC generation based on MRt
 bibliography: references.yaml
 ---
 
-## Batch processing
-
-Below, I provide a synthesis of the preprocessing steps using the for_each command available on MRtrix3.
+Below, I provide a synthesis of the preprocessing steps using the for_each command available on MRtrix3. The full script is available for download at the bottom (see [Download]).
 
 #### For_each command
 

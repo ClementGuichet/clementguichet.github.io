@@ -318,14 +318,11 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#single-subject-processing" id="toc-single-subject-processing" class="nav-link active" data-scroll-target="#single-subject-processing">Single subject processing</a>
-  <ul class="collapse">
-  <li><a href="#step-1.-preprocessing" id="toc-step-1.-preprocessing" class="nav-link" data-scroll-target="#step-1.-preprocessing">STEP 1. Preprocessing</a></li>
+  <li><a href="#step-1.-preprocessing" id="toc-step-1.-preprocessing" class="nav-link active" data-scroll-target="#step-1.-preprocessing">STEP 1. Preprocessing</a></li>
   <li><a href="#step-2.-streamline-generation" id="toc-step-2.-streamline-generation" class="nav-link" data-scroll-target="#step-2.-streamline-generation">STEP 2. Streamline generation</a></li>
   <li><a href="#step-3.-recon-all" id="toc-step-3.-recon-all" class="nav-link" data-scroll-target="#step-3.-recon-all">STEP 3. Recon-all</a></li>
   <li><a href="#step-4.-generate-the-structural-connectome-sc" id="toc-step-4.-generate-the-structural-connectome-sc" class="nav-link" data-scroll-target="#step-4.-generate-the-structural-connectome-sc">STEP 4. Generate the Structural Connectome (SC)</a></li>
   <li><a href="#optional.-fa-weighted-connectome" id="toc-optional.-fa-weighted-connectome" class="nav-link" data-scroll-target="#optional.-fa-weighted-connectome">OPTIONAL. FA-weighted connectome</a></li>
-  </ul></li>
   <li><a href="#download" id="toc-download" class="nav-link" data-scroll-target="#download">Download</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClementGuichet/clementguichet.github.io/edit/main/content/guide/DTI/DTI_single.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
@@ -351,9 +348,7 @@ div.csl-indent {
 
 </header>
 
-<section id="single-subject-processing" class="level2">
-<h2 class="anchored" data-anchor-id="single-subject-processing">Single subject processing</h2>
-<p>I recommend you check <a href="https://andysbrainbook.readthedocs.io/en/latest/MRtrix/MRtrix_Introduction.html">Andrew Jahn’s book</a> for a thorough walk-through DTI analysis with MRtrix3.</p>
+<p>I recommend you check <a href="https://andysbrainbook.readthedocs.io/en/latest/MRtrix/MRtrix_Introduction.html">Andrew Jahn’s book</a> for a thorough walk-through DTI analysis with MRtrix3. The full script is available for download at the bottom (see <a href="#download">Download</a>).</p>
 <section id="cpus" class="level4">
 <h4 class="anchored" data-anchor-id="cpus">CPUs</h4>
 <p>To determine the number of available logical processors or CPUs on your system, enter <em>nproc</em> in the terminal. We’ll pass the output to the <em>-nthreads</em> flag below. I recommend you spare some of it if you wish to perform other tasks while the pipeline is running.</p>
@@ -392,7 +387,7 @@ div.csl-indent {
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Runs the dwipreproc command, which is a wrapper for eddy and topup.</span></span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">#### !!! Here the CAMCAN dataset does not provide reverse encoding, hence -rpe_none !!!</span></span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">######################################################################</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="ex">dwifslpreproc</span> dwi_den.mif dwi_den_preproc.mif <span class="at">-pe_dir</span> AP <span class="at">-rpe_none</span> <span class="at">-readout_time</span> 0.0342002 <span class="at">-eddy_options</span> <span class="st">" --slm=linear --data_is_shelled"</span>  <span class="at">-nthreads</span> 8</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="ex">dwifslpreproc</span> dwi_den.mif dwi_den_preproc.mif <span class="at">-pe_dir</span> AP <span class="at">-rpe_none</span> <span class="at">-readout_time</span> 0.0342002 <span class="at">-eddy_options</span> <span class="st">" --slm=linear --data_is_shelled"</span> <span class="at">-nthreads</span> 8</span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Performs bias field correction. Needs ANTs to be installed in order to use the "ants" option (use "fsl" otherwise)</span></span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="ex">dwibiascorrect</span> ants dwi_den_preproc.mif dwi_den_preproc_unbiased.mif <span class="at">-bias</span> bias.mif </span>
@@ -530,7 +525,6 @@ div.csl-indent {
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">tck2connectome</span> <span class="at">-symmetric</span> tracks_10M.tck <span class="at">-tck_weights_in</span> sift_1M.txt hcpmmp1_parcels_coreg.mif mean_FA_connectome.csv <span class="at">-scale_file</span> mean_FA_per_streamline.csv <span class="at">-stat_edge</span> mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
-</section>
 </section>
 <section id="download" class="level2">
 <h2 class="anchored" data-anchor-id="download">Download</h2>

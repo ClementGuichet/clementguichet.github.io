@@ -297,14 +297,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#batch-processing" id="toc-batch-processing" class="nav-link active" data-scroll-target="#batch-processing">Batch processing</a>
-  <ul class="collapse">
-  <li><a href="#step-1.-preprocessing" id="toc-step-1.-preprocessing" class="nav-link" data-scroll-target="#step-1.-preprocessing">STEP 1. Preprocessing</a></li>
+  <li><a href="#step-1.-preprocessing" id="toc-step-1.-preprocessing" class="nav-link active" data-scroll-target="#step-1.-preprocessing">STEP 1. Preprocessing</a></li>
   <li><a href="#step-2.-streamline-generation" id="toc-step-2.-streamline-generation" class="nav-link" data-scroll-target="#step-2.-streamline-generation">STEP 2. Streamline generation</a></li>
   <li><a href="#step-3.-recon-all" id="toc-step-3.-recon-all" class="nav-link" data-scroll-target="#step-3.-recon-all">STEP 3. Recon-all</a></li>
   <li><a href="#step-4.-generate-the-structural-connectome-sc" id="toc-step-4.-generate-the-structural-connectome-sc" class="nav-link" data-scroll-target="#step-4.-generate-the-structural-connectome-sc">STEP 4. Generate the Structural Connectome (SC)</a></li>
   <li><a href="#optional.-fa-weighted-connectome" id="toc-optional.-fa-weighted-connectome" class="nav-link" data-scroll-target="#optional.-fa-weighted-connectome">OPTIONAL. FA-weighted connectome</a></li>
-  </ul></li>
   <li><a href="#download" id="toc-download" class="nav-link" data-scroll-target="#download">Download</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClementGuichet/clementguichet.github.io/edit/main/content/guide/DTI/DTI_batch.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
@@ -330,9 +327,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="batch-processing" class="level2">
-<h2 class="anchored" data-anchor-id="batch-processing">Batch processing</h2>
-<p>Below, I provide a synthesis of the preprocessing steps using the for_each command available on MRtrix3.</p>
+<p>Below, I provide a synthesis of the preprocessing steps using the for_each command available on MRtrix3. The full script is available for download at the bottom (see <a href="#download">Download</a>).</p>
 <section id="for_each-command" class="level4">
 <h4 class="anchored" data-anchor-id="for_each-command">For_each command</h4>
 <p>For_each is useful when you want to run multiple subjects, with multithreading. You have to provide the path to the /<em>dwi directory</em>/ within each subject’s folder where the data is stored (bvals, bvecs, etc…) as a template :</p>
@@ -476,7 +471,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ex">for_each</span> <span class="at">-nthreads</span> <span class="va">$NPROC</span> <span class="at">-info</span> <span class="pp">*</span> : tck2connectome <span class="at">-symmetric</span> dwi/tracks_10M.tck <span class="at">-tck_weights_in</span> dwi/sift_1M.txt dwi/hcpmmp1_parcels_coreg.mif dwi/IN_mean_FA_connectome.csv <span class="at">-scale_file</span> dwi/IN_mean_FA_per_streamline.csv <span class="at">-stat_edge</span> mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
-</section>
 </section>
 <section id="download" class="level2">
 <h2 class="anchored" data-anchor-id="download">Download</h2>
