@@ -127,7 +127,7 @@ for sub in `cat subjList.txt`; do
   # For the command "mri_aparc2aseg", there can be an error which is due to the way multithreading is handled. 
   # Just rerun the command manually until it works or use a single thread
   ################################################################
-	mri_aparc2aseg --old-ribbon --s ${sub}_T1w_recon --annot hcpmmp1 --o hcpmmp1.mgz --nthreads $NPROC
+	mri_aparc2aseg --old-ribbon --s ${sub}_T1w_recon --annot hcpmmp1 --o hcpmmp1.mgz --nthreads $NPROC/2
 
 	mrconvert –datatype uint32 hcpmmp1.mgz hcpmmp1.mif
 

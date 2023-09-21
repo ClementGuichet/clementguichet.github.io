@@ -156,7 +156,7 @@ $SUBJECTS_DIR/<sub>_recon/label/lh.hcpmmp1.annot
 
 mri_surf2surf --srcsubject fsaverage --trgsubject <sub>_recon --hemi rh --sval-annot $SUBJECTS_DIR/fsaverage/label/rh.hcpmmp1.annot --tval $SUBJECTS_DIR/<sub>_recon/label/rh.hcpmmp1.annot
 
-mri_aparc2aseg --old-ribbon --s <sub>_recon --annot hcpmmp1 --o hcpmmp1.mgz --nthreads $NPROC
+mri_aparc2aseg --old-ribbon --s <sub>_recon --annot hcpmmp1 --o hcpmmp1.mgz --nthreads $NPROC/2
 ```
 
 ### STEP 4. Generate the Structural Connectome (SC)
