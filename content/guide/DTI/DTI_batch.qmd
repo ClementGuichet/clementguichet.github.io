@@ -135,7 +135,7 @@ for_each -nthreads <nproc --all> -info */dwi : mrtransformhcpmmp1_parcels_nocore
 
 for_each -nthreads <nproc --all> -info * : tck2connectome -symmetric -zero_diagonal -scale_invnodevol -tck_weights_in dwi/sift_1M.txt dwi/tracks_10M.tck dwi/hcpmmp1_parcels_coreg.mif dwi/IN_hcpmmp1_parcels_coreg.csv -out_assignment dwi/assignments_IN_hcpmmp1_parcels_coreg.csv 
 
-# Visualize the connectome in MRtrix3
+# For a given subject, Visualize the connectome in MRtrix3
 mrview hcpmmp1_parcels_coreg.mif -connectome.init hcpmmp1_parcels_coreg.mif -connectome.load sub*.csv
 ```
 

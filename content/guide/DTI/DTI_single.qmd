@@ -156,7 +156,7 @@ mrconvert –datatype uint32 hcpmmp1.mgz  hcpmmp1.mif
 
 # Replace the random integers of the hcpmmp1.mif file with integers
 # that start at 1 and increase by 1.
-labelconvert hcpmmp1.mif $MRtrix3/share/mrtrix3/labelconvert/hcpmmp1_original.txt $MRtrix3/share/mrtrix3/labelconvert/hcpmmp1_ordered.txt hcpmmp1_parcels_nocoreg.mif
+labelconvert hcpmmp1.mif $MRtrix3/labelconvert/hcpmmp1_original.txt $MRtrix3/share/mrtrix3/labelconvert/hcpmmp1_ordered.txt hcpmmp1_parcels_nocoreg.mif
 
 # Register the ordered atlas-based volumetric parcellation to diffusion space.
 mrtransform hcpmmp1_parcels_nocoreg.mif –linear diff2struct_mrtrix.txt –inverse –datatype uint32 hcpmmp1_parcels_coreg.mif
