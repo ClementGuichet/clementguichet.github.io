@@ -8,11 +8,11 @@ bibliography: references.yaml
 
 I recommend you check [Andrew Jahn's book](https://andysbrainbook.readthedocs.io/en/latest/MRtrix/MRtrix_Introduction.html) for a thorough walk-through DTI analysis with MRtrix3.
 
-#### Logical processors
+#### CPUs
 
 To determine the number of available logical processors or CPUs on your system, enter *nproc \--all* in the terminal. The output number is the argument we'll pass to the *-nthreads* flag below. I recommend you spare some of it if you wish to perform other tasks while the pipeline is running.
 
-**For example, I only use 8 out of the 48 available CPUs on my system. You may have to tweak it to your systems specs and size of your cohort for a smooth run.**
+**Below, I only use 8 CPUs. You may have to tweak it to your systems specs and size of your cohort for a smooth run.**
 
 ### STEP 1. Preprocessing
 
@@ -173,8 +173,6 @@ You can then visualize the connectivity matrix in matlab: the upper left and low
 
 ![In Matlab: W = importdata('sub-XXXXX_hcpmmp1_parcels_coreg.csv'); figure, imagesc(W, \[0 1\]), xlabel(\[' 379 Glasser regions '\]), ylabel('379 Glasser regions'), title(\[' Structural connectome (streamline density) '\]); colormap(jet), colorbar, set(gcf,'color','w'), set(gca,'fontsize',14)](/images/SC.png){fig-align="center"}
 
-------------------------------------------------------------------------
-
 ### FA-weighted connectome
 
 ``` bash
@@ -185,4 +183,14 @@ dwi2tensor dwi_den_preproc_unbiased.mif - | tensor2metric - -fa - | mrcalc - -ab
 tcksample tracks_10M.tck -tck_weights_in sift_1M.txt FA.mif mean_FA_per_streamline.csv -stat_tck mean
 
 tck2connectome -symmetric tracks_10M.tck -tck_weights_in sift_1M.txt hcpmmp1_parcels_coreg.mif mean_FA_connectome.csv -scale_file mean_FA_per_streamline.csv -stat_edge mean
+```
+
+------------------------------------------------------------------------
+
+## Download
+
+**You can download the full preprocessing script** [here](https://github.com/ClementGuichet/clementguichet.github.io/blob/main/content/downloads/single_subj_full_preproc.sh) **and run it by typing this command in the folder that contains your subject's data:**
+
+``` bash
+bash single_subj_full_preproc.sh
 ```

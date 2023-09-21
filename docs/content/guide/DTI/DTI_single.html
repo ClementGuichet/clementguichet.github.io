@@ -315,6 +315,7 @@ div.csl-indent {
   <li><a href="#step-4.-generate-the-structural-connectome-sc" id="toc-step-4.-generate-the-structural-connectome-sc" class="nav-link" data-scroll-target="#step-4.-generate-the-structural-connectome-sc">STEP 4. Generate the Structural Connectome (SC)</a></li>
   <li><a href="#fa-weighted-connectome" id="toc-fa-weighted-connectome" class="nav-link" data-scroll-target="#fa-weighted-connectome">FA-weighted connectome</a></li>
   </ul></li>
+  <li><a href="#download" id="toc-download" class="nav-link" data-scroll-target="#download">Download</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClementGuichet/clementguichet.github.io/edit/main/content/guide/DTI/DTI_single.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
@@ -342,10 +343,10 @@ div.csl-indent {
 <section id="single-subject-processing" class="level2">
 <h2 class="anchored" data-anchor-id="single-subject-processing">Single subject processing</h2>
 <p>I recommend you check <a href="https://andysbrainbook.readthedocs.io/en/latest/MRtrix/MRtrix_Introduction.html">Andrew Jahn’s book</a> for a thorough walk-through DTI analysis with MRtrix3.</p>
-<section id="logical-processors" class="level4">
-<h4 class="anchored" data-anchor-id="logical-processors">Logical processors</h4>
+<section id="cpus" class="level4">
+<h4 class="anchored" data-anchor-id="cpus">CPUs</h4>
 <p>To determine the number of available logical processors or CPUs on your system, enter <em>nproc --all</em> in the terminal. The output number is the argument we’ll pass to the <em>-nthreads</em> flag below. I recommend you spare some of it if you wish to perform other tasks while the pipeline is running.</p>
-<p><strong>For example, I only use 8 out of the 48 available CPUs on my system. You may have to tweak it to your systems specs and size of your cohort for a smooth run.</strong></p>
+<p><strong>Below, I only use 8 CPUs. You may have to tweak it to your systems specs and size of your cohort for a smooth run.</strong></p>
 </section>
 <section id="step-1.-preprocessing" class="level3">
 <h3 class="anchored" data-anchor-id="step-1.-preprocessing">STEP 1. Preprocessing</h3>
@@ -494,7 +495,6 @@ div.csl-indent {
 <figcaption class="figure-caption">In Matlab: W = importdata(‘sub-XXXXX_hcpmmp1_parcels_coreg.csv’); figure, imagesc(W, [0 1]), xlabel([’ 379 Glasser regions ‘]), ylabel(’379 Glasser regions’), title([’ Structural connectome (streamline density) ‘]); colormap(jet), colorbar, set(gcf,’color’,‘w’), set(gca,‘fontsize’,14)</figcaption>
 </figure>
 </div>
-<hr>
 </section>
 <section id="fa-weighted-connectome" class="level3">
 <h3 class="anchored" data-anchor-id="fa-weighted-connectome">FA-weighted connectome</h3>
@@ -505,10 +505,16 @@ div.csl-indent {
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">tcksample</span> tracks_10M.tck <span class="at">-tck_weights_in</span> sift_1M.txt FA.mif mean_FA_per_streamline.csv <span class="at">-stat_tck</span> mean</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">tck2connectome</span> <span class="at">-symmetric</span> tracks_10M.tck <span class="at">-tck_weights_in</span> sift_1M.txt hcpmmp1_parcels_coreg.mif mean_FA_connectome.csv <span class="at">-scale_file</span> mean_FA_per_streamline.csv <span class="at">-stat_edge</span> mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-
-
+<hr>
 </section>
+</section>
+<section id="download" class="level2">
+<h2 class="anchored" data-anchor-id="download">Download</h2>
+<p><strong>You can download the full preprocessing script</strong> <a href="https://github.com/ClementGuichet/clementguichet.github.io/blob/main/content/downloads/single_subj_full_preproc.sh">here</a> <strong>and run it by typing this command in the folder that contains your subject’s data:</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> single_subj_full_preproc.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
+
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
