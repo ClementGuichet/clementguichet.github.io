@@ -313,7 +313,7 @@ div.csl-indent {
   <li><a href="#step-2.-streamline-generation" id="toc-step-2.-streamline-generation" class="nav-link" data-scroll-target="#step-2.-streamline-generation">STEP 2. Streamline generation</a></li>
   <li><a href="#step-3.-recon-all" id="toc-step-3.-recon-all" class="nav-link" data-scroll-target="#step-3.-recon-all">STEP 3. Recon-all</a></li>
   <li><a href="#step-4.-generate-the-structural-connectome-sc" id="toc-step-4.-generate-the-structural-connectome-sc" class="nav-link" data-scroll-target="#step-4.-generate-the-structural-connectome-sc">STEP 4. Generate the Structural Connectome (SC)</a></li>
-  <li><a href="#fa-weighted-connectome" id="toc-fa-weighted-connectome" class="nav-link" data-scroll-target="#fa-weighted-connectome">FA-weighted connectome</a></li>
+  <li><a href="#optional.-fa-weighted-connectome" id="toc-optional.-fa-weighted-connectome" class="nav-link" data-scroll-target="#optional.-fa-weighted-connectome">OPTIONAL. FA-weighted connectome</a></li>
   </ul></li>
   <li><a href="#download" id="toc-download" class="nav-link" data-scroll-target="#download">Download</a></li>
   </ul>
@@ -496,8 +496,8 @@ div.csl-indent {
 </figure>
 </div>
 </section>
-<section id="fa-weighted-connectome" class="level3">
-<h3 class="anchored" data-anchor-id="fa-weighted-connectome">FA-weighted connectome</h3>
+<section id="optional.-fa-weighted-connectome" class="level3">
+<h3 class="anchored" data-anchor-id="optional.-fa-weighted-connectome">OPTIONAL. FA-weighted connectome</h3>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the RGB-colored FA map</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">dwi2tensor</span> dwi_den_preproc_unbiased.mif <span class="at">-</span> <span class="kw">|</span> <span class="ex">tensor2metric</span> <span class="at">-</span> <span class="at">-fa</span> <span class="at">-</span> <span class="kw">|</span> <span class="ex">mrcalc</span> <span class="at">-</span> <span class="at">-abs</span> FA.mif</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>

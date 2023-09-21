@@ -173,7 +173,7 @@ You can then visualize the connectivity matrix in matlab: the upper left and low
 
 ![In Matlab: W = importdata('sub-XXXXX_hcpmmp1_parcels_coreg.csv'); figure, imagesc(W, \[0 1\]), xlabel(\[' 379 Glasser regions '\]), ylabel('379 Glasser regions'), title(\[' Structural connectome (streamline density) '\]); colormap(jet), colorbar, set(gcf,'color','w'), set(gca,'fontsize',14)](/images/SC.png){fig-align="center"}
 
-### FA-weighted connectome
+### OPTIONAL. FA-weighted connectome
 
 ``` bash
 # Generate the RGB-colored FA map
