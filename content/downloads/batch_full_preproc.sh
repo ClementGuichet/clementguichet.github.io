@@ -4,12 +4,12 @@
 # MUST FOLLOW BIDS ARCHITECTURE:
 # sub
 # 	-anat
-# 	 	-T1w.nii.gz
+# 	 	-*T1w.nii.gz
 # 	-dwi
-# 	 	-bvec
-# 	 	-bval
-# 	 	-json
-# 	 	-dwi.nii.gz
+# 	 	-*.bvec
+# 	 	-*.bval
+# 	 	-*.json
+# 	 	-*dwi.nii.gz
 ################################################################
 
 ################################################################

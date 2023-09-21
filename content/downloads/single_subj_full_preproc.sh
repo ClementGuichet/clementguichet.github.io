@@ -4,13 +4,12 @@
 # MUST FOLLOW BIDS ARCHITECTURE:
 # sub
 # 	-anat
-# 	 	-T1w.nii.gz
+# 	 	-*T1w.nii.gz
 # 	-dwi
-# 	 	-bvec
-# 	 	-bval
-# 	 	-json
-# 	 	-dwi.nii.gz
-
+# 	 	-*.bvec
+# 	 	-*.bval
+# 	 	-*.json
+# 	 	-*dwi.nii.gz
 ################################################################
 
 ls . | grep ^sub- > subjList.txt
@@ -116,6 +115,7 @@ mv *T1w_recon $SUBJECTS_DIR
 # Glasser annotation & SC Generation (Streamline density)
 ######################################################################
 
+
 ls . | grep ^sub- > subjList.txt
 
 for sub in `cat subjList.txt`; do
@@ -123,6 +123,10 @@ for sub in `cat subjList.txt`; do
 	mri_surf2surf --srcsubject fsaverage --trgsubject ${sub}_T1w_recon --hemi rh --sval-annot $SUBJECTS_DIR/fsaverage/label/rh.hcpmmp1.annot --tval $SUBJECTS_DIR/${sub}_T1w_recon/label/rh.hcpmmp1.annot
 
 	cd ./${sub}/dwi
+  ################################################################
+  # For the command "mri_aparc2aseg", there can be an error which is due to the way multithreading is handled. 
+  # Just rerun the command manually until it works or use a single thread
+  ################################################################
 	mri_aparc2aseg --old-ribbon --s ${sub}_T1w_recon --annot hcpmmp1 --o hcpmmp1.mgz --nthreads $NPROC
 
 	mrconvert –datatype uint32 hcpmmp1.mgz hcpmmp1.mif

@@ -77,6 +77,11 @@ echo <password> | sudo -S chmod -R a+w $FREESURFER_HOME
 You can then carry on with mapping the glasser annotation file:
 
 ``` bash
+################################################################
+# For the command "mri_aparc2aseg", there can be an error which is due to the way multithreading is handled. Just rerun the command manually for the subjects which did not have an output hcpmmp1.mgz
+# You can find these subjects by typing "find . -name *.mgz" in a terminal in the directory that contains all your subjects folders
+################################################################
+
 # Map the annotation files of the HCP MMP 1.0 atlas from fsaverage to you rsubject for both hemispheres:
 
 ls . | grep ^sub- > subjList.txt

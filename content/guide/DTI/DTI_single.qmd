@@ -17,6 +17,18 @@ To determine the number of available logical processors or CPUs on your system, 
 ``` bash
 #!/bin/bash
 
+################################################################
+# MUST FOLLOW BIDS ARCHITECTURE:
+# sub
+# 	-anat
+# 	 	-*T1w.nii.gz
+# 	-dwi
+# 	 	-*.bvec
+# 	 	-*.bval
+# 	 	-*.json
+# 	 	-*dwi.nii.gz
+################################################################
+
 ############################### STEP 1 ###############################
 #             Convert data to .mif format and denoise                #
 ######################################################################
@@ -134,6 +146,10 @@ echo <password> | sudo -S chmod -R a+w $FREESURFER_HOME
 You can then carry on with mapping the glasser annotation file:
 
 ``` bash
+################################################################
+# For the command "mri_aparc2aseg", there can be an error which is due to the way multithreading is handled. Just rerun the command manually until it works or use a single thread
+################################################################
+
 # Map the annotation files of the HCP MMP 1.0 atlas from fsaverage to your subject for both hemispheres:
 mri_surf2surf --srcsubject fsaverage --trgsubject <sub>_recon --hemi lh --sval-annot $SUBJECTS_DIR/fsaverage/label/lh.hcpmmp1.annot --tval
 $SUBJECTS_DIR/<sub>_recon/label/lh.hcpmmp1.annot
