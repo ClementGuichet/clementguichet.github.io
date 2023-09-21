@@ -60,7 +60,7 @@ website:
               - content/guide/DTI/setup_lin.qmd
               - section: "Scripts"
                 contents:
-                - content/guide/DTI/DTI_single.qmd
+                - file: content/guide/DTI/DTI_single.qmd
                   text: "**Single Subject**"
                 - section: "Batch processing"
                   contents:
