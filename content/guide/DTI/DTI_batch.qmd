@@ -180,4 +180,4 @@ Before running the script, open it and change the following parameters:
 
 -   ***dwifslpreproc***: check your json file for the *PhaseEncodingDirection* (-pe_dir), the total readout time. More information on [MRtrix3 documentation](https://www.mrtrix.org/documentation/).
 
--   If you wish to generate a connectome with HCP regions, make sure you've downloaded the ***lh*** and ***rh.hcpmmp1 annot*** files in the supplementary files [here](https://osf.io/fkyht/#!) and put them into **\$SUBJECTS_DIR/fsaverage/label** (see also [parallel.qmd](parallel.qmd)).
+-   If you wish to generate a connectome with HCP regions, make sure you've downloaded the ***lh*** and ***rh.hcpmmp1 annot*** files in the supplementary files [here](https://osf.io/fkyht/#!) and put them into **\$SUBJECTS_DIR/fsaverage/label** (see also [Recon-all with parallel computing](parallel.qmd)).

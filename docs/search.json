@@ -37,21 +37,21 @@
   {
     "objectID": "content/guide/DTI/parallel.html",
     "href": "content/guide/DTI/parallel.html",
-    "title": "Parallel processing",
+    "title": "Parallel computing",
     "section": "",
     "text": "Install Homebrew with the following command and add it to your PATH:\n/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"\n\ntest -d ~/.linuxbrew && eval \"$(~/.linuxbrew/bin/brew shellenv)\"\ntest -d /home/linuxbrew/.linuxbrew && eval \"$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)\"\ntest -r ~/.bash_profile && echo \"eval \\\"\\$($(brew --prefix)/bin/brew shellenv)\\\"\" &gt;&gt; ~/.bash_profile\necho \"eval \\\"\\$($(brew --prefix)/bin/brew shellenv)\\\"\" &gt;&gt; ~/.profile\nThen install gcc and parallel:\nbrew install gcc\nbrew install parallel"
   },
   {
     "objectID": "content/guide/DTI/parallel.html#software-installation",
     "href": "content/guide/DTI/parallel.html#software-installation",
-    "title": "Parallel processing",
+    "title": "Parallel computing",
     "section": "",
     "text": "Install Homebrew with the following command and add it to your PATH:\n/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"\n\ntest -d ~/.linuxbrew && eval \"$(~/.linuxbrew/bin/brew shellenv)\"\ntest -d /home/linuxbrew/.linuxbrew && eval \"$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)\"\ntest -r ~/.bash_profile && echo \"eval \\\"\\$($(brew --prefix)/bin/brew shellenv)\\\"\" &gt;&gt; ~/.bash_profile\necho \"eval \\\"\\$($(brew --prefix)/bin/brew shellenv)\\\"\" &gt;&gt; ~/.profile\nThen install gcc and parallel:\nbrew install gcc\nbrew install parallel"
   },
   {
     "objectID": "content/guide/DTI/parallel.html#using-the-parallel-command",
     "href": "content/guide/DTI/parallel.html#using-the-parallel-command",
-    "title": "Parallel processing",
+    "title": "Parallel computing",
     "section": "Using the parallel command",
     "text": "Using the parallel command\nParallel is run by piping the ls command into the parallel command:\nNPROC=$(nproc)\n\nls *.nii | parallel --jobs $NPROC recon-all -s {.}_recon -i {} -all\n--jobs NPROC indicates that NPROC cores will be used to analyze the data and that each instance of recon-all will be assigned to a different core.\nThe full bash script consists in copying the T1.nii.gz images in the new directory (/FS), unzip them, run and store the output of recon-all in this directory. Then, we move the newly created recon directory into freesurfer’s $SUBJECTS_DIR.\n#!/bin/bash\n\n# Assuming you are in the raw_data directory which lists all the subjects folders\nmkdir FS\n\n# grab the list of subject name\nls . | grep ^sub- &gt; subjList.txt\n\n# Path to the anatomical T1 image\nfor sub in `cat subjList.txt`; do\n    cp ./${sub}/anat/${sub}_T1w.nii.gz ./FS\ndone\n\ncd FS\n\n# Unzip\ngunzip *.gz\n\n# Story output in the current directory\n# This avoids permission error\nSUBJECTS_DIR=`pwd`\n\nls *.nii | parallel --jobs $NPROC recon-all -s {.}_recon -i {} -all\n# Remove the copied T1.nii.gz files\nrm *.nii\n\n# Move into freesurfer's subjects directory. Substitute &lt;password&gt; for your UNIX password\necho &lt;password&gt; | sudo -S mv *recon $SUBJECTS_DIR\n# Grant permission to write the file\necho &lt;password&gt; | sudo -S chmod -R a+w $FREESURFER_HOME\nYou can then carry on with mapping the glasser annotation file:\n################################################################\n# For the command \"mri_aparc2aseg\", there can be an error which is due to the way multithreading is handled. Just rerun the command manually for the subjects which did not have an output hcpmmp1.mgz\n# You can find these subjects by typing \"find . -name *.mgz\" in a terminal in the directory that contains all your subjects folders\n################################################################\n\n# Map the annotation files of the HCP MMP 1.0 atlas from fsaverage to you rsubject for both hemispheres:\n\nls . | grep ^sub- &gt; subjList.txt\n\nfor sub in `cat subjList.txt`; do\n  # Left hemisphere\n  mri_surf2surf --srcsubject fsaverage --trgsubject ${sub}_recon --hemi lh --sval-annot $SUBJECTS_DIR/fsaverage/label/lh.hcpmmp1.annot --tval $SUBJECTS_DIR/${sub}_T1w_recon/label/lh.hcpmmp1.annot\n\n  # Right hemisphere\n  mri_surf2surf --srcsubject fsaverage --trgsubject ${sub}_recon --hemi rh --sval-annot $SUBJECTS_DIR/fsaverage/label/rh.hcpmmp1.annot --tval $SUBJECTS_DIR/${sub}_T1w_recon/label/rh.hcpmmp1.annot\n  \n  cd ./{sub}/dwi\n  mri_aparc2aseg --old-ribbon --s ${sub}_recon --annot hcpmmp1 --o ${sub}/dwi/hcpmmp1.mgz --nthreads $NPROC\n  cd ../..\n  \ndone"
   },
@@ -74,7 +74,7 @@
     "href": "content/guide/DTI/DTI_batch.html#download",
     "title": "Diffusion Tensor Imaging (DTI) - Batch processing",
     "section": "Download",
-    "text": "Download\nYou can download the full preprocessing script here and run it by typing this command in the folder that contains your subject’s data:\nbash batch_full_preproc.sh\nBefore running the script, open it and change the following parameters:\n\ndwifslpreproc: check your json file for the PhaseEncodingDirection (-pe_dir), the total readout time. More information on MRtrix3 documentation.\nIf you wish to generate a connectome with HCP regions, make sure you’ve downloaded the lh and rh.hcpmmp1 annot files in the supplementary files here and put them into $SUBJECTS_DIR/fsaverage/label (see also parallel.qmd)."
+    "text": "Download\nYou can download the full preprocessing script here and run it by typing this command in the folder that contains your subject’s data:\nbash batch_full_preproc.sh\nBefore running the script, open it and change the following parameters:\n\ndwifslpreproc: check your json file for the PhaseEncodingDirection (-pe_dir), the total readout time. More information on MRtrix3 documentation.\nIf you wish to generate a connectome with HCP regions, make sure you’ve downloaded the lh and rh.hcpmmp1 annot files in the supplementary files here and put them into $SUBJECTS_DIR/fsaverage/label (see also Recon-all with parallel computing)."
   },
   {
     "objectID": "content/about.html",

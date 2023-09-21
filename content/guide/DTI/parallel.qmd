@@ -1,5 +1,5 @@
 ---
-title: "**Parallel processing**"
+title: "**Parallel computing**"
 format: html
 editor: visual
 subtitle: Speeding up Recon-all computation
