@@ -62,7 +62,7 @@ website:
                 contents:
                 - file: content/guide/DTI/DTI_single.qmd
                   text: "**Single Subject**"
-                - section: "Batch processing"
+                - section: "**Batch processing**"
                   contents:
                   - content/guide/DTI/DTI_batch.qmd
                   - content/guide/DTI/parallel.qmd
