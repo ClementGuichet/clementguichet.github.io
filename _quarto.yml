@@ -61,8 +61,10 @@ website:
               - section: "Scripts"
                 contents:
                 - content/guide/DTI/DTI_single.qmd
-                - content/guide/DTI/DTI_batch.qmd
-                - content/guide/DTI/parallel.qmd
+                - section: "Batch processing"
+                  contents:
+                  - content/guide/DTI/DTI_batch.qmd
+                  - content/guide/DTI/parallel.qmd
           - section: "rs-fMRI pipeline (FC)"
             contents: 
               - content/guide/rs-fMRI/spm.qmd

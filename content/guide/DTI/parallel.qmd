@@ -32,27 +32,31 @@ brew install parallel
 Parallel is run by piping the *ls* command into the *parallel* command:
 
 ``` bash
-ls *.nii | parallel --jobs <nproc --all> recon-all -s {.}_recon -i {} -all
+NPROC=$(nproc --all)
+echo $NPROC
+
+ls *.nii | parallel --jobs $NPROC recon-all -s {.}_recon -i {} -all
 ```
 
-\--jobs N indicates that N cores will be used to analyze the data and that each instance of recon-all will be assigned to a different core.
+\--jobs NPROC indicates that NPROC cores will be used to analyze the data and that each instance of recon-all will be assigned to a different core.
 
-The full bash script consists in copying the T1.nii.gz images in the new directory (FS), unzip them, run and store the output of recon-all in this directory
+The full bash script consists in copying the *T1.nii.gz* images in the new directory (FS), unzip them, run and store the output of recon-all in this directory. Then, we move the newly created recon directory into freesurfer's \$SUBJECTS_DIR.
 
 ``` bash
 #!/bin/bash
 
 # Assuming you are in the raw_data directory which lists all the subjects folders
 mkdir FS
-cd FS
 
 # grab the list of subject name
-ls ../raw_data | grep ^sub- > subjList.txt
+ls . | grep ^sub- > subjList.txt
 
 # Path to the anatomical T1 image
 for sub in `cat subjList.txt`; do
-    cp ../raw_data/${sub}/anat/${sub}_T1w.nii.gz .
+    cp ./${sub}/anat/${sub}_T1w.nii.gz ./FS
 done
+
+cd FS
 
 # Unzip
 gunzip *.gz
@@ -62,25 +66,19 @@ gunzip *.gz
 SUBJECTS_DIR=`pwd`
 
 ls *.nii | parallel --jobs 12 recon-all -s {.}_recon -i {} -all
-
 # Remove the copied T1.nii.gz files
 rm *.nii
 
-# Copy into freesurfer's subjects directory
-**On Windows**
-echo <password> | sudo -S cp -r *recon $SUBJECTS_DIR
+# Move into freesurfer's subjects directory. Substitute <password> for your UNIX password
+echo <password> | sudo -S mv *recon $SUBJECTS_DIR
 # Grant permission to write the file
-echo <password> | sudo -S chmod -R a+w /usr/local/freesurfer
-
-**On linux**
-cp -r *recon $SUBJECTS_DIR
+echo <password> | sudo -S chmod -R a+w $FREESURFER_HOME
 ```
 
 You can then carry on with mapping the glasser annotation file:
 
 ``` bash
 # Map the annotation files of the HCP MMP 1.0 atlas from fsaverage to you rsubject for both hemispheres:
-cd ../raw_data
 
 ls . | grep ^sub- > subjList.txt
 
@@ -92,7 +90,7 @@ for sub in `cat subjList.txt`; do
   mri_surf2surf --srcsubject fsaverage --trgsubject ${sub}_recon --hemi rh --sval-annot $SUBJECTS_DIR/fsaverage/label/rh.hcpmmp1.annot --tval $SUBJECTS_DIR/${sub}_T1w_recon/label/rh.hcpmmp1.annot
   
   cd ./{sub}/dwi
-  mri_aparc2aseg --old-ribbon --s ${sub}_recon --annot hcpmmp1 --o ${sub}/dwi/hcpmmp1.mgz --nthreads 12
+  mri_aparc2aseg --old-ribbon --s ${sub}_recon --annot hcpmmp1 --o ${sub}/dwi/hcpmmp1.mgz --nthreads $NPROC
   cd ../..
   
 done

@@ -237,6 +237,15 @@ div.csl-indent {
  <span class="menu-text">Diffusion Tensor Imaging (DTI) - <strong>Single subject</strong></span></a>
   </div>
 </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+ <span class="menu-text">Batch processing</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth5 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../content/guide/DTI/DTI_batch.html" class="sidebar-item-text sidebar-link">
@@ -255,15 +264,17 @@ div.csl-indent {
   </li>
       </ul>
   </li>
+      </ul>
+  </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
  <span class="menu-text">rs-fMRI pipeline (FC)</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../content/guide/rs-fMRI/spm.html" class="sidebar-item-text sidebar-link">
@@ -280,13 +291,13 @@ div.csl-indent {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
  <span class="menu-text">Graph theory</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../content/guide/GT/graphvar.html" class="sidebar-item-text sidebar-link">
@@ -439,7 +450,7 @@ div.csl-indent {
 </section>
 <section id="step-3.-recon-all" class="level3">
 <h3 class="anchored" data-anchor-id="step-3.-recon-all">STEP 3. Recon-all</h3>
-<p>Download the <em>lh and rh.hcpmmp1 annot</em> files in the supplementary files <a href="https://osf.io/fkyht/#!">here</a> and put them into $SUBJECTS_DIR/fsaverage/label. This will prepare the T1 image for the HCP MMP 1.0 atlas <span class="citation" data-cites="glasser2016">(<a href="#ref-glasser2016" role="doc-biblioref">Glasser et al. 2016</a>)</span>.</p>
+<p>Download the <em>lh</em> and <em>rh.hcpmmp1 annot</em> files in the supplementary files <a href="https://osf.io/fkyht/#!">here</a> and put them into $SUBJECTS_DIR/fsaverage/label. This will prepare the T1 image for the HCP MMP 1.0 atlas <span class="citation" data-cites="glasser2016">(<a href="#ref-glasser2016" role="doc-biblioref">Glasser et al. 2016</a>)</span>.</p>
 <ul>
 <li><p>Replace <code>&lt;sub&gt;</code> with the name of your subject.</p></li>
 <li><p>If recon-all does not work, make sure you have the tcsh shell installed by typing tcsh on the command line. In the event tcsh is not installed, enter <em>sudo apt install tcsh.</em></p></li>
@@ -451,14 +462,10 @@ div.csl-indent {
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="va">SUBJECTS_DIR</span><span class="op">=</span><span class="kw">`</span><span class="bu">pwd</span><span class="kw">`;</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">recon-all</span> –s <span class="op">&lt;</span>sub<span class="op">&gt;</span>_recon –i T1_raw.nii.gz –all</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy into freesurfer's subjects directory</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ex">**On</span> Windows<span class="pp">**</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="op">&lt;</span>password<span class="op">&gt;</span> <span class="kw">|</span> <span class="fu">sudo</span> <span class="at">-S</span> cp <span class="at">-r</span> <span class="pp">*</span>recon <span class="va">$SUBJECTS_DIR</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Grant permission to write the file</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="op">&lt;</span>password<span class="op">&gt;</span> <span class="kw">|</span> <span class="fu">sudo</span> <span class="at">-S</span> chmod <span class="at">-R</span> a+w /usr/local/freesurfer</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="ex">**On</span> linux<span class="pp">**</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-r</span> <span class="pp">*</span>recon <span class="va">$SUBJECTS_DIR</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Move into freesurfer's subjects directory. Substitute &lt;password&gt; for your UNIX password</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="op">&lt;</span>password<span class="op">&gt;</span> <span class="kw">|</span> <span class="fu">sudo</span> <span class="at">-S</span> mv <span class="pp">*</span>recon <span class="va">$SUBJECTS_DIR</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Grant permission to write the file</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="op">&lt;</span>password<span class="op">&gt;</span> <span class="kw">|</span> <span class="fu">sudo</span> <span class="at">-S</span> chmod <span class="at">-R</span> a+w <span class="va">$FREESURFER_HOME</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You can then carry on with mapping the glasser annotation file:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Map the annotation files of the HCP MMP 1.0 atlas from fsaverage to your subject for both hemispheres:</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">mri_surf2surf</span> <span class="at">--srcsubject</span> fsaverage <span class="at">--trgsubject</span> <span class="op">&lt;</span>sub<span class="op">&gt;</span>_recon <span class="at">--hemi</span> lh <span class="at">--sval-annot</span> <span class="va">$SUBJECTS_DIR</span>/fsaverage/label/lh.hcpmmp1.annot <span class="at">--tval</span></span>
@@ -512,6 +519,12 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="download">Download</h2>
 <p><strong>You can download the full preprocessing script</strong> <a href="https://github.com/ClementGuichet/clementguichet.github.io/blob/main/content/downloads/single_subj_full_preproc.sh">here</a> <strong>and run it by typing this command in the folder that contains your subject’s data:</strong></p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> single_subj_full_preproc.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Before running the script, open it and change the following parameters:</p>
+<ul>
+<li><p>NPROC: number of CPUs available on your machine</p></li>
+<li><p><strong><em>dwifslpreproc</em></strong>: check your json file for the <em>PhaseEncodingDirection</em> (-pe_dir), the total readout time. More information on <a href="https://www.mrtrix.org/documentation/">MRtrix3 documentation</a>.</p></li>
+<li><p>If you wish to generate a connectome with HCP regions, make sure you’ve downloaded the <strong><em>lh</em></strong> and <strong><em>rh.hcpmmp1 annot</em></strong> files in the supplementary files <a href="https://osf.io/fkyht/#!">here</a> and put them into <strong>$SUBJECTS_DIR/fsaverage/label</strong> (see also <a href="#step-3.-recon-all">STEP 3. Recon-all</a>).</p></li>
+</ul>
 
 
 

@@ -110,7 +110,7 @@ tcksift2 -act 5tt_coreg.mif -out_mu sift_mu.txt -out_coeffs sift_coeffs.txt -nth
 
 ### STEP 3. Recon-all
 
-Download the *lh and rh.hcpmmp1 annot* files in the supplementary files [here](https://osf.io/fkyht/#!) and put them into \$SUBJECTS_DIR/fsaverage/label. This will prepare the T1 image for the HCP MMP 1.0 atlas [@glasser2016].
+Download the *lh* and *rh.hcpmmp1 annot* files in the supplementary files [here](https://osf.io/fkyht/#!) and put them into \$SUBJECTS_DIR/fsaverage/label. This will prepare the T1 image for the HCP MMP 1.0 atlas [@glasser2016].
 
 -   Replace `<sub>` with the name of your subject.
 
@@ -125,14 +125,10 @@ Download the *lh and rh.hcpmmp1 annot* files in the supplementary files [here](h
 SUBJECTS_DIR=`pwd`;
 recon-all –s <sub>_recon –i T1_raw.nii.gz –all
 
-# Copy into freesurfer's subjects directory
-**On Windows**
-echo <password> | sudo -S cp -r *recon $SUBJECTS_DIR
+# Move into freesurfer's subjects directory. Substitute <password> for your UNIX password
+echo <password> | sudo -S mv *recon $SUBJECTS_DIR
 # Grant permission to write the file
-echo <password> | sudo -S chmod -R a+w /usr/local/freesurfer
-
-**On linux**
-cp -r *recon $SUBJECTS_DIR
+echo <password> | sudo -S chmod -R a+w $FREESURFER_HOME
 ```
 
 You can then carry on with mapping the glasser annotation file:
@@ -194,3 +190,11 @@ tck2connectome -symmetric tracks_10M.tck -tck_weights_in sift_1M.txt hcpmmp1_par
 ``` bash
 bash single_subj_full_preproc.sh
 ```
+
+Before running the script, open it and change the following parameters:
+
+-   NPROC: number of CPUs available on your machine
+
+-   ***dwifslpreproc***: check your json file for the *PhaseEncodingDirection* (-pe_dir), the total readout time. More information on [MRtrix3 documentation](https://www.mrtrix.org/documentation/).
+
+-   If you wish to generate a connectome with HCP regions, make sure you've downloaded the ***lh*** and ***rh.hcpmmp1 annot*** files in the supplementary files [here](https://osf.io/fkyht/#!) and put them into **\$SUBJECTS_DIR/fsaverage/label** (see also [STEP 3. Recon-all]).
