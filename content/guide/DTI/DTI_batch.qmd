@@ -20,13 +20,13 @@ For_each will then iterate over the directories paths that match this template (
 ################################################################
 # MUST FOLLOW BIDS ARCHITECTURE:
 # sub
-# 	-anat
-# 	 	-*T1w.nii.gz
-# 	-dwi
-# 	 	-*.bvec
-# 	 	-*.bval
-# 	 	-*.json
-# 	 	-*dwi.nii.gz
+#   -anat
+#       -*T1w.nii.gz
+#   -dwi
+#       -*.bvec
+#       -*.bval
+#       -*.json
+#       -*dwi.nii.gz
 ################################################################
 
 NPROC=$(nproc)

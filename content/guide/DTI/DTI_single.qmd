@@ -18,13 +18,13 @@ To determine the number of available logical processors or CPUs on your system, 
 ################################################################
 # MUST FOLLOW BIDS ARCHITECTURE:
 # sub
-# 	-anat
-# 	 	-*T1w.nii.gz
-# 	-dwi
-# 	 	-*.bvec
-# 	 	-*.bval
-# 	 	-*.json
-# 	 	-*dwi.nii.gz
+#   -anat
+#       -*T1w.nii.gz
+#   -dwi
+#       -*.bvec
+#       -*.bval
+#       -*.json
+#       -*dwi.nii.gz
 ################################################################
 
 ############################### STEP 1 ###############################

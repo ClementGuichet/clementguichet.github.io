@@ -62,9 +62,10 @@ website:
                 contents:
                 - file: content/guide/DTI/DTI_single.qmd
                   text: "**Single Subject**"
-                - section: "**Batch processing**"
+                - section: "**Multiple Subjects**"
                   contents:
-                  - content/guide/DTI/DTI_batch.qmd
+                  - file: content/guide/DTI/DTI_batch.qmd
+                    text: "Batch processing"
                   - content/guide/DTI/parallel.qmd
           - section: "rs-fMRI pipeline (FC)"
             contents: 
