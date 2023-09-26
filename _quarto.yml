@@ -58,15 +58,15 @@ website:
               contents:
               - content/guide/DTI/setup_win.qmd
               - content/guide/DTI/setup_lin.qmd
-            - section: "Scripts"
+          - section: "Scripts"
+              contents:
+              - file: content/guide/DTI/DTI_single.qmd
+                text: "**Single Subject**"
+              - section: "**Multiple Subjects**"
                 contents:
-                - file: content/guide/DTI/DTI_single.qmd
-                  text: "**Single Subject**"
-                - section: "**Multiple Subjects**"
-                  contents:
-                  - file: content/guide/DTI/DTI_batch.qmd
-                    text: "Batch processing"
-                  - content/guide/DTI/parallel.qmd
+                - file: content/guide/DTI/DTI_batch.qmd
+                  text: "Batch processing"
+                - content/guide/DTI/parallel.qmd
           - section: "rs-fMRI pipeline (FC)"
             contents: 
               - content/guide/rs-fMRI/spm.qmd
