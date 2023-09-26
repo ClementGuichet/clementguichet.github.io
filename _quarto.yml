@@ -71,9 +71,6 @@ website:
             contents: 
               - content/guide/rs-fMRI/spm.qmd
               - content/guide/rs-fMRI/conn.qmd
-          - section: "Graph theory"
-            contents: 
-              - content/guide/GT/graphvar.qmd
       
 format:
   html:
