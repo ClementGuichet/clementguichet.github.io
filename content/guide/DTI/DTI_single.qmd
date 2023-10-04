@@ -190,7 +190,7 @@ You can then visualize the connectivity matrix in matlab: the upper left and low
 dwi2tensor dwi_den_preproc_unbiased.mif - | tensor2metric - -fa - | mrcalc - -abs FA.mif
 
 # Generate the connectome
-tcksample tracks_10M.tck -tck_weights_in sift_1M.txt FA.mif mean_FA_per_streamline.csv -stat_tck mean
+tcksample tracks_10M.tck FA.mif mean_FA_per_streamline.csv -stat_tck mean
 
 tck2connectome -symmetric tracks_10M.tck -tck_weights_in sift_1M.txt hcpmmp1_parcels_coreg.mif mean_FA_connectome.csv -scale_file mean_FA_per_streamline.csv -stat_edge mean
 ```

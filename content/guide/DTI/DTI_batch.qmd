@@ -159,7 +159,7 @@ find . -name \sub-*.csv -exec cp {} /path/to/where you want to save the SC \;
 for_each -nthreads $NPROC -info */dwi : dwi2tensor IN/dwi_den_preproc_unbiased.mif - \| tensor2metric - -fa - \| mrcalc - -abs IN/FA.mif
 
 # Generate the connectome
-for_each -nthreads $NPROC -info * : tcksample dwi/tracks_10M.tck -tck_weights_in dwi/sift_1M.txt dwi/FA.mif dwi/IN_mean_FA_per_streamline.csv -stat_tck mean
+for_each -nthreads $NPROC -info * : tcksample dwi/tracks_10M.tck dwi/FA.mif dwi/IN_mean_FA_per_streamline.csv -stat_tck mean
 
 for_each -nthreads $NPROC -info * : tck2connectome -symmetric dwi/tracks_10M.tck -tck_weights_in dwi/sift_1M.txt dwi/hcpmmp1_parcels_coreg.mif dwi/IN_mean_FA_connectome.csv -scale_file dwi/IN_mean_FA_per_streamline.csv -stat_edge mean
 ```
