@@ -62,7 +62,7 @@ for_each -nthreads $NPROC -info */dwi : dwibiascorrect ants dwi_den_preproc.mif 
 for_each -nthreads $NPROC -info */dwi : dwi2response dhollander dwi_den_preproc_unbiased.mif wm.txt gm.txt csf.txt -voxels voxels.mif 
 
 #Upsample the difusion image for better resolution and tracto later
-for_each -nthreads $NPROC -info */dwi : mrgrid *unbiased.mif regrid -vox 1.25 dwi_unbiased_upsampled.mif
+for_each -nthreads $NPROC -info */dwi : mrgrid *unbiased.mif regrid -vox 1.5 dwi_unbiased_upsampled.mif
 
 # Create a mask for future processing steps
 for_each -nthreads $NPROC -info */dwi : dwi2mask *unbiased_upsampled.mif mask_up.mif
