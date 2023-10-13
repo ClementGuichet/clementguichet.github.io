@@ -2,3 +2,27 @@
 title: "**SPM12**"
 subtitle: Preprocessing resting-state fMRI
 ---
+
+### SPM standard pipeline
+
+You can download the batch matlab script [here](https://github.com/ClementGuichet/clementguichet.github.io/blob/main/content/downloads/SPM_Batch_preprocessing.mat). The preprocessing pipeline entails:
+
+-   Realignement & Slice timing
+
+-   Co-registration of the T1w image to the mean image created by the realignement procedure
+
+-   Segmentation
+
+-   Normalization
+
+-   Smoothing (6mm FWHM Gaussian kernel)
+
+### ART
+
+Motion parameters from the realignment are evaluated with ART ([Artifact Detection Tool](https://www.nitrc.org/projects/artifact_detect); Massachusetts Institute of Technology) to detect outlying volumes:
+
+-   Interscan movement threshold of 3 mm in translation, 0.02 rad in rotation
+
+-   Global interscan signal intensity of 3 *SD* relative to the session mean.
+
+-   Individuals with 10% of more outlying volumes can be considered outliers

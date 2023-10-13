@@ -7,6 +7,13 @@
     "text": "This site hosts documentation to preprocess and analyze structural (DTI), and functional (rs-fMRI) data with the latest tools available. For any inquiry, please contact me at: guichetc@univ-grenoble-alpes.fr"
   },
   {
+    "objectID": "content/guide/rs-fMRI/spm.html",
+    "href": "content/guide/rs-fMRI/spm.html",
+    "title": "SPM12",
+    "section": "",
+    "text": "SPM standard pipeline\nYou can download the batch matlab script here. The preprocessing pipeline entails:\n\nRealignement & Slice timing\nCo-registration of the T1w image to the mean image created by the realignement procedure\nSegmentation\nNormalization\nSmoothing (6mm FWHM Gaussian kernel)\n\n\n\nART\nMotion parameters from the realignment are evaluated with ART (Artifact Detection Tool; Massachusetts Institute of Technology) to detect outlying volumes:\n\nInterscan movement threshold of 3 mm in translation, 0.02 rad in rotation\nGlobal interscan signal intensity of 3 SD relative to the session mean.\nIndividuals with 10% of more outlying volumes can be considered outliers"
+  },
+  {
     "objectID": "content/guide/rs-fMRI/conn.html",
     "href": "content/guide/rs-fMRI/conn.html",
     "title": "CONN",

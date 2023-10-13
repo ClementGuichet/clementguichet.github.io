@@ -248,7 +248,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#spm-standard-pipeline" id="toc-spm-standard-pipeline" class="nav-link active" data-scroll-target="#spm-standard-pipeline">SPM standard pipeline</a></li>
+  <li><a href="#art" id="toc-art" class="nav-link" data-scroll-target="#art">ART</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClementGuichet/clementguichet.github.io/edit/main/content/guide/rs-fMRI/spm.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -271,8 +278,28 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="spm-standard-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="spm-standard-pipeline">SPM standard pipeline</h3>
+<p>You can download the batch matlab script <a href="https://github.com/ClementGuichet/clementguichet.github.io/blob/main/content/downloads/SPM_Batch_preprocessing.mat">here</a>. The preprocessing pipeline entails:</p>
+<ul>
+<li><p>Realignement &amp; Slice timing</p></li>
+<li><p>Co-registration of the T1w image to the mean image created by the realignement procedure</p></li>
+<li><p>Segmentation</p></li>
+<li><p>Normalization</p></li>
+<li><p>Smoothing (6mm FWHM Gaussian kernel)</p></li>
+</ul>
+</section>
+<section id="art" class="level3">
+<h3 class="anchored" data-anchor-id="art">ART</h3>
+<p>Motion parameters from the realignment are evaluated with ART (<a href="https://www.nitrc.org/projects/artifact_detect">Artifact Detection Tool</a>; Massachusetts Institute of Technology) to detect outlying volumes:</p>
+<ul>
+<li><p>Interscan movement threshold of 3 mm in translation, 0.02 rad in rotation</p></li>
+<li><p>Global interscan signal intensity of 3 <em>SD</em> relative to the session mean.</p></li>
+<li><p>Individuals with 10% of more outlying volumes can be considered outliers</p></li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -526,7 +553,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">Copyright © 2023, Clement Guichet<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClementGuichet/clementguichet.github.io/edit/main/content/guide/rs-fMRI/spm.qmd" class="toc-action">Edit this page</a></p></div></div></div>
+    <div class="nav-footer-center">Copyright © 2023, Clement Guichet</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
