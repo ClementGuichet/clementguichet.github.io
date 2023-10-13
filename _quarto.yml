@@ -71,6 +71,8 @@ website:
             contents: 
               - content/guide/rs-fMRI/spm.qmd
               - content/guide/rs-fMRI/conn.qmd
+              - file: content/guide/rs-fMRI/bold_ts.qmd
+                text: "Extract BOLD Timeseries"
       
 format:
   html:
