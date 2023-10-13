@@ -17,6 +17,10 @@ I'm a 2nd-year PhD Student in Cognitive and Computational Neuroscience at LPNC, 
 
 **Bachelor's degree in Psychology (2017-2020) \|** *UGA*
 
+## Supervision
+
+**Nicolas Grivel - UGA Master's student** (Oct 2023 - ongoing) \| *Predicting* *cognitive reserve with a latent graph-invariant space*
+
 ## Experience
 
 **Co-analyst & Peer-reviewer** (April 2022 - ongoing) \| *Center of Open Science* (COS) \| Multi100 project
