@@ -1,5 +1,5 @@
 ---
-title: "Extract denoised BOLD Time Series"
+title: "Extract denoised BOLD Timeseries"
 subtitle: Extract and store denoised BOLD TS from CONN output
 ---
 
