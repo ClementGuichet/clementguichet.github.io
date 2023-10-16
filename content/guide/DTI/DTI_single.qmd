@@ -50,9 +50,6 @@ dwifslpreproc dwi_den.mif dwi_den_preproc.mif -pe_dir AP -rpe_none -readout_time
 # Performs bias field correction. Needs ANTs to be installed in order to use the "ants" option (use "fsl" otherwise)
 dwibiascorrect ants dwi_den_preproc.mif dwi_den_preproc_unbiased.mif -bias bias.mif 
 
-# Create a mask for future processing steps
-dwi2mask dwi_den_preproc_unbiased.mif mask.mif 
-
 ########################### STEP 2 ###################################
 #             Basis function for each tissue type                    #
 ######################################################################
@@ -60,8 +57,14 @@ dwi2mask dwi_den_preproc_unbiased.mif mask.mif
 # Create a basis function from the subject's DWI data. The "dhollander" function is best used for multi-shell acquisitions; it will estimate different basis functions for each tissue type. For single-shell acquisition, use the "tournier" function instead
 dwi2response dhollander dwi_den_preproc_unbiased.mif wm.txt gm.txt csf.txt -voxels voxels.mif 
 
+#Upsample the difusion image for better resolution and tracto later
+mrgrid IN/*unbiased.mif regrid -vox 1.5 IN/dwi_unbiased_upsampled.mif
+
+# Create a mask for future processing steps
+dwi2mask dwi_unbiased_upsampled.mif mask.mif 
+
 # Performs multishell-multitissue constrained spherical deconvolution, using the basis functions estimated above
-dwi2fod msmt_csd dwi_den_preproc_unbiased.mif -mask mask.mif wm.txt wmfod.mif gm.txt gmfod.mif csf.txt csffod.mif 
+dwi2fod msmt_csd dwi_unbiased_upsampled.mif -mask mask.mif wm.txt wmfod.mif gm.txt gmfod.mif csf.txt csffod.mif 
 
 # Creates an image of the fiber orientation densities overlaid onto the estimated tissues (Blue=WM; Green=GM; Red=CSF)
 # You should see FOD's mostly within the white matter. These can be viewed later with the command "mrview vf.mif -odf.load_sh wmfod.mif"
