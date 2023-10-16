@@ -140,7 +140,7 @@ for_each -nthreads $NPROC -info */dwi : mrconvert –datatype uint32 IN/hcpmmp1.
 
 # Replace the random integers of the hcpmmp1.mif file with integers
 # that start at 1 and increase by 1.
-for_each -nthreads $NPROC -info */dwi : labelconvert IN/hcpmmp1.mif $MRtrix3/share/mrtrix3/labelconvert/hcpmmp1_original.txt $MRtrix3/share/mrtrix3/labelconvert/hcpmmp1_ordered.txt IN/hcpmmp1_parcels_nocoreg.mif 
+for_each -nthreads $NPROC -info */dwi : labelconvert IN/hcpmmp1.mif $MRtrix3/labelconvert/hcpmmp1_original.txt $MRtrix3/labelconvert/hcpmmp1_ordered.txt IN/hcpmmp1_parcels_nocoreg.mif 
 
 # Register the ordered atlas-based volumetric parcellation to diffusion space.
 for_each -nthreads $NPROC -info */dwi : mrtransform IN/hcpmmp1_parcels_nocoreg.mif –linear IN/diff2struct_mrtrix_up.txt –inverse –datatype uint32 IN/hcpmmp1_parcels_coreg_up.mif 
@@ -153,14 +153,6 @@ for_each -nthreads $NPROC -info * : tck2connectome -symmetric -zero_diagonal -sc
 mrview hcpmmp1_parcels_coreg_up.mif -connectome.init hcpmmp1_parcels_coreg_up.mif -connectome.load sub*_up.csv
 ```
 
-You can then copy and save the structural connectomes wherever you like:
-
-``` bash
-find . -name \sub-*.csv -exec cp {} /path/to/where you want to save the SC \;
-```
-
-------------------------------------------------------------------------
-
 ### OPTIONAL. FA-weighted connectome
 
 ``` bash
@@ -171,6 +163,21 @@ for_each -nthreads $NPROC -info */dwi : dwi2tensor IN/*unbiased_upsampled.mif - 
 for_each -nthreads $NPROC -info * : tcksample IN/dwi/tracks_10M_up.tck IN/dwi/FA_up.mif IN/dwi/IN_mean_FA_per_streamline_up.csv -stat_tck mean
 
 for_each -nthreads $NPROC -info * : tck2connectome -symmetric dwi/tracks_10M_up.tck -tck_weights_in dwi/sift_1M_up.txt dwi/hcpmmp1_parcels_coreg_up.mif dwi/IN_mean_FA_connectome_up.csv -scale_file dwi/IN_mean_FA_per_streamline_up.csv -stat_edge mean
+```
+
+------------------------------------------------------------------------
+
+### Useful shell commands
+
+``` bash
+# Copy and paste specific files 
+find . -name \filename.xxx -exec cp {} /path/to/where you want to save the SC \;  
+
+#Find all directories that do contain a specific file 
+find . -name \filename.xxx | wc -l #(get the total count)  
+
+# Find all directories that do not contain a specific file 
+find . -type d '!' -exec test -e "{}/filename.xxx" \; -print
 ```
 
 ------------------------------------------------------------------------
