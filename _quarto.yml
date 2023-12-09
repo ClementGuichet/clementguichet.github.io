@@ -52,7 +52,7 @@ website:
         - section: "Guide"
           file: content/guide/DTI/setup_win.qmd
           contents: 
-          - section: "DTI pipeline (SC)"
+          - section: "Tractography pipeline (SC)"
             contents:
             - section: "Setup"
               contents:
