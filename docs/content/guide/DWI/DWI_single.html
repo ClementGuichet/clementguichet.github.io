@@ -333,10 +333,10 @@ div.csl-indent {
 
 </header>
 
-<p>I recommend you check <a href="https://andysbrainbook.readthedocs.io/en/latest/MRtrix/MRtrix_Introduction.html">Andrew Jahn’s book</a> for a thorough walk-through DTI analysis with MRtrix3. The full script is available for download at the bottom (see <a href="#download">Download</a>).</p>
+<p>The full script detailed below is available for download at the bottom (see <a href="#download">Download</a>). This is largely adapted from <a href="https://andysbrainbook.readthedocs.io/en/latest/MRtrix/MRtrix_Introduction.html">Andrew Jahn’s book</a>; consider checking the book for a thorough tutorial with MRtrix3.</p>
 <section id="cpus" class="level4">
 <h4 class="anchored" data-anchor-id="cpus">CPUs</h4>
-<p>To determine the number of available logical processors or CPUs on your system, enter <em>nproc</em> in the terminal. We’ll pass the output to the <em>-nthreads</em> flag below. I recommend you spare some of it if you wish to perform other tasks while the pipeline is running.</p>
+<p>To determine the number of available logical processors or CPUs on your system, enter <em>nproc</em> in the terminal. Then, pass the output to the <em>-nthreads</em> flag below. Spare some processors if you wish to perform other tasks while the pipeline is running as it usually runs for a couple hours.</p>
 </section>
 <section id="step-1.-preprocessing" class="level3">
 <h3 class="anchored" data-anchor-id="step-1.-preprocessing">STEP 1. Preprocessing</h3>
@@ -385,7 +385,7 @@ div.csl-indent {
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="ex">dwi2response</span> dhollander dwi_den_preproc_unbiased.mif wm.txt gm.txt csf.txt <span class="at">-voxels</span> voxels.mif </span>
 <span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="co">#Upsample the difusion image for better resolution and tracto later</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="ex">mrgrid</span> IN/<span class="pp">*</span>unbiased.mif regrid <span class="at">-vox</span> 1.5 IN/dwi_unbiased_upsampled.mif</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="ex">mrgrid</span> <span class="pp">*</span>unbiased.mif regrid <span class="at">-vox</span> 1.5 dwi_unbiased_upsampled.mif</span>
 <span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a mask for future processing steps</span></span>
 <span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="ex">dwi2mask</span> dwi_unbiased_upsampled.mif mask.mif </span>
@@ -398,7 +398,7 @@ div.csl-indent {
 <span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="ex">mrconvert</span> <span class="at">-coord</span> 3 0 wmfod.mif <span class="at">-</span> <span class="kw">|</span> <span class="ex">mrcat</span> csffod.mif gmfod.mif <span class="at">-</span> vf.mif </span>
 <span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="co"># Now normalize the FODs to enable comparison between subjects</span></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="ex">mtnormalise</span> wmfod.mif wmfod_norm.mif gmfod.mif gmfod_norm.mif csffod.mif csffod_norm.mif <span class="at">-mask</span> mask.mif </span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="ex">mtnormalise</span> wmfod.mif wmfod_norm_up.mif gmfod.mif gmfod_norm_up.mif csffod.mif csffod_norm_up.mif <span class="at">-mask</span> mask_up.mif </span>
 <span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="co">########################### STEP 3 ###################################</span></span>
 <span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="co">#            Create a GM/WM boundary for seed analysis               #</span></span>
@@ -409,18 +409,18 @@ div.csl-indent {
 <span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="ex">5ttgen</span> fsl T1.mif 5tt_nocoreg.mif <span class="at">-nthreads</span> 8 </span>
 <span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="co"># The following series of commands will take the average of the b0 images (which have the best contrast), convert them and the 5tt image to NIFTI format, and use it for coregistration.</span></span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="ex">dwiextract</span> dwi_den_preproc_unbiased.mif <span class="at">-</span> <span class="at">-bzero</span> <span class="kw">|</span> <span class="ex">mrmath</span> <span class="at">-</span> mean mean_b0_processed.mif <span class="at">-axis</span> 3 </span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="ex">mrconvert</span> mean_b0_processed.mif mean_b0_processed.nii.gz </span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="ex">dwiextract</span> dwi_den_preproc_unbiased_upsampled.mif <span class="at">-</span> <span class="at">-bzero</span> <span class="kw">|</span> <span class="ex">mrmath</span> <span class="at">-</span> mean mean_b0_processed_up.mif <span class="at">-axis</span> 3 </span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="ex">mrconvert</span> mean_b0_processed_up.mif mean_b0_processed_up.nii.gz </span>
 <span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="ex">mrconvert</span> 5tt_nocoreg.mif 5tt_nocoreg.nii.gz </span>
 <span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="co"># Uses FSL commands fslroi and flirt to create a transformation matrix for regisitration between the tissue map and the b0 images</span></span>
 <span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="ex">fslroi</span> 5tt_nocoreg.nii.gz 5tt_vol0.nii.gz 0 1 <span class="co">#Extract the first volume of the 5tt dataset (since flirt can only use 3D images, not 4D images)</span></span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="ex">flirt</span> <span class="at">-in</span> mean_b0_processed.nii.gz <span class="at">-ref</span> 5tt_vol0.nii.gz <span class="at">-interp</span> nearestneighbour <span class="at">-dof</span> 6 <span class="at">-omat</span> diff2struct_fsl.mat</span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="ex">transformconvert</span> diff2struct_fsl.mat mean_b0_processed.nii.gz 5tt_nocoreg.nii.gz flirt_import diff2struct_mrtrix.txt </span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="ex">mrtransform</span> 5tt_nocoreg.mif <span class="at">-linear</span> diff2struct_mrtrix.txt <span class="at">-inverse</span> 5tt_coreg.mif </span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="ex">flirt</span> <span class="at">-in</span> mean_b0_processed_up.nii.gz <span class="at">-ref</span> 5tt_vol0.nii.gz <span class="at">-interp</span> nearestneighbour <span class="at">-dof</span> 6 <span class="at">-omat</span> diff2struct_fsl_up.mat</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="ex">transformconvert</span> diff2struct_fsl_up.mat mean_b0_processed_up.nii.gz 5tt_nocoreg.nii.gz flirt_import diff2struct_mrtrix_up.txt </span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="ex">mrtransform</span> 5tt_nocoreg.mif <span class="at">-linear</span> diff2struct_mrtrix_up.txt <span class="at">-inverse</span> 5tt_coreg_up.mif </span>
 <span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a seed region along the GM/WM boundary</span></span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="ex">5tt2gmwmi</span> 5tt_coreg.mif gmwmSeed_coreg.mif </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="ex">5tt2gmwmi</span> 5tt_coreg_up.mif gmwmSeed_coreg_up.mif </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="step-2.-streamline-generation" class="level3">
 <h3 class="anchored" data-anchor-id="step-2.-streamline-generation">STEP 2. Streamline generation</h3>
@@ -434,13 +434,13 @@ div.csl-indent {
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create streamlines</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Note that the "right" number of streamlines is still up for debate. Last I read from the MRtrix documentation,</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># They recommend about 100 million tracks. Here I use 10 million, if only to save time. Read their papers and then make a decision</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ex">tckgen</span> <span class="at">-act</span> 5tt_coreg.mif <span class="at">-backtrack</span> <span class="at">-seed_gmwmi</span> gmwmSeed_coreg.mif <span class="at">-nthreads</span> 8 <span class="at">-maxlength</span> 250 <span class="at">-cutoff</span> 0.06 <span class="at">-select</span> 10000k wmfod_norm.mif tracks_10M.tck </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ex">tckgen</span> <span class="at">-act</span> 5tt_coreg_up.mif <span class="at">-backtrack</span> <span class="at">-seed_gmwmi</span> gmwmSeed_coreg_up.mif <span class="at">-nthreads</span> 8 <span class="at">-maxlength</span> 250 <span class="at">-cutoff</span> 0.06 <span class="at">-select</span> 10000k wmfod_norm_up.mif tracks_10M_up.tck </span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract a subset of tracks (here, 200 thousand) for ease of visualization</span></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># tckedit tracks_10M.tck -number 200k smallerTracks_200k.tck</span></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Reduce the number of streamlines with tcksift</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="ex">tcksift2</span> <span class="at">-act</span> 5tt_coreg.mif <span class="at">-out_mu</span> sift_mu.txt <span class="at">-out_coeffs</span> sift_coeffs.txt <span class="at">-nthreads</span> 8 tracks_10M.tck wmfod_norm.mif sift_1M.txt </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="ex">tcksift2</span> <span class="at">-act</span> 5tt_coreg_up.mif <span class="at">-out_mu</span> sift_mu_up.txt <span class="at">-out_coeffs</span> sift_coeffs_up.txt <span class="at">-nthreads</span> 8 tracks_10M.tck wmfod_norm_up.mif sift_1M_up.txt </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="step-3.-recon-all" class="level3">
 <h3 class="anchored" data-anchor-id="step-3.-recon-all">STEP 3. Recon-all</h3>
@@ -486,14 +486,14 @@ div.csl-indent {
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ex">labelconvert</span> hcpmmp1.mif <span class="va">$MRtrix3</span>/labelconvert/hcpmmp1_original.txt <span class="va">$MRtrix3</span>/labelconvert/hcpmmp1_ordered.txt hcpmmp1_parcels_nocoreg.mif</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Register the ordered atlas-based volumetric parcellation to diffusion space.</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="ex">mrtransform</span> hcpmmp1_parcels_nocoreg.mif –linear diff2struct_mrtrix.txt –inverse –datatype uint32 hcpmmp1_parcels_coreg.mif</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="ex">mrtransform</span> hcpmmp1_parcels_nocoreg.mif –linear diff2struct_mrtrix_up.txt –inverse –datatype uint32 hcpmmp1_parcels_coreg_up.mif</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a whole-brain connectome, representing the streamlines between each parcellation pair in the atlas (in this case, 379x379). The "symmetric" option will make the lower diagonal the same as the upper diagonal, and the "scale_invnodevol" option will scale the connectome by the inverse of the size of the node</span></span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="ex">tck2connectome</span> <span class="at">-symmetric</span> <span class="at">-zero_diagonal</span> <span class="at">-scale_invnodevol</span> <span class="at">-tck_weights_in</span> sift_1M.txt tracks_10M.tck hcpmmp1_parcels_coreg.mif <span class="op">&lt;</span>sub<span class="op">&gt;</span>_hcpmmp1_parcels_coreg.csv <span class="at">-out_assignment</span> assignments_IN_hcpmmp1_parcels_coreg.csv</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="ex">tck2connectome</span> <span class="at">-symmetric</span> <span class="at">-zero_diagonal</span> <span class="at">-scale_invnodevol</span> <span class="at">-tck_weights_in</span> sift_1M.txt tracks_10M.tck hcpmmp1_parcels_coreg_up.mif <span class="op">&lt;</span>sub<span class="op">&gt;</span>_hcpmmp1_parcels_coreg_up.csv <span class="at">-out_assignment</span> assignments_IN_hcpmmp1_parcels_coreg_up.csv</span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the connectome in MRtrix3</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="ex">mrview</span> hcpmmp1_parcels_coreg.mif <span class="at">-connectome.init</span> hcpmmp1_parcels_coreg.mif <span class="at">-connectome.load</span> sub<span class="pp">*</span>.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="ex">mrview</span> hcpmmp1_parcels_coreg_up.mif <span class="at">-connectome.init</span> hcpmmp1_parcels_coreg_up.mif <span class="at">-connectome.load</span> sub<span class="pp">*</span>.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You can then visualize the connectivity matrix in matlab: the upper left and lower right quadrant represent the left and right intra-hemispheric connections respectively.<br>
 </p>
 <div class="quarto-figure quarto-figure-center">
@@ -516,13 +516,13 @@ div.csl-indent {
 </section>
 <section id="download" class="level2">
 <h2 class="anchored" data-anchor-id="download">Download</h2>
-<p><strong>You can download the full preprocessing script</strong> <a href="https://github.com/ClementGuichet/clementguichet.github.io/blob/main/content/downloads/single_subj_full_preproc.sh">here</a> <strong>and run it by typing this command in the folder that contains your subject’s data:</strong></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> single_subj_full_preproc.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Before running the script, open it and change the following parameters:</p>
+<p><strong>You can download the full preprocessing script</strong> <a href="https://github.com/ClementGuichet/clementguichet.github.io/blob/main/content/downloads/single_subj_full_preproc.sh">here</a>. Before running the script, open it and change the following parameters:</p>
 <ul>
-<li><p><strong><em>dwifslpreproc</em></strong>: check your json file for the <em>PhaseEncodingDirection</em> (-pe_dir), the total readout time. More information on <a href="https://www.mrtrix.org/documentation/">MRtrix3 documentation</a>.</p></li>
+<li><p><strong><em>dwifslpreproc</em></strong>: check your json file for the <em>PhaseEncodingDirection</em> (-pe_dir) &amp; the total readout time. More information on <a href="https://www.mrtrix.org/documentation/">MRtrix3 documentation</a>.</p></li>
 <li><p>If you wish to generate a connectome with HCP regions, make sure you’ve downloaded the <strong><em>lh</em></strong> and <strong><em>rh.hcpmmp1 annot</em></strong> files in the supplementary files <a href="https://osf.io/fkyht/#!">here</a> and put them into <strong>$SUBJECTS_DIR/fsaverage/label</strong> (see also <a href="#step-3.-recon-all">STEP 3. Recon-all</a>).</p></li>
 </ul>
+<p>You can then run the script by typing the following command in the folder containing your subject’s data:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> single_subj_full_preproc.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 

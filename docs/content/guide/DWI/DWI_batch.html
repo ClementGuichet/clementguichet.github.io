@@ -478,13 +478,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="download" class="level2">
 <h2 class="anchored" data-anchor-id="download">Download</h2>
-<p><strong>You can download the full preprocessing script</strong> <a href="https://github.com/ClementGuichet/clementguichet.github.io/blob/main/content/downloads/batch_full_preproc.sh">here</a> <strong>and run it by typing this command in the folder that contains your subject’s data:</strong></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> batch_full_preproc.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>You can download the full preprocessing script</strong> <a href="https://github.com/ClementGuichet/clementguichet.github.io/blob/main/content/downloads/batch_full_preproc.sh">here</a>.</p>
 <p>Before running the script, open it and change the following parameters:</p>
 <ul>
 <li><p><strong><em>dwifslpreproc</em></strong>: check your json file for the <em>PhaseEncodingDirection</em> (-pe_dir), the total readout time. More information on <a href="https://www.mrtrix.org/documentation/">MRtrix3 documentation</a>.</p></li>
 <li><p>If you wish to generate a connectome with HCP regions, make sure you’ve downloaded the <strong><em>lh</em></strong> and <strong><em>rh.hcpmmp1 annot</em></strong> files in the supplementary files <a href="https://osf.io/fkyht/#!">here</a> and put them into <strong>$SUBJECTS_DIR/fsaverage/label</strong> (see also <a href="../../../content/guide/DWI/parallel.html">Recon-all with parallel computing</a>).</p></li>
 </ul>
+<p>You can then run the script by typing this command in the folder containing your subject’s data:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> batch_full_preproc.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>

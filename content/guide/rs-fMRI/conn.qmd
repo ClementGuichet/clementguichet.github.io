@@ -28,7 +28,7 @@ FUNCTIONAL_FILE=reshape(FUNCTIONAL_FILE,[nsessions, NSUBJECTS]);
 STRUCTURAL_FILE={STRUCTURAL_FILE{1:NSUBJECTS}};
 disp([num2str(size(FUNCTIONAL_FILE,1)),' sessions']);
 disp([num2str(size(FUNCTIONAL_FILE,2)),' subjects']);
-TR= ??; % Repetition time
+TR= X; % Repetition time
 
 
 % CONN-SPECIFIC SECTION: RUNS SETUP STEPS

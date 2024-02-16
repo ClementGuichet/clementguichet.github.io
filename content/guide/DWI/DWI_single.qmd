@@ -4,11 +4,11 @@ subtitle: A step-by-step guide to DWI preprocessing & SC generation based on MRt
 bibliography: references.yaml
 ---
 
-I recommend you check [Andrew Jahn's book](https://andysbrainbook.readthedocs.io/en/latest/MRtrix/MRtrix_Introduction.html) for a thorough walk-through DTI analysis with MRtrix3. The full script is available for download at the bottom (see [Download]).
+The full script detailed below is available for download at the bottom (see [Download]). This is largely adapted from [Andrew Jahn's book](https://andysbrainbook.readthedocs.io/en/latest/MRtrix/MRtrix_Introduction.html); consider checking the book for a thorough tutorial with MRtrix3.
 
 #### CPUs
 
-To determine the number of available logical processors or CPUs on your system, enter *nproc* in the terminal. We'll pass the output to the *-nthreads* flag below. I recommend you spare some of it if you wish to perform other tasks while the pipeline is running.
+To determine the number of available logical processors or CPUs on your system, enter *nproc* in the terminal. Then, pass the output to the *-nthreads* flag below. Spare some processors if you wish to perform other tasks while the pipeline is running as it usually runs for a couple hours.
 
 ### STEP 1. Preprocessing
 
@@ -58,7 +58,7 @@ dwibiascorrect ants dwi_den_preproc.mif dwi_den_preproc_unbiased.mif -bias bias.
 dwi2response dhollander dwi_den_preproc_unbiased.mif wm.txt gm.txt csf.txt -voxels voxels.mif 
 
 #Upsample the difusion image for better resolution and tracto later
-mrgrid IN/*unbiased.mif regrid -vox 1.5 IN/dwi_unbiased_upsampled.mif
+mrgrid *unbiased.mif regrid -vox 1.5 dwi_unbiased_upsampled.mif
 
 # Create a mask for future processing steps
 dwi2mask dwi_unbiased_upsampled.mif mask.mif 
@@ -71,7 +71,7 @@ dwi2fod msmt_csd dwi_unbiased_upsampled.mif -mask mask.mif wm.txt wmfod.mif gm.t
 mrconvert -coord 3 0 wmfod.mif - | mrcat csffod.mif gmfod.mif - vf.mif 
 
 # Now normalize the FODs to enable comparison between subjects
-mtnormalise wmfod.mif wmfod_norm.mif gmfod.mif gmfod_norm.mif csffod.mif csffod_norm.mif -mask mask.mif 
+mtnormalise wmfod.mif wmfod_norm_up.mif gmfod.mif gmfod_norm_up.mif csffod.mif csffod_norm_up.mif -mask mask_up.mif 
 
 ########################### STEP 3 ###################################
 #            Create a GM/WM boundary for seed analysis               #
@@ -82,18 +82,18 @@ mrconvert ../anat/*T1w.nii.gz T1.mif
 5ttgen fsl T1.mif 5tt_nocoreg.mif -nthreads 8 
 
 # The following series of commands will take the average of the b0 images (which have the best contrast), convert them and the 5tt image to NIFTI format, and use it for coregistration.
-dwiextract dwi_den_preproc_unbiased.mif - -bzero | mrmath - mean mean_b0_processed.mif -axis 3 
-mrconvert mean_b0_processed.mif mean_b0_processed.nii.gz 
+dwiextract dwi_den_preproc_unbiased_upsampled.mif - -bzero | mrmath - mean mean_b0_processed_up.mif -axis 3 
+mrconvert mean_b0_processed_up.mif mean_b0_processed_up.nii.gz 
 mrconvert 5tt_nocoreg.mif 5tt_nocoreg.nii.gz 
 
 # Uses FSL commands fslroi and flirt to create a transformation matrix for regisitration between the tissue map and the b0 images
 fslroi 5tt_nocoreg.nii.gz 5tt_vol0.nii.gz 0 1 #Extract the first volume of the 5tt dataset (since flirt can only use 3D images, not 4D images)
-flirt -in mean_b0_processed.nii.gz -ref 5tt_vol0.nii.gz -interp nearestneighbour -dof 6 -omat diff2struct_fsl.mat
-transformconvert diff2struct_fsl.mat mean_b0_processed.nii.gz 5tt_nocoreg.nii.gz flirt_import diff2struct_mrtrix.txt 
-mrtransform 5tt_nocoreg.mif -linear diff2struct_mrtrix.txt -inverse 5tt_coreg.mif 
+flirt -in mean_b0_processed_up.nii.gz -ref 5tt_vol0.nii.gz -interp nearestneighbour -dof 6 -omat diff2struct_fsl_up.mat
+transformconvert diff2struct_fsl_up.mat mean_b0_processed_up.nii.gz 5tt_nocoreg.nii.gz flirt_import diff2struct_mrtrix_up.txt 
+mrtransform 5tt_nocoreg.mif -linear diff2struct_mrtrix_up.txt -inverse 5tt_coreg_up.mif 
 
 #Create a seed region along the GM/WM boundary
-5tt2gmwmi 5tt_coreg.mif gmwmSeed_coreg.mif 
+5tt2gmwmi 5tt_coreg_up.mif gmwmSeed_coreg_up.mif 
 ```
 
 ### STEP 2. Streamline generation
@@ -110,13 +110,13 @@ Make sure to allocate at least 5Go of space for each subject on your local disk 
 # Create streamlines
 # Note that the "right" number of streamlines is still up for debate. Last I read from the MRtrix documentation,
 # They recommend about 100 million tracks. Here I use 10 million, if only to save time. Read their papers and then make a decision
-tckgen -act 5tt_coreg.mif -backtrack -seed_gmwmi gmwmSeed_coreg.mif -nthreads 8 -maxlength 250 -cutoff 0.06 -select 10000k wmfod_norm.mif tracks_10M.tck 
+tckgen -act 5tt_coreg_up.mif -backtrack -seed_gmwmi gmwmSeed_coreg_up.mif -nthreads 8 -maxlength 250 -cutoff 0.06 -select 10000k wmfod_norm_up.mif tracks_10M_up.tck 
 
 # Extract a subset of tracks (here, 200 thousand) for ease of visualization
 # tckedit tracks_10M.tck -number 200k smallerTracks_200k.tck
 
 # Reduce the number of streamlines with tcksift
-tcksift2 -act 5tt_coreg.mif -out_mu sift_mu.txt -out_coeffs sift_coeffs.txt -nthreads 8 tracks_10M.tck wmfod_norm.mif sift_1M.txt 
+tcksift2 -act 5tt_coreg_up.mif -out_mu sift_mu_up.txt -out_coeffs sift_coeffs_up.txt -nthreads 8 tracks_10M.tck wmfod_norm_up.mif sift_1M_up.txt 
 ```
 
 ### STEP 3. Recon-all
@@ -172,14 +172,14 @@ mrconvert –datatype uint32 hcpmmp1.mgz  hcpmmp1.mif
 labelconvert hcpmmp1.mif $MRtrix3/labelconvert/hcpmmp1_original.txt $MRtrix3/labelconvert/hcpmmp1_ordered.txt hcpmmp1_parcels_nocoreg.mif
 
 # Register the ordered atlas-based volumetric parcellation to diffusion space.
-mrtransform hcpmmp1_parcels_nocoreg.mif –linear diff2struct_mrtrix.txt –inverse –datatype uint32 hcpmmp1_parcels_coreg.mif
+mrtransform hcpmmp1_parcels_nocoreg.mif –linear diff2struct_mrtrix_up.txt –inverse –datatype uint32 hcpmmp1_parcels_coreg_up.mif
 
 # Create a whole-brain connectome, representing the streamlines between each parcellation pair in the atlas (in this case, 379x379). The "symmetric" option will make the lower diagonal the same as the upper diagonal, and the "scale_invnodevol" option will scale the connectome by the inverse of the size of the node
 
-tck2connectome -symmetric -zero_diagonal -scale_invnodevol -tck_weights_in sift_1M.txt tracks_10M.tck hcpmmp1_parcels_coreg.mif <sub>_hcpmmp1_parcels_coreg.csv -out_assignment assignments_IN_hcpmmp1_parcels_coreg.csv
+tck2connectome -symmetric -zero_diagonal -scale_invnodevol -tck_weights_in sift_1M.txt tracks_10M.tck hcpmmp1_parcels_coreg_up.mif <sub>_hcpmmp1_parcels_coreg_up.csv -out_assignment assignments_IN_hcpmmp1_parcels_coreg_up.csv
 
 # Visualize the connectome in MRtrix3
-mrview hcpmmp1_parcels_coreg.mif -connectome.init hcpmmp1_parcels_coreg.mif -connectome.load sub*.csv
+mrview hcpmmp1_parcels_coreg_up.mif -connectome.init hcpmmp1_parcels_coreg_up.mif -connectome.load sub*.csv
 ```
 
 You can then visualize the connectivity matrix in matlab: the upper left and lower right quadrant represent the left and right intra-hemispheric connections respectively.\
@@ -202,14 +202,14 @@ tck2connectome -symmetric tracks_10M.tck -tck_weights_in sift_1M.txt hcpmmp1_par
 
 ## Download
 
-**You can download the full preprocessing script** [here](https://github.com/ClementGuichet/clementguichet.github.io/blob/main/content/downloads/single_subj_full_preproc.sh) **and run it by typing this command in the folder that contains your subject's data:**
+**You can download the full preprocessing script** [here](https://github.com/ClementGuichet/clementguichet.github.io/blob/main/content/downloads/single_subj_full_preproc.sh). Before running the script, open it and change the following parameters:
+
+-   ***dwifslpreproc***: check your json file for the *PhaseEncodingDirection* (-pe_dir) & the total readout time. More information on [MRtrix3 documentation](https://www.mrtrix.org/documentation/).
+
+-   If you wish to generate a connectome with HCP regions, make sure you've downloaded the ***lh*** and ***rh.hcpmmp1 annot*** files in the supplementary files [here](https://osf.io/fkyht/#!) and put them into **\$SUBJECTS_DIR/fsaverage/label** (see also [STEP 3. Recon-all]).
+
+You can then run the script by typing the following command in the folder containing your subject's data:
 
 ``` bash
 bash single_subj_full_preproc.sh
 ```
-
-Before running the script, open it and change the following parameters:
-
--   ***dwifslpreproc***: check your json file for the *PhaseEncodingDirection* (-pe_dir), the total readout time. More information on [MRtrix3 documentation](https://www.mrtrix.org/documentation/).
-
--   If you wish to generate a connectome with HCP regions, make sure you've downloaded the ***lh*** and ***rh.hcpmmp1 annot*** files in the supplementary files [here](https://osf.io/fkyht/#!) and put them into **\$SUBJECTS_DIR/fsaverage/label** (see also [STEP 3. Recon-all]).
