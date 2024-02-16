@@ -1,6 +1,6 @@
 ---
-title: "Diffusion Tensor Imaging (DTI) - **Batch processing**"
-subtitle: A step-by-step guide to DTI preprocessing & SC generation based on MRtrix3
+title: "Diffusion Weighted Imaging (DWI) - **Batch processing**"
+subtitle: A step-by-step guide to DWI preprocessing & SC generation based on MRtrix3
 bibliography: references.yaml
 ---
 

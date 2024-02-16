@@ -27,9 +27,7 @@ website:
       - text: "About"
         file: content/about.qmd
       - text: "Guide"
-        file: content/guide/DWI/setup_win.qmd
-      - text: "Research"
-        file: content/research.qmd
+        file: content/guide/DWI/DWI_single.qmd
 
     tools:
       - icon: twitter
