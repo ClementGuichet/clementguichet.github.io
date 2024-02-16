@@ -4,7 +4,7 @@ subtitle: ROI-to-ROI analysis with the CONN toolbox
 bibliography: references.yaml
 ---
 
-Following the standard preprocessing pipeline, the CONN toolbox [@whitfield-gabrieli2012] takes care of the FC generation after denoising [@behzadi2007]. This is an add-on to SPM that can be downloaded [here](https://www.nitrc.org/projects/conn/).
+Following the standard preprocessing pipeline, the CONN toolbox [@nieto-castanon2020] takes care of the FC generation after denoising. This is an add-on to SPM that can be downloaded [here](https://www.nitrc.org/projects/conn/).
 
 ### STEP 1. Importing the data into a new CONN project
 
@@ -15,7 +15,7 @@ This script will create a new conn project named *conn_example* and automaticall
 % Adapted by Clément Guichet, UGA, LPNC, 07.01.2023
 
 % FIND functional/structural files
-NSUBJECTS= ??;
+NSUBJECTS= X;
 cwd=pwd;
 
 # the smoothed out spatially preprocessed volumes, conn will automatically bind them to the unsmoothed ones
@@ -116,4 +116,4 @@ If the project does not load up, you can open the mat file in the GUI.
 
 3.  Click done to generate the .mat file. Under the path /conn_example/results/firstlevel/RRC, you should now visualize the .mat files for each subject.
 
-    ![In Matlab: connectome = load('resultsROI_Subject001_Condition001.mat'); W = connectome.Z; figure, imagesc(W, \[0 1\]), xlabel(\[' 131 LANG regions '\]), ylabel('131 LANG regions'), title(\[' Functional connectome '\]); colormap(jet), colorbar, set(gcf,'color','w'), set(gca,'fontsize',14)](/images/FC.png){fig-align="center"}
+    ![In Matlab: connectome = load('resultsROI_Subject001_Condition001.mat'); W = connectome.Z; figure, imagesc(W, \[0 1\]), xlabel(\[' 131 LANG regions '\]), ylabel('131 LANG regions'), title(\[' Functional connectome '\]); colormap(jet), colorbar, set(gcf,'color','w'), set(gca,'fontsize',14)](/images/FC.png){fig-align="center" width="700"}

@@ -1,56 +1,20 @@
 ---
 references:
-- id: behzadi2007
-  accessed: "10:59:05"
+- id: nieto-castanon2020
+  accessed: "19:17:58"
   author:
-  - family: Behzadi
-    given: Yashar
-  - family: Restom
-    given: Khaled
-  - family: Liau
-    given: Joy
-  - family: Liu
-    given: Thomas T.
-  container-title: NeuroImage
-  container-title-short: NeuroImage
-  DOI: 10.1016/j.neuroimage.2007.04.042
-  ISSN: 10538119
-  issue: 1
-  issued: 2007-08
-  key: W4C7RQ2Y
-  language: en
-  libraryID: 1
-  page: 90-101
-  providerKey: 2509FBBE-5BB0-44C4-B119-6083A81ED673
-  source: DOI.org (Crossref)
-  title: A component based noise correction method (CompCor) for BOLD
-    and perfusion based fMRI
-  type: article-journal
-  URL: "https://linkinghub.elsevier.com/retrieve/pii/S1053811907003837"
-  volume: 37
-- id: whitfield-gabrieli2012
-  accessed: "10:53:24"
-  author:
-  - family: Whitfield-Gabrieli
-    given: Susan
   - family: Nieto-Castanon
     given: Alfonso
-  container-title: Brain Connectivity
-  container-title-short: Brain Connectivity
-  DOI: 10.1089/brain.2012.0073
-  ISSN: 2158-0014, 2158-0022
-  issue: 3
-  issued: 2012-06
-  key: JTV8NFVB
-  language: en
+  DOI: 10.56441/hilbertpress.2207.6598
+  ISBN: 978-0-578-64400-4
+  issued: 2020-02-04
+  key: AE6DEGYR
   libraryID: 1
-  page: 125-141
   providerKey: 2509FBBE-5BB0-44C4-B119-6083A81ED673
+  publisher: Hilbert Press
   source: DOI.org (Crossref)
-  title: "*Conn* : A Functional Connectivity Toolbox for Correlated and
-    Anticorrelated Brain Networks"
-  title-short: "*Conn*"
-  type: article-journal
-  URL: "http://www.liebertpub.com/doi/10.1089/brain.2012.0073"
-  volume: 2
+  title: Handbook of functional connectivity Magnetic Resonance Imaging
+    methods in CONN
+  type: book
+  URL: "https://www.hilbertpress.org/link-nieto-castanon2020"
 ...

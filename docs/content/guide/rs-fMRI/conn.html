@@ -329,7 +329,7 @@ div.csl-indent {
 
 </header>
 
-<p>Following the standard preprocessing pipeline, the CONN toolbox <span class="citation" data-cites="whitfield-gabrieli2012">(<a href="#ref-whitfield-gabrieli2012" role="doc-biblioref">Whitfield-Gabrieli and Nieto-Castanon 2012</a>)</span> takes care of the FC generation after denoising <span class="citation" data-cites="behzadi2007">(<a href="#ref-behzadi2007" role="doc-biblioref">Behzadi et al. 2007</a>)</span>. This is an add-on to SPM that can be downloaded <a href="https://www.nitrc.org/projects/conn/">here</a>.</p>
+<p>Following the standard preprocessing pipeline, the CONN toolbox <span class="citation" data-cites="nieto-castanon2020">(<a href="#ref-nieto-castanon2020" role="doc-biblioref">Nieto-Castanon 2020</a>)</span> takes care of the FC generation after denoising. This is an add-on to SPM that can be downloaded <a href="https://www.nitrc.org/projects/conn/">here</a>.</p>
 <section id="step-1.-importing-the-data-into-a-new-conn-project" class="level3">
 <h3 class="anchored" data-anchor-id="step-1.-importing-the-data-into-a-new-conn-project">STEP 1. Importing the data into a new CONN project</h3>
 <p>This script will create a new conn project named <em>conn_example</em> and automatically import the functional and structural volumes for the set number of subjects.</p>
@@ -337,7 +337,7 @@ div.csl-indent {
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">% Adapted by Clément Guichet, UGA, LPNC, 07.01.2023</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">% FIND functional/structural files</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="va">NSUBJECTS</span><span class="op">=</span> ??<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="va">NSUBJECTS</span><span class="op">=</span> <span class="va">X</span><span class="op">;</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="va">cwd</span><span class="op">=</span><span class="va">pwd</span><span class="op">;</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a># <span class="va">the</span> <span class="va">smoothed</span> <span class="va">out</span> <span class="va">spatially</span> <span class="va">preprocessed</span> <span class="va">volumes</span><span class="op">,</span> <span class="va">conn</span> <span class="va">will</span> <span class="va">automatically</span> <span class="va">bind</span> <span class="va">them</span> <span class="va">to</span> <span class="va">the</span> <span class="va">unsmoothed</span> <span class="va">ones</span></span>
@@ -423,7 +423,7 @@ div.csl-indent {
 <li><p>Select the brain regions to be included in the connectome.</p>
 <p><img src="../../..\images/conn/analyses.png" class="img-fluid" width="510"></p></li>
 <li><p>Click done to generate the .mat file. Under the path /conn_example/results/firstlevel/RRC, you should now visualize the .mat files for each subject.</p>
-<img src="../../..\images/FC.png" class="img-fluid" data-fig-align="center" alt="In Matlab: connectome = load(‘resultsROI_Subject001_Condition001.mat’); W = connectome.Z; figure, imagesc(W, [0 1]), xlabel([’ 131 LANG regions ‘]), ylabel(’131 LANG regions’), title([’ Functional connectome ‘]); colormap(jet), colorbar, set(gcf,’color’,‘w’), set(gca,‘fontsize’,14)"></li>
+<img src="../../..\images/FC.png" class="img-fluid" data-fig-align="center" width="700" alt="In Matlab: connectome = load(‘resultsROI_Subject001_Condition001.mat’); W = connectome.Z; figure, imagesc(W, [0 1]), xlabel([’ 131 LANG regions ‘]), ylabel(’131 LANG regions’), title([’ Functional connectome ‘]); colormap(jet), colorbar, set(gcf,’color’,‘w’), set(gca,‘fontsize’,14)"></li>
 </ol>
 
 
@@ -432,11 +432,8 @@ div.csl-indent {
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-behzadi2007" class="csl-entry" role="listitem">
-Behzadi, Yashar, Khaled Restom, Joy Liau, and Thomas T. Liu. 2007. <span>“A Component Based Noise Correction Method (CompCor) for BOLD and Perfusion Based fMRI.”</span> <em>NeuroImage</em> 37 (1): 90–101. <a href="https://doi.org/10.1016/j.neuroimage.2007.04.042">https://doi.org/10.1016/j.neuroimage.2007.04.042</a>.
-</div>
-<div id="ref-whitfield-gabrieli2012" class="csl-entry" role="listitem">
-Whitfield-Gabrieli, Susan, and Alfonso Nieto-Castanon. 2012. <span>“<em>Conn</em> : A Functional Connectivity Toolbox for Correlated and Anticorrelated Brain Networks.”</span> <em>Brain Connectivity</em> 2 (3): 125–41. <a href="https://doi.org/10.1089/brain.2012.0073">https://doi.org/10.1089/brain.2012.0073</a>.
+<div id="ref-nieto-castanon2020" class="csl-entry" role="listitem">
+Nieto-Castanon, Alfonso. 2020. <em>Handbook of Functional Connectivity Magnetic Resonance Imaging Methods in CONN</em>. Hilbert Press. <a href="https://doi.org/10.56441/hilbertpress.2207.6598">https://doi.org/10.56441/hilbertpress.2207.6598</a>.
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
