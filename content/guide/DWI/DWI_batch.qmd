@@ -157,10 +157,10 @@ mrview hcpmmp1_parcels_coreg_up.mif -connectome.init hcpmmp1_parcels_coreg_up.mi
 
 ``` bash
 # Generate the RGB-colored FA map
-for_each -nthreads $NPROC -info */dwi : dwi2tensor IN/*unbiased_upsampled.mif - \| tensor2metric - -fa - \| mrcalc - -abs IN/FA_up.mif
+for_each -nthreads $NPROC -info */dwi : dwi2tensor IN/*unbiased_upsampled.mif - \| tensor2metric - -fa - \| mrcalc - -abs IN/FA.mif
 
 # Generate the connectome
-for_each -nthreads $NPROC -info * : tcksample IN/dwi/tracks_10M_up.tck IN/dwi/FA_up.mif IN/dwi/IN_mean_FA_per_streamline_up.csv -stat_tck mean
+for_each -nthreads $NPROC -info * : tcksample IN/dwi/tracks_10M_up.tck IN/dwi/FA.mif IN/dwi/IN_mean_FA_per_streamline_up.csv -stat_tck mean
 
 for_each -nthreads $NPROC -info * : tck2connectome -symmetric dwi/tracks_10M_up.tck -tck_weights_in dwi/sift_1M_up.txt dwi/hcpmmp1_parcels_coreg_up.mif dwi/IN_mean_FA_connectome_up.csv -scale_file dwi/IN_mean_FA_per_streamline_up.csv -stat_edge mean
 ```

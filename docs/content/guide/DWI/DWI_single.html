@@ -439,7 +439,7 @@ div.csl-indent {
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># tckedit tracks_10M.tck -number 200k smallerTracks_200k.tck</span></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Reduce the number of streamlines with tcksift</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="ex">tcksift2</span> <span class="at">-act</span> 5tt_coreg_up.mif <span class="at">-out_mu</span> sift_mu_up.txt <span class="at">-out_coeffs</span> sift_coeffs_up.txt <span class="at">-nthreads</span> 8 tracks_10M.tck wmfod_norm_up.mif sift_1M_up.txt </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="ex">tcksift2</span> <span class="at">-act</span> 5tt_coreg_up.mif <span class="at">-out_mu</span> sift_mu_up.txt <span class="at">-out_coeffs</span> sift_coeffs_up.txt <span class="at">-nthreads</span> 8 tracks_10M_up.tck wmfod_norm_up.mif sift_1M_up.txt </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="step-3.-recon-all" class="level3">
 <h3 class="anchored" data-anchor-id="step-3.-recon-all">STEP 3. Recon-all</h3>
@@ -489,7 +489,7 @@ div.csl-indent {
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a whole-brain connectome, representing the streamlines between each parcellation pair in the atlas (in this case, 379x379). The "symmetric" option will make the lower diagonal the same as the upper diagonal, and the "scale_invnodevol" option will scale the connectome by the inverse of the size of the node</span></span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="ex">tck2connectome</span> <span class="at">-symmetric</span> <span class="at">-zero_diagonal</span> <span class="at">-scale_invnodevol</span> <span class="at">-tck_weights_in</span> sift_1M.txt tracks_10M.tck hcpmmp1_parcels_coreg_up.mif <span class="op">&lt;</span>sub<span class="op">&gt;</span>_hcpmmp1_parcels_coreg_up.csv <span class="at">-out_assignment</span> assignments_IN_hcpmmp1_parcels_coreg_up.csv</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="ex">tck2connectome</span> <span class="at">-symmetric</span> <span class="at">-zero_diagonal</span> <span class="at">-scale_invnodevol</span> <span class="at">-tck_weights_in</span> sift_1M_up.txt tracks_10M_up.tck hcpmmp1_parcels_coreg_up.mif <span class="op">&lt;</span>sub<span class="op">&gt;</span>_hcpmmp1_parcels_coreg_up.csv <span class="at">-out_assignment</span> assignments_IN_hcpmmp1_parcels_coreg_up.csv</span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the connectome in MRtrix3</span></span>
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="ex">mrview</span> hcpmmp1_parcels_coreg_up.mif <span class="at">-connectome.init</span> hcpmmp1_parcels_coreg_up.mif <span class="at">-connectome.load</span> sub<span class="pp">*</span>.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -505,12 +505,12 @@ div.csl-indent {
 <section id="optional.-fa-weighted-connectome" class="level3">
 <h3 class="anchored" data-anchor-id="optional.-fa-weighted-connectome">OPTIONAL. FA-weighted connectome</h3>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the RGB-colored FA map</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">dwi2tensor</span> dwi_den_preproc_unbiased.mif <span class="at">-</span> <span class="kw">|</span> <span class="ex">tensor2metric</span> <span class="at">-</span> <span class="at">-fa</span> <span class="at">-</span> <span class="kw">|</span> <span class="ex">mrcalc</span> <span class="at">-</span> <span class="at">-abs</span> FA.mif</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">dwi2tensor</span> dwi_den_preproc_unbiased_upsampled.mif <span class="at">-</span> <span class="kw">|</span> <span class="ex">tensor2metric</span> <span class="at">-</span> <span class="at">-fa</span> <span class="at">-</span> <span class="kw">|</span> <span class="ex">mrcalc</span> <span class="at">-</span> <span class="at">-abs</span> FA.mif</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the connectome</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">tcksample</span> tracks_10M.tck FA.mif mean_FA_per_streamline.csv <span class="at">-stat_tck</span> mean</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">tcksample</span> tracks_10M_up.tck FA.mif mean_FA_per_streamline_up.csv <span class="at">-stat_tck</span> mean</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">tck2connectome</span> <span class="at">-symmetric</span> tracks_10M.tck <span class="at">-tck_weights_in</span> sift_1M.txt hcpmmp1_parcels_coreg.mif mean_FA_connectome.csv <span class="at">-scale_file</span> mean_FA_per_streamline.csv <span class="at">-stat_edge</span> mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">tck2connectome</span> <span class="at">-symmetric</span> tracks_10M_up.tck <span class="at">-tck_weights_in</span> sift_1M_up.txt hcpmmp1_parcels_coreg_up.mif mean_FA_connectome_up.csv <span class="at">-scale_file</span> mean_FA_per_streamline_up.csv <span class="at">-stat_edge</span> mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 
