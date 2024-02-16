@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Clement Guichet - Diffusion Tensor Imaging (DTI) - Single subject</title>
+<title>Clement Guichet - Diffusion Weighted Imaging (DWI) - Single subject</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -83,8 +83,6 @@ div.csl-indent {
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../content/guide/DTI/DTI_batch.html" rel="next">
-<link href="../../../content/guide/DTI/setup_lin.html" rel="prev">
 <link href="../../../images/favicon.ico" rel="icon">
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
@@ -118,12 +116,12 @@ div.csl-indent {
 
 
 <link rel="stylesheet" href="../../../styles.css">
-<meta property="og:title" content="Clement Guichet - Diffusion Tensor Imaging (DTI) - Single subject">
-<meta property="og:description" content="A step-by-step guide to DTI preprocessing &amp; SC generation based on MRtrix3">
+<meta property="og:title" content="Clement Guichet - Diffusion Weighted Imaging (DWI) - Single subject">
+<meta property="og:description" content="A step-by-step guide to DWI preprocessing &amp; SC generation based on MRtrix3">
 <meta property="og:image" content="../../..\images/SC.png">
 <meta property="og:site-name" content="Clement Guichet">
-<meta name="twitter:title" content="Clement Guichet - Diffusion Tensor Imaging (DTI) - Single subject">
-<meta name="twitter:description" content="A step-by-step guide to DTI preprocessing &amp; SC generation based on MRtrix3">
+<meta name="twitter:title" content="Clement Guichet - Diffusion Weighted Imaging (DWI) - Single subject">
+<meta name="twitter:description" content="A step-by-step guide to DWI preprocessing &amp; SC generation based on MRtrix3">
 <meta name="twitter:image" content="../../..\images/SC.png">
 <meta name="twitter:card" content="summary_large_image">
 </head>
@@ -150,7 +148,7 @@ div.csl-indent {
  <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../../content/guide/DTI/setup_win.html" rel="" target="" aria-current="page">
+    <a class="nav-link active" href="../../../content/guide/DWI/setup_win.qmd" rel="" target="" aria-current="page">
  <span class="menu-text">Guide</span></a>
   </li>  
   <li class="nav-item">
@@ -171,7 +169,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../content/guide/DTI/setup_win.html">Guide</a></li><li class="breadcrumb-item">Tractography pipeline (SC)</li><li class="breadcrumb-item"><a href="../../../content/guide/DTI/DTI_single.html">Scripts</a></li><li class="breadcrumb-item"><a href="../../../content/guide/DTI/DTI_single.html"><strong>Single Subject</strong></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Diffusion Weighted Imaging (DWI) - <strong>Single subject</strong></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -185,7 +183,7 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../content/guide/DTI/setup_win.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../content/guide/DWI/setup_win.qmd" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Guide</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -211,31 +209,25 @@ div.csl-indent {
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../content/guide/DTI/setup_win.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Setup (<strong>Windows</strong>)</span></a>
-  </div>
-</li>
+ <span class="menu-text">content/guide/DWI/setup_win.qmd</span>
+  </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../content/guide/DTI/setup_lin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Setup (<strong>Linux</strong>)</span></a>
-  </div>
-</li>
+ <span class="menu-text">content/guide/DWI/setup_lin.qmd</span>
+  </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
  <span class="menu-text">Scripts</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth3 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../content/guide/DTI/DTI_single.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../content/guide/DWI/DWI_single.qmd" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><strong>Single Subject</strong></span></a>
   </div>
 </li>
@@ -250,16 +242,13 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../content/guide/DTI/DTI_batch.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../content/guide/DWI/DWI_batch.qmd" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Batch processing</span></a>
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../content/guide/DTI/parallel.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>Parallel computing</strong></span></a>
-  </div>
-</li>
+ <span class="menu-text">content/guide/DWI/parallel.qmd</span>
+  </li>
       </ul>
   </li>
       </ul>
@@ -314,15 +303,15 @@ div.csl-indent {
   <li><a href="#optional.-fa-weighted-connectome" id="toc-optional.-fa-weighted-connectome" class="nav-link" data-scroll-target="#optional.-fa-weighted-connectome">OPTIONAL. FA-weighted connectome</a></li>
   <li><a href="#download" id="toc-download" class="nav-link" data-scroll-target="#download">Download</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClementGuichet/clementguichet.github.io/edit/main/content/guide/DTI/DTI_single.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClementGuichet/clementguichet.github.io/edit/main/content/guide/DTI/DWI_single.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Diffusion Tensor Imaging (DTI) - <strong>Single subject</strong></h1>
-<p class="subtitle lead">A step-by-step guide to DTI preprocessing &amp; SC generation based on MRtrix3</p>
+<h1 class="title">Diffusion Weighted Imaging (DWI) - <strong>Single subject</strong></h1>
+<p class="subtitle lead">A step-by-step guide to DWI preprocessing &amp; SC generation based on MRtrix3</p>
 </div>
 
 
@@ -770,18 +759,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../../../content/guide/DTI/setup_lin.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Setup (<strong>Linux</strong>)</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../../../content/guide/DTI/DTI_batch.html" class="pagination-link">
-        <span class="nav-page-text">Batch processing</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

@@ -27,7 +27,7 @@ website:
       - text: "About"
         file: content/about.qmd
       - text: "Guide"
-        file: content/guide/DTI/setup_win.qmd
+        file: content/guide/DWI/setup_win.qmd
       - text: "Research"
         file: content/research.qmd
 
@@ -50,23 +50,23 @@ website:
       collapse-level: 3
       contents: 
         - section: "Guide"
-          file: content/guide/DTI/setup_win.qmd
+          file: content/guide/DWI/setup_win.qmd
           contents: 
           - section: "Tractography pipeline (SC)"
             contents:
             - section: "Setup"
               contents:
-              - content/guide/DTI/setup_win.qmd
-              - content/guide/DTI/setup_lin.qmd
+              - content/guide/DWI/setup_win.qmd
+              - content/guide/DWI/setup_lin.qmd
             - section: "Scripts"
               contents:
-              - file: content/guide/DTI/DTI_single.qmd
+              - file: content/guide/DWI/DWI_single.qmd
                 text: "**Single Subject**"
               - section: "**Multiple Subjects**"
                 contents:
-                - file: content/guide/DTI/DTI_batch.qmd
+                - file: content/guide/DWI/DWI_batch.qmd
                   text: "Batch processing"
-                - content/guide/DTI/parallel.qmd
+                - content/guide/DWI/parallel.qmd
           - section: "rs-fMRI pipeline (FC)"
             contents: 
               - content/guide/rs-fMRI/spm.qmd
