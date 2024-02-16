@@ -308,7 +308,6 @@ div.csl-indent {
   <li><a href="#step-3.-recon-all" id="toc-step-3.-recon-all" class="nav-link" data-scroll-target="#step-3.-recon-all">STEP 3. Recon-all</a></li>
   <li><a href="#step-4.-generate-the-structural-connectome-sc" id="toc-step-4.-generate-the-structural-connectome-sc" class="nav-link" data-scroll-target="#step-4.-generate-the-structural-connectome-sc">STEP 4. Generate the Structural Connectome (SC)</a></li>
   <li><a href="#optional.-fa-weighted-connectome" id="toc-optional.-fa-weighted-connectome" class="nav-link" data-scroll-target="#optional.-fa-weighted-connectome">OPTIONAL. FA-weighted connectome</a></li>
-  <li><a href="#download" id="toc-download" class="nav-link" data-scroll-target="#download">Download</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClementGuichet/clementguichet.github.io/edit/main/content/guide/DWI/DWI_single.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
@@ -333,7 +332,7 @@ div.csl-indent {
 
 </header>
 
-<p>The full script detailed below is available for download at the bottom (see <a href="#download">Download</a>). This is largely adapted from <a href="https://andysbrainbook.readthedocs.io/en/latest/MRtrix/MRtrix_Introduction.html">Andrew Jahn’s book</a>; consider checking the book for a thorough tutorial with MRtrix3.</p>
+<p>This is largely adapted from <a href="https://andysbrainbook.readthedocs.io/en/latest/MRtrix/MRtrix_Introduction.html">Andrew Jahn’s book</a>; consider checking the book for a thorough tutorial with MRtrix3.</p>
 <section id="cpus" class="level4">
 <h4 class="anchored" data-anchor-id="cpus">CPUs</h4>
 <p>To determine the number of available logical processors or CPUs on your system, enter <em>nproc</em> in the terminal. Then, pass the output to the <em>-nthreads</em> flag below. Spare some processors if you wish to perform other tasks while the pipeline is running as it usually runs for a couple hours.</p>
@@ -391,7 +390,7 @@ div.csl-indent {
 <span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="ex">dwi2mask</span> dwi_unbiased_upsampled.mif mask_up.mif </span>
 <span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Performs multishell-multitissue constrained spherical deconvolution, using the basis functions estimated above</span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="ex">dwi2fod</span> msmt_csd dwi_unbiased_upsampled.mif <span class="at">-mask</span> mask_up.mif wm.txt wmfod.mif gm.txt gmfod_up.mif csf.txt csffod_up.mif </span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="ex">dwi2fod</span> msmt_csd dwi_unbiased_upsampled.mif <span class="at">-mask</span> mask_up.mif wm.txt wmfod_up.mif gm.txt gmfod_up.mif csf.txt csffod_up.mif </span>
 <span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Creates an image of the fiber orientation densities overlaid onto the estimated tissues (Blue=WM; Green=GM; Red=CSF)</span></span>
 <span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="co"># You should see FOD's mostly within the white matter. These can be viewed later with the command "mrview vf.mif -odf.load_sh wmfod.mif"</span></span>
@@ -512,17 +511,6 @@ div.csl-indent {
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">tcksample</span> tracks_10M.tck FA.mif mean_FA_per_streamline.csv <span class="at">-stat_tck</span> mean</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">tck2connectome</span> <span class="at">-symmetric</span> tracks_10M.tck <span class="at">-tck_weights_in</span> sift_1M.txt hcpmmp1_parcels_coreg.mif mean_FA_connectome.csv <span class="at">-scale_file</span> mean_FA_per_streamline.csv <span class="at">-stat_edge</span> mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
-</section>
-<section id="download" class="level2">
-<h2 class="anchored" data-anchor-id="download">Download</h2>
-<p><strong>You can download the full preprocessing script</strong> <a href="https://github.com/ClementGuichet/clementguichet.github.io/blob/main/content/downloads/single_subj_full_preproc.sh">here</a>. Before running the script, open it and change the following parameters:</p>
-<ul>
-<li><p><strong><em>dwifslpreproc</em></strong>: check your json file for the <em>PhaseEncodingDirection</em> (-pe_dir) &amp; the total readout time. More information on <a href="https://www.mrtrix.org/documentation/">MRtrix3 documentation</a>.</p></li>
-<li><p>If you wish to generate a connectome with HCP regions, make sure you’ve downloaded the <strong><em>lh</em></strong> and <strong><em>rh.hcpmmp1 annot</em></strong> files in the supplementary files <a href="https://osf.io/fkyht/#!">here</a> and put them into <strong>$SUBJECTS_DIR/fsaverage/label</strong> (see also <a href="#step-3.-recon-all">STEP 3. Recon-all</a>).</p></li>
-</ul>
-<p>You can then run the script by typing the following command in the folder containing your subject’s data:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> single_subj_full_preproc.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 

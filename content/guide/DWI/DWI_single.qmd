@@ -4,7 +4,7 @@ subtitle: A step-by-step guide to DWI preprocessing & SC generation based on MRt
 bibliography: references.yaml
 ---
 
-The full script detailed below is available for download at the bottom (see [Download]). This is largely adapted from [Andrew Jahn's book](https://andysbrainbook.readthedocs.io/en/latest/MRtrix/MRtrix_Introduction.html); consider checking the book for a thorough tutorial with MRtrix3.
+This is largely adapted from [Andrew Jahn's book](https://andysbrainbook.readthedocs.io/en/latest/MRtrix/MRtrix_Introduction.html); consider checking the book for a thorough tutorial with MRtrix3.
 
 #### CPUs
 
@@ -64,7 +64,7 @@ mrgrid *unbiased.mif regrid -vox 1.5 dwi_unbiased_upsampled.mif
 dwi2mask dwi_unbiased_upsampled.mif mask_up.mif 
 
 # Performs multishell-multitissue constrained spherical deconvolution, using the basis functions estimated above
-dwi2fod msmt_csd dwi_unbiased_upsampled.mif -mask mask_up.mif wm.txt wmfod.mif gm.txt gmfod_up.mif csf.txt csffod_up.mif 
+dwi2fod msmt_csd dwi_unbiased_upsampled.mif -mask mask_up.mif wm.txt wmfod_up.mif gm.txt gmfod_up.mif csf.txt csffod_up.mif 
 
 # Creates an image of the fiber orientation densities overlaid onto the estimated tissues (Blue=WM; Green=GM; Red=CSF)
 # You should see FOD's mostly within the white matter. These can be viewed later with the command "mrview vf.mif -odf.load_sh wmfod.mif"
@@ -196,20 +196,4 @@ dwi2tensor dwi_den_preproc_unbiased.mif - | tensor2metric - -fa - | mrcalc - -ab
 tcksample tracks_10M.tck FA.mif mean_FA_per_streamline.csv -stat_tck mean
 
 tck2connectome -symmetric tracks_10M.tck -tck_weights_in sift_1M.txt hcpmmp1_parcels_coreg.mif mean_FA_connectome.csv -scale_file mean_FA_per_streamline.csv -stat_edge mean
-```
-
-------------------------------------------------------------------------
-
-## Download
-
-**You can download the full preprocessing script** [here](https://github.com/ClementGuichet/clementguichet.github.io/blob/main/content/downloads/single_subj_full_preproc.sh). Before running the script, open it and change the following parameters:
-
--   ***dwifslpreproc***: check your json file for the *PhaseEncodingDirection* (-pe_dir) & the total readout time. More information on [MRtrix3 documentation](https://www.mrtrix.org/documentation/).
-
--   If you wish to generate a connectome with HCP regions, make sure you've downloaded the ***lh*** and ***rh.hcpmmp1 annot*** files in the supplementary files [here](https://osf.io/fkyht/#!) and put them into **\$SUBJECTS_DIR/fsaverage/label** (see also [STEP 3. Recon-all]).
-
-You can then run the script by typing the following command in the folder containing your subject's data:
-
-``` bash
-bash single_subj_full_preproc.sh
 ```

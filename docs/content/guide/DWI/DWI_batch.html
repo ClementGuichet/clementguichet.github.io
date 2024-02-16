@@ -288,7 +288,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#step-4.-generate-the-structural-connectome-sc" id="toc-step-4.-generate-the-structural-connectome-sc" class="nav-link" data-scroll-target="#step-4.-generate-the-structural-connectome-sc">STEP 4. Generate the Structural Connectome (SC)</a></li>
   <li><a href="#optional.-fa-weighted-connectome" id="toc-optional.-fa-weighted-connectome" class="nav-link" data-scroll-target="#optional.-fa-weighted-connectome">OPTIONAL. FA-weighted connectome</a></li>
   <li><a href="#useful-shell-commands" id="toc-useful-shell-commands" class="nav-link" data-scroll-target="#useful-shell-commands">Useful shell commands</a></li>
-  <li><a href="#download" id="toc-download" class="nav-link" data-scroll-target="#download">Download</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ClementGuichet/clementguichet.github.io/edit/main/content/guide/DWI/DWI_batch.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
@@ -313,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>Below, I provide a synthesis of the preprocessing steps using the for_each command available on MRtrix3. The full script is available for download at the bottom (see <a href="#download">Download</a>).</p>
+<p>Below, I provide a synthesis of the preprocessing steps using the for_each command available on MRtrix3.</p>
 <section id="for_each-command" class="level4">
 <h4 class="anchored" data-anchor-id="for_each-command">For_each command</h4>
 <p>For_each is useful when you want to run multiple subjects, with multithreading. You have to provide the path to the /<em>dwi directory</em>/ within each subject’s folder where the data is stored (bvals, bvecs, etc…) as a template :</p>
@@ -474,18 +473,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Find all directories that do not contain a specific file </span></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> . <span class="at">-type</span> d <span class="st">'!'</span> <span class="at">-exec</span> test <span class="at">-e</span> <span class="st">"{}/filename.xxx"</span> <span class="dt">\;</span> <span class="at">-print</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
-</section>
-<section id="download" class="level2">
-<h2 class="anchored" data-anchor-id="download">Download</h2>
-<p><strong>You can download the full preprocessing script</strong> <a href="https://github.com/ClementGuichet/clementguichet.github.io/blob/main/content/downloads/batch_full_preproc.sh">here</a>.</p>
-<p>Before running the script, open it and change the following parameters:</p>
-<ul>
-<li><p><strong><em>dwifslpreproc</em></strong>: check your json file for the <em>PhaseEncodingDirection</em> (-pe_dir), the total readout time. More information on <a href="https://www.mrtrix.org/documentation/">MRtrix3 documentation</a>.</p></li>
-<li><p>If you wish to generate a connectome with HCP regions, make sure you’ve downloaded the <strong><em>lh</em></strong> and <strong><em>rh.hcpmmp1 annot</em></strong> files in the supplementary files <a href="https://osf.io/fkyht/#!">here</a> and put them into <strong>$SUBJECTS_DIR/fsaverage/label</strong> (see also <a href="../../../content/guide/DWI/parallel.html">Recon-all with parallel computing</a>).</p></li>
-</ul>
-<p>You can then run the script by typing this command in the folder containing your subject’s data:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> batch_full_preproc.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
