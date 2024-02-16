@@ -61,17 +61,17 @@ dwi2response dhollander dwi_den_preproc_unbiased.mif wm.txt gm.txt csf.txt -voxe
 mrgrid *unbiased.mif regrid -vox 1.5 dwi_unbiased_upsampled.mif
 
 # Create a mask for future processing steps
-dwi2mask dwi_unbiased_upsampled.mif mask.mif 
+dwi2mask dwi_unbiased_upsampled.mif mask_up.mif 
 
 # Performs multishell-multitissue constrained spherical deconvolution, using the basis functions estimated above
-dwi2fod msmt_csd dwi_unbiased_upsampled.mif -mask mask.mif wm.txt wmfod.mif gm.txt gmfod.mif csf.txt csffod.mif 
+dwi2fod msmt_csd dwi_unbiased_upsampled.mif -mask mask_up.mif wm.txt wmfod.mif gm.txt gmfod_up.mif csf.txt csffod_up.mif 
 
 # Creates an image of the fiber orientation densities overlaid onto the estimated tissues (Blue=WM; Green=GM; Red=CSF)
 # You should see FOD's mostly within the white matter. These can be viewed later with the command "mrview vf.mif -odf.load_sh wmfod.mif"
-mrconvert -coord 3 0 wmfod.mif - | mrcat csffod.mif gmfod.mif - vf.mif 
+mrconvert -coord 3 0 wmfod_up.mif - | mrcat csffod_up.mif gmfod_up.mif - vf_up.mif 
 
 # Now normalize the FODs to enable comparison between subjects
-mtnormalise wmfod.mif wmfod_norm_up.mif gmfod.mif gmfod_norm_up.mif csffod.mif csffod_norm_up.mif -mask mask_up.mif 
+mtnormalise wmfod_up.mif wmfod_norm_up.mif gmfod_up.mif gmfod_norm_up.mif csffod_up.mif csffod_norm_up.mif -mask mask_up.mif 
 
 ########################### STEP 3 ###################################
 #            Create a GM/WM boundary for seed analysis               #

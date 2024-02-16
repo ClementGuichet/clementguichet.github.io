@@ -388,17 +388,17 @@ div.csl-indent {
 <span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="ex">mrgrid</span> <span class="pp">*</span>unbiased.mif regrid <span class="at">-vox</span> 1.5 dwi_unbiased_upsampled.mif</span>
 <span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a mask for future processing steps</span></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="ex">dwi2mask</span> dwi_unbiased_upsampled.mif mask.mif </span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="ex">dwi2mask</span> dwi_unbiased_upsampled.mif mask_up.mif </span>
 <span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Performs multishell-multitissue constrained spherical deconvolution, using the basis functions estimated above</span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="ex">dwi2fod</span> msmt_csd dwi_unbiased_upsampled.mif <span class="at">-mask</span> mask.mif wm.txt wmfod.mif gm.txt gmfod.mif csf.txt csffod.mif </span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="ex">dwi2fod</span> msmt_csd dwi_unbiased_upsampled.mif <span class="at">-mask</span> mask_up.mif wm.txt wmfod.mif gm.txt gmfod_up.mif csf.txt csffod_up.mif </span>
 <span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Creates an image of the fiber orientation densities overlaid onto the estimated tissues (Blue=WM; Green=GM; Red=CSF)</span></span>
 <span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="co"># You should see FOD's mostly within the white matter. These can be viewed later with the command "mrview vf.mif -odf.load_sh wmfod.mif"</span></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="ex">mrconvert</span> <span class="at">-coord</span> 3 0 wmfod.mif <span class="at">-</span> <span class="kw">|</span> <span class="ex">mrcat</span> csffod.mif gmfod.mif <span class="at">-</span> vf.mif </span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="ex">mrconvert</span> <span class="at">-coord</span> 3 0 wmfod_up.mif <span class="at">-</span> <span class="kw">|</span> <span class="ex">mrcat</span> csffod_up.mif gmfod_up.mif <span class="at">-</span> vf_up.mif </span>
 <span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="co"># Now normalize the FODs to enable comparison between subjects</span></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="ex">mtnormalise</span> wmfod.mif wmfod_norm_up.mif gmfod.mif gmfod_norm_up.mif csffod.mif csffod_norm_up.mif <span class="at">-mask</span> mask_up.mif </span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="ex">mtnormalise</span> wmfod_up.mif wmfod_norm_up.mif gmfod_up.mif gmfod_norm_up.mif csffod_up.mif csffod_norm_up.mif <span class="at">-mask</span> mask_up.mif </span>
 <span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="co">########################### STEP 3 ###################################</span></span>
 <span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="co">#            Create a GM/WM boundary for seed analysis               #</span></span>
